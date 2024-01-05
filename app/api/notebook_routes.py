@@ -19,7 +19,7 @@ def notebooks():
 @login_required
 def notebook(id):
     """
-    Query for a user by id and returns that user in a dictionary
+    Query for a user by id and returns that user in a dictionary!
     """
     notebook = Notebook.query.get(id)
     return notebook.to_dict()
