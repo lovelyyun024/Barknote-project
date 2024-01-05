@@ -43,7 +43,7 @@ export default function HomePage() {
   const demoUserLogin = async () => {
     const serverResponse = await dispatch(
       thunkLogin({
-        email: "test@aa.io",
+        email: "demo@aa.io",
         password: "password",
       })
     );
