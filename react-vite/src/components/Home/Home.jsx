@@ -101,7 +101,7 @@ export default function HomePage() {
             </button>
           </div>
           <div className="sign-up-wrapper">
-            <p>Don't have an account?</p>
+            <p>Don&apos;t have an account?</p>
             <Link to="/signup" className="signup-button">
               <p>Create account</p>
             </Link>
