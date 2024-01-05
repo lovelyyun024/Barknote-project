@@ -42,6 +42,7 @@ export const router = createBrowserRouter(
         ></Route>
       </Route>
       <Route path="*" element={<Redirect />} /> */}
+      <Route path="/signup" element={<SignupFormPage />} />
       <Route path="/main" element={<Main />} />
     </Route>
   )
