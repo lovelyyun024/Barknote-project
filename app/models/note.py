@@ -24,7 +24,7 @@ class Note(db.Model):
     )
 
     def to_dict(self):
-        return {
+        return_dict = {
             'id': self.id,
             'notebook_id': self.notebook_id,
             'title': self.title,
@@ -33,3 +33,6 @@ class Note(db.Model):
             'pinned':self.pinned,
             'created_at':self.created_at
         }
+
+        return return_dict 
+
