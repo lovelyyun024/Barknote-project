@@ -16,10 +16,18 @@ class Notebook(db.Model):
     notes = db.relationship("Note", back_populates="notebook", cascade="all, delete")
 
 
-    def to_dict(self):
-        return {
+    def to_dict(self, note=False, user=False):
+        return_dict = {
             'id': self.id,
             'user_id': self.user_id,
             'title': self.title,
             'created_at':self.created_at
         }
+
+        if note:
+            return_dict['note']=[note.to_dict() for note in self.notes]
+
+        if user:
+            return_dict['user']= self.user.to_dict_user()
+
+        return return_dict
