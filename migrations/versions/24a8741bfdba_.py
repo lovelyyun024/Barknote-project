@@ -8,6 +8,10 @@ Create Date: 2024-01-07 23:49:31.817374
 from alembic import op
 import sqlalchemy as sa
 
+import os
+environment = os.getenv("FLASK_ENV")
+SCHEMA = os.environ.get("SCHEMA")
+
 
 # revision identifiers, used by Alembic.
 revision = '24a8741bfdba'
@@ -28,6 +32,9 @@ def upgrade():
     sa.UniqueConstraint('email'),
     sa.UniqueConstraint('username')
     )
+    if environment == "production":
+        op.execute(f"ALTER TABLE users SET SCHEMA {SCHEMA};")
+
     op.create_table('notebooks',
     sa.Column('id', sa.Integer(), nullable=False),
     sa.Column('user_id', sa.Integer(), nullable=False),
@@ -36,6 +43,9 @@ def upgrade():
     sa.ForeignKeyConstraint(['user_id'], ['users.id'], ),
     sa.PrimaryKeyConstraint('id')
     )
+    if environment == "production":
+        op.execute(f"ALTER TABLE notebooks SET SCHEMA {SCHEMA};")
+    
     op.create_table('tags',
     sa.Column('id', sa.Integer(), nullable=False),
     sa.Column('user_id', sa.Integer(), nullable=False),
@@ -43,6 +53,8 @@ def upgrade():
     sa.ForeignKeyConstraint(['user_id'], ['users.id'], ),
     sa.PrimaryKeyConstraint('id')
     )
+    if environment == "production":
+        op.execute(f"ALTER TABLE tags SET SCHEMA {SCHEMA};")
     op.create_table('tasks',
     sa.Column('id', sa.Integer(), nullable=False),
     sa.Column('assigner_id', sa.Integer(), nullable=False),
@@ -55,6 +67,8 @@ def upgrade():
     sa.ForeignKeyConstraint(['assigner_id'], ['users.id'], ),
     sa.PrimaryKeyConstraint('id')
     )
+    if environment == "production":
+        op.execute(f"ALTER TABLE tasks SET SCHEMA {SCHEMA};")
     op.create_table('notes',
     sa.Column('id', sa.Integer(), nullable=False),
     sa.Column('notebook_id', sa.Integer(), nullable=False),
@@ -68,6 +82,8 @@ def upgrade():
     sa.ForeignKeyConstraint(['user_id'], ['users.id'], ),
     sa.PrimaryKeyConstraint('id')
     )
+    if environment == "production":
+        op.execute(f"ALTER TABLE notes SET SCHEMA {SCHEMA};")
     op.create_table('note_tags',
     sa.Column('id', sa.Integer(), nullable=False),
     sa.Column('note_id', sa.Integer(), nullable=True),
@@ -76,6 +92,8 @@ def upgrade():
     sa.ForeignKeyConstraint(['tag_id'], ['tags.id'], ),
     sa.PrimaryKeyConstraint('id')
     )
+    if environment == "production":
+        op.execute(f"ALTER TABLE note_tags SET SCHEMA {SCHEMA};")
     # ### end Alembic commands ###
 
 

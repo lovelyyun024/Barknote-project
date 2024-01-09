@@ -1,0 +1,52 @@
+.outer-navbar-wrapper {
+  width: 20%;
+  background-color: lightgray;
+  font-size: 20px;
+  height:100%;
+  min-height: 1000px;
+}
+
+.outer-navbar-middle {
+  width: 100%;
+  /* height: 100%; */
+}
+
+.outer-navbar-middle > button {
+  width: 95%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-radius: 15px;
+  background-color: orange;
+  border: none;
+  font-size: 16px;
+  height: 30px;
+  padding: 10px;
+  margin-left: 5px;
+  cursor: pointer;
+}
+
+.outer-navbar-bottom1, .outer-navbar-bottom2   {
+  margin-top: 20px;
+}
+
+.outer-navbar-bottom1 > button,
+.outer-navbar-bottom2 > button {
+  width: 95%;
+  display: flex;
+  justify-content: start;
+  align-items: center;
+  border-radius: 15px;
+  background-color: lightgray;
+  border: none;
+  font-size: 16px;
+  height: 30px;
+  margin-left: 5px;
+  margin-top: 3px;
+  text-align: center;
+   cursor: pointer;
+}
+
+.icon {
+  /* Add any styles specific to your icons */
+}

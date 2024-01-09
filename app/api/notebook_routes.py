@@ -24,7 +24,7 @@ def get_notebook(id):
     return notebook.to_dict(note=True, user=True)
 
 #   Create a new notebook
-@notebook_routes.route('/new', methods=['POST'])
+@notebook_routes.route('', methods=['POST'])
 @login_required
 def create_notebook():
     form = NotebookForm()
@@ -41,7 +41,7 @@ def create_notebook():
     return {'errors': form.errors}, 401
 
 #   Create a new note
-@notebook_routes.route('/<int:id>/new', methods=['POST'])
+@notebook_routes.route('/<int:id>', methods=['POST'])
 @login_required
 def create_note(id):
     form = NoteForm()

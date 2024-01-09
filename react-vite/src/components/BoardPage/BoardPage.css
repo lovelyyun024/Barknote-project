@@ -1,0 +1,82 @@
+.main-board-wrapper {
+  height: 200px;
+  width: 80%;
+  background-image: url("https://as1.ftcdn.net/v2/jpg/05/38/80/26/1000_F_538802690_y9GzQSPmrx4sxZKaMMEBNPdT8DtmyeDM.jpg");
+  background-size: cover;
+}
+
+.main-board-header {
+  color: #ffff;
+  font-size: 20px;
+  font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
+    Oxygen, Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", sans-serif;
+  align-items: center;
+  justify-content: space-between;
+  display: flex;
+  padding-left: 25px;
+  padding-right: 25px;
+}
+
+.main-board-header-side {
+  display: flex;
+  font-size: 14px;
+  gap: 20px;
+  align-items: center;
+}
+
+.main-board-header-side > button {
+  border-style: none;
+  height: 35px;
+  border-radius: 5px;
+  cursor: pointer;
+  background-color: white;
+  opacity:0.8;
+
+}
+.note-board-widget {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 25px;
+  grid-auto-rows: minmax(100px, auto);
+  width: 100%;
+  height: 750px;
+  margin-top: 40px;
+}
+.note-board-wrapper {
+  background-color: white;
+  grid-column: 1 / 3;
+  grid-row: 1;
+  margin-left: 25px;
+  border-radius: 8px;
+  padding: 20px;
+}
+.task-board-wrapper {
+  grid-column: 3/ 4;
+  grid-row: 1;
+  background-color: white;
+  margin-right: 25px;
+  border-radius: 8px;
+  padding: 20px;
+}
+.scratch-pad-wrapper {
+  background-color:  #fff4bc;
+  grid-row: 2;
+  margin-left: 25px;
+  border-radius: 8px;
+    padding: 20px;
+}
+
+.pinned-note-wrapper {
+  background-color: white;
+  grid-row: 2;
+  border-radius: 8px;
+  padding: 20px;
+}
+
+.tag-board-wrapper {
+  background-color: white;
+  grid-row: 2;
+  margin-right: 25px;
+  border-radius: 8px;
+  padding: 20px;
+}

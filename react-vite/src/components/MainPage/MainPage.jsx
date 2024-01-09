@@ -5,9 +5,10 @@
 // import { thunkLogin } from "../../redux/session";
 // import { useState } from "react";
 // import { useModal } from "../../context/Modal";
-// import "./Home.css";
+import "./MainPage.css";
+import OuterNavbar from "../OuterNavbar/OuterNavbar";
 
-export default function Main() {
+// export default function Main() {
   //   const demoUser2Login = async () => {
   //     const serverResponse = await dispatch(
   //       thunkLogin({
@@ -23,9 +24,23 @@ export default function Main() {
   //     }
   //   };
 
+//   return (
+//     <>
+//       <p>logout</p>
+//     </>
+//   );
+// }
+
+import { Outlet } from "react-router-dom";
+
+export default function MainPage() {
   return (
+    // <OuterNavbar />
     <>
-      <p>logout</p>
+      <div className="main-page-wrapper">
+        <OuterNavbar />
+        <Outlet />
+      </div>
     </>
   );
 }

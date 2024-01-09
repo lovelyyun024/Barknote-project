@@ -2,7 +2,9 @@ import { Route, createBrowserRouter, createRoutesFromElements } from 'react-rout
 import SignupFormPage from '../components/SignupFormPage';
 import Layout from './Layout';
 import Home from "../components/Home";
-import Main from "../components/Main"
+import MainPage from "../components/MainPage"
+import BoardPage from '../components/BoardPage/BoardPage';
+import NotebookPage from "../components/NotebookPage/NotebookPage";
 
 // export const router = createBrowserRouter([
 //   {
@@ -34,15 +36,16 @@ export const router = createBrowserRouter(
       <Route path="/new-server" element={<ServerCreationForm />} />
       <Route path="/join-server" element={<JoinServer />} />
       <Route path="/redirect" element={<Redirect />} />
-      <Route path="/main" element={<MainPage />}>
-        <Route
-          path="servers/:serverId/channels/:channelId"
-          element={<ServerPage />}
-        ></Route>
-      </Route>
       <Route path="*" element={<Redirect />} /> */}
       <Route path="/signup" element={<SignupFormPage />} />
-      <Route path="/main" element={<Main />} />
+      <Route path="/main" element={<MainPage />}>
+        {/* <Route
+          path="servers/:serverId/channels/:channelId"
+          element={<ServerPage />}
+        ></Route> */}
+        <Route path="board" element={<BoardPage />}></Route>
+        <Route path="notebook" element={<NotebookPage />}></Route>
+      </Route>
     </Route>
   )
 );
