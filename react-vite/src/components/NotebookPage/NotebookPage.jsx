@@ -1,7 +1,7 @@
 import { useSelector, useDispatch } from "react-redux";
 import { useState, useEffect, useRef } from "react";
 import OpenModalButton from "../OpenModalButton/OpenModalButton";
-import { Link, useNavigate } from "react-router-dom";
+// import { Link, useNavigate } from "react-router-dom";
 import { thunkFetchNotebooks } from "../../redux/notebooks";
 import NBCreationForm from "../NewNotebookModal/NewNotebookModal";
 import NBUpdateForm from "../UpdateNotebookModal/UpdateNotebookModal"
@@ -14,7 +14,7 @@ export default function NotebookPage() {
   const notebooksData = useSelector((state) => state.notebook.notebooks);
   const notebookList = Object.values(notebooksData);
   const [showMenu, setShowMenu] = useState(false);
-  const ulClassName = "action-dropdown" + (showMenu ? "" : " hidden");
+  // const ulClassName = "action-dropdown" + (showMenu ? "" : " hidden");
   const ulRef = useRef();
 
   const [selectedNotebookId, setSelectedNotebookId] = useState(null);
@@ -61,7 +61,7 @@ export default function NotebookPage() {
           <p>{notebookList?.length} notebooks</p>
 
           <div className="all-notebook-side">
-            <i class="material-icons" style={{ color: "orange" }}>
+            <i className="material-icons" style={{ color: "orange" }}>
               note_add
             </i>
             <OpenModalButton
@@ -85,7 +85,7 @@ export default function NotebookPage() {
               <div key={id} className="all-notebook-list">
                 <div className="notebook-attribute-1">
                   <button>
-                    <i class="fas fa-caret-right"></i>
+                    <i className="fas fa-caret-right"></i>
                   </button>{" "}
                   <i className="fas fa-book-open"></i> &nbsp;{title}&nbsp; (
                   {note ? note.length : 0})

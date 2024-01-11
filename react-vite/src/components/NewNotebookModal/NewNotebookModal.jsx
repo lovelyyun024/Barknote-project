@@ -1,15 +1,14 @@
-import { useState, useEffect } from "react";
-import { useDispatch, useSelector } from "react-redux";
-import { useNavigate } from "react-router-dom";
+import { useState } from "react";
+import { useDispatch} from "react-redux";
+// import { useNavigate } from "react-router-dom";
 import { useModal } from "../../context/Modal";
 import { thunkCreateNotebook } from "../../redux/notebooks";
 import "./NewNotebookModal.css";
 
 export default function NBCreationForm() {
   const dispatch = useDispatch();
-  const navigate = useNavigate();
   const { closeModal } = useModal();
-  const sessionUser = useSelector((state) => state.session.user);
+  // const sessionUser = useSelector((state) => state.session.user);
   const [title, setTitle] = useState("");
   const [errors, setErrors] = useState({});
 //   const [theme, setTheme] = useState("light");
@@ -43,7 +42,7 @@ export default function NBCreationForm() {
       <div className="create-notebook-header">
         <h3>Create new notebook</h3>
         <button onClick={closeModal}>
-          <i class="fa fa-close"></i>
+          <i className="fa fa-close"></i>
         </button>
         <p>
           Notebooks are useful for grouping notes around a common topic. They

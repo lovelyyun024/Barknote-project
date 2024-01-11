@@ -1,7 +1,6 @@
 import { useSelector, useDispatch } from "react-redux";
-import { Link, useNavigate } from "react-router-dom";
+import { Link } from "react-router-dom";
 import { useEffect } from "react";
-import OpenModalButton from "../OpenModalButton/OpenModalButton";
 import { thunkFetchNotes } from "../../redux/notes";
 import "./BoardPage.css";
 
@@ -60,7 +59,7 @@ export default function BoardPage() {
                 className="add-note-button"
                 to="/main/notes"
               >
-                <i class="material-icons" style={{ color: "orange" }}>
+                <i className="material-icons" style={{ color: "orange" }}>
                   note_add
                 </i>
               </Link>

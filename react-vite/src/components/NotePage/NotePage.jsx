@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import { useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import { thunkCreateNote } from "../../redux/notes";
@@ -16,9 +16,9 @@ export default function NotePage() {
   const [notebook_id, setNotebook_id] = useState("");
   const [title, setTitle] = useState("");
   const [content, setContent] = useState("");
-  const [img_url, setImg_url] = useState("");
+  const [img_url] = useState("");
   const [pinned, setPinned] = useState("");
-  const [errors, setErrors] = useState({});
+  const [errors] = useState({});
 
   useEffect(() => {
     dispatch(thunkFetchNotebooks());
