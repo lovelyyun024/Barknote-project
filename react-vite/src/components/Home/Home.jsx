@@ -15,7 +15,7 @@ export default function HomePage() {
   useEffect(() => {
     if (sessionUser) {
       navigate("/main/board");
-    }
+    } 
   }, [sessionUser, navigate]);
 
    const [email, setEmail] = useState("");
@@ -43,8 +43,8 @@ export default function HomePage() {
   const demoUserLogin = async () => {
     const serverResponse = await dispatch(
       thunkLogin({
-        email: "test2@aa.io",
-        password: "password",
+        email: "test1@aa.io",
+        password: "123456",
       })
     );
 

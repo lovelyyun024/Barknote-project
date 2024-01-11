@@ -27,6 +27,9 @@ export default function BoardPage() {
   }, [dispatch]);
 
   if (!noteList) return null;
+  if(!sessionUser) return null;
+
+  const devFeature = () => alert("Feature under development")
 
   return (
     <>
@@ -35,7 +38,7 @@ export default function BoardPage() {
           <p>Hello, {sessionUser.username}!</p>
           <div className="main-board-header-side">
             <p>{formattedDate}</p>
-            <button>
+            <button onClick={devFeature}>
               <i className="fas fa-sliders-h" style={{ marginLeft: "1px" }}></i>
               &nbsp;&nbsp;Customize
             </button>
@@ -60,7 +63,6 @@ export default function BoardPage() {
                 <i class="material-icons" style={{ color: "orange" }}>
                   note_add
                 </i>
-                &nbsp;Create new note
               </Link>
             </div>
             <div className="note-board-main">
@@ -75,10 +77,10 @@ export default function BoardPage() {
                   >
                     <div className="note-section-title">{title}</div>
                     <div className="note-section-content">{content}</div>
+                    {img_url && (<img className="note-section-img" src={img_url} alt="Note Image" />)}
                     <div className="note-section-date">
                       {created_at.slice(5, 11)}
                     </div>
-                    <img className="note-section-img" src={img_url} />
                   </Link>
                 ))}
             </div>
