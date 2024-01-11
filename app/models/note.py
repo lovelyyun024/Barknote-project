@@ -10,6 +10,7 @@ class Note(db.Model):
     
     id = db.Column(db.Integer, primary_key=True)
     notebook_id = db.Column(db.Integer, db.ForeignKey(add_prefix_for_prod("notebooks.id")),nullable=False)
+    user_id = db.Column(db.Integer, db.ForeignKey(add_prefix_for_prod("users.id")),nullable=False)
     title = db.Column(db.String, default="Untitled", nullable=False)
     content = db.Column(db.Text)
     img_url = db.Column(db.String)
@@ -17,6 +18,8 @@ class Note(db.Model):
     created_at = db.Column(db.DateTime(timezone=True), default=func.now())
 
     notebook = db.relationship("Notebook", back_populates="notes")
+    user = db.relationship("User", back_populates="notes")
+
     tags = db.relationship(
         "Tag",
         secondary=note_tags,
@@ -24,12 +27,15 @@ class Note(db.Model):
     )
 
     def to_dict(self):
-        return {
+        return_dict = {
             'id': self.id,
             'notebook_id': self.notebook_id,
+            'user_id':self.user_id,
             'title': self.title,
             'content': self.content,
             'img_url': self.img_url,
             'pinned':self.pinned,
             'created_at':self.created_at
         }
+
+        return return_dict 
