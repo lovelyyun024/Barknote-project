@@ -6,6 +6,7 @@ import LoginFormModal from "../LoginFormModal";
 import SignupFormModal from "../SignupFormModal";
 // import { NavLink } from "react-router-dom";
 import { useNavigate } from "react-router-dom";
+import { redirect } from "react-router-dom";
 
 function ProfileButton() {
   const dispatch = useDispatch();
@@ -39,7 +40,8 @@ function ProfileButton() {
     e.preventDefault();
     dispatch(thunkLogout());
     closeMenu();
-    navigate("/");
+    // redirect("/a");
+    console.log("goodbye")
   };
 
   return (

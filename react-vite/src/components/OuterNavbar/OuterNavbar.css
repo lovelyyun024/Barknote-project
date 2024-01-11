@@ -1,16 +1,27 @@
 .outer-navbar-wrapper {
-    padding-top: 20px;
-    padding-bottom: 20px;
+  padding-top: 20px;
+  padding-bottom: 20px;
   width: 20%;
   background-color: lightgray;
-  font-size: 20px;
-  height:100%;
+  height: 100%;
   min-height: 900px;
 }
 
-.outer-navbar-middle {
-  width: 100%;
-  /* height: 100%; */
+.profile-info-wrapper{
+  display: flex;
+  align-items: center;
+  gap:5px;
+  margin-bottom: 5px;
+  padding:5px
+}
+
+.profile-info-main {
+  
+}
+.profile-info-main > p{
+   font-size: 12px;
+   margin-top: 2px;
+   margin-bottom: 2px;
 }
 
 .outer-navbar-middle > button {
@@ -21,14 +32,15 @@
   border-radius: 15px;
   background-color: orange;
   border: none;
-  font-size: 16px;
+  font-size: 17px;
   height: 30px;
   padding: 10px;
   margin-left: 5px;
   cursor: pointer;
 }
 
-.outer-navbar-bottom1, .outer-navbar-bottom2   {
+.outer-navbar-bottom1,
+.outer-navbar-bottom2 {
   margin-top: 20px;
 }
 
@@ -41,14 +53,80 @@
   border-radius: 15px;
   background-color: lightgray;
   border: none;
-  font-size: 16px;
+  font-size: 18px;
   height: 30px;
   margin-left: 5px;
   margin-top: 3px;
   text-align: center;
-   cursor: pointer;
+  cursor: pointer;
 }
 
-.icon {
-  /* Add any styles specific to your icons */
+.profile-dropdown {
+  /* display: flex;
+  flex-direction: column;
+  border-radius: 7px;
+  list-style-type: none;
+  box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
+  position: absolute;
+  left: 80px;
+  bottom: 70px;
+  background-color: var(--color-background);
+  color: var(--color-font);
+  text-align: left;
+  font-size: 14px;
+  font-weight: 400;
+  gap: 0px;
+  width: 200px;
+  overflow: hidden;
+  padding-top: 10px; */
+  list-style-type: none;
+  padding: 10px;
+  background-color: #fff;
+  box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
+  position: absolute;
+  z-index: 1;
+  transition: opacity 0.3s ease-in-out;
+}
+
+.profile-dropdown.hidden {
+  display: none;
+}
+
+.profile-dropdown > button{
+    background-color: white;
+  border: none;
+  cursor: pointer;
+  font-size: 14px;
+}
+.outer-navbar-profile-button > button {
+  background-color: lightgray;
+  border: none;
+  cursor: pointer;
+  font-size: 18px;
+  text-align: center;
+  align-items: center;
+}
+.outer-navbar-profile-button {
+  display: flex;
+  gap: 8px;
+}
+
+.outer-navbar-top {
+  display: flex;
+  justify-content: space-between;
+  margin-right: 8px;
+  margin-bottom: 10px;
+}
+
+.outer-navbar-top > button {
+  background-color: lightgray;
+  border: none;
+  cursor: pointer;
+  font-size: 18px;
+}
+
+.outer-navbar-divider {
+  border-top: 1px solid lightgray;
+  margin-top: 5px;
+  margin-bottom: 5px;
 }

@@ -5,14 +5,14 @@
   /* background-image: url("https://t4.ftcdn.net/jpg/02/83/47/35/240_F_283473519_nVM1O9N6zmp1NAsgUEt2gjkxezwmzeCd.jpg"); */
   background-size: cover;
 }
-.note-board-header{
-   justify-content: space-between;
+.note-board-header {
+  justify-content: space-between;
   display: flex;
 }
 
-.add-note-button{
-    align-items: center;
-     justify-content: space-between;
+.add-note-button {
+  align-items: center;
+  justify-content: space-between;
   display: flex;
   text-align: center;
 }
@@ -138,6 +138,7 @@
 .note-section-date {
   color: #777;
   font-size: 12px;
+  height: 20%;
 }
 
 .note-section-img {
@@ -145,4 +146,7 @@
   height: auto;
   border-radius: 4px;
   margin-top: 10px;
+  height: 40%;
+}
+.note-section-img > img {
 }
