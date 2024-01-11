@@ -46,7 +46,7 @@ export default function BoardPage() {
         <div className="note-board-widget">
           <div className="note-board-wrapper">
             <div className="note-board-header">
-              <Link style={{ textDecoration: "none", color: "black" }}>
+              <Link to="/main/notes"style={{ textDecoration: "none", color: "black" }}>
                 NOTES &nbsp;
                 <i
                   className="fas fa-angle-right"
