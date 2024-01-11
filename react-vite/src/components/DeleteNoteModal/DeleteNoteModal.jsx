@@ -2,9 +2,9 @@ import { thunkDeleteNote } from "../../redux/notes";
 import { useModal } from "../../context/Modal";
 import { useParams } from "react-router-dom";
 import { useDispatch } from "react-redux";
-import { Link, useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 
-export default function NoteDeleteForm({ notebookId }) {
+export default function NoteDeleteForm() {
   const dispatch = useDispatch();
   const { closeModal } = useModal();
   const { noteId } = useParams();

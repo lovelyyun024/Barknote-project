@@ -1,6 +1,6 @@
 import { useSelector, useDispatch } from "react-redux";
-import { Link, useNavigate } from "react-router-dom";
-import React, { useState, useEffect } from "react";
+import { useNavigate } from "react-router-dom";
+import { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
 import { thunkFetchNotebooks } from "../../redux/notebooks";
 import OpenModalButton from "../OpenModalButton/OpenModalButton";
@@ -17,7 +17,7 @@ export default function EditNotePage() {
 
   useEffect(() => {
     dispatch(thunkFetchOneNote(noteId));
-  }, [dispatch]);
+  }, [dispatch, noteId]);
 
     useEffect(() => {
       dispatch(thunkFetchNotebooks());
@@ -25,7 +25,7 @@ export default function EditNotePage() {
 
   const notesData = useSelector((state) => state.note.notes);
   const noteList = Object.values(notesData);
-  const [showMenu, setShowMenu] = useState(false);
+  const [setShowMenu] = useState(false);
   // console.log("@@@", noteList[0].notebook_id)
 
   const [notebook_id, setNotebook_id] = useState("");
@@ -33,7 +33,7 @@ export default function EditNotePage() {
   const [content, setContent] = useState("");
   const [img_url, setImg_url] = useState("");
   const [pinned, setPinned] = useState("");
-  const [errors, setErrors] = useState({});
+  const [errors] = useState({});
 
   if (!noteList[0]) return null;
 
@@ -43,7 +43,7 @@ export default function EditNotePage() {
     setContent(noteList[0].content ? noteList[0].content : "");
     setPinned(noteList[0].pinned ? noteList[0].pinned : "");
     setImg_url(noteList[0].img_url ? noteList[0].img_url : "");
-  }, [noteList[0]]);
+  }, [noteList]);
 
   const closeMenu = () => {
     setShowMenu(false);
@@ -87,7 +87,7 @@ export default function EditNotePage() {
   return (
     <div className="note-editor-container">
       <div className="botton-display-left">
-        <i class="material-icons" style={{ color: "orange" }}>
+        <i className="material-icons" style={{ color: "orange" }}>
           delete_forever
         </i>
         <OpenModalButton
