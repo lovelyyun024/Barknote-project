@@ -2,10 +2,12 @@ import { useSelector, useDispatch } from "react-redux";
 import { useState, useEffect, useRef } from "react";
 import OpenModalButton from "../OpenModalButton/OpenModalButton";
 // import { Link, useNavigate } from "react-router-dom";
+import { Link } from "react-router-dom";
 import { thunkFetchNotebooks } from "../../redux/notebooks";
 import NBCreationForm from "../NewNotebookModal/NewNotebookModal";
-import NBUpdateForm from "../UpdateNotebookModal/UpdateNotebookModal"
-import NBDeleteForm from "../DeleteNotebookModal/DeleteNotebookModal"
+import NBUpdateForm from "../UpdateNotebookModal/UpdateNotebookModal";
+import NBDeleteForm from "../DeleteNotebookModal/DeleteNotebookModal";
+import NoteDeleteForm from "../DeleteNoteModal/DeleteNoteModal";
 import "./NotebookPage.css";
 
 export default function NotebookPage() {
@@ -82,46 +84,82 @@ export default function NotebookPage() {
           {[...notebookList]
             .reverse()
             .map(({ title, id, user, created_at, note }) => (
-              <div key={id} className="all-notebook-list">
-                <div className="notebook-attribute-1">
-                  <button>
-                    <i className="fas fa-caret-right"></i>
-                  </button>{" "}
-                  <i className="fas fa-book-open"></i> &nbsp;{title}&nbsp; (
-                  {note ? note.length : 0})
-                </div>
-                <div className="notebook-attribute">{user}</div>
-                <div className="notebook-attribute">
-                  {created_at.slice(0, 16)}{" "}
-                </div>
-                <div className="notebook-action-wrapper">
-                  <button onClick={(e) => toggleMenu(e, id)}>
-                    <i className="fas fa-list-ul"></i>
-                  </button>
-                  {/* 
-                  <div className={ulClassName} ref={ulRef}> */}
-                  <div
-                    className={`action-dropdown ${
-                      selectedNotebookId === id ? "" : "hidden"
-                    }`}
-                    ref={ulRef}
-                  >
-                    <OpenModalButton
-                      buttonText="Rename notebook"
-                      // onClick={() => handleNotebookAction(id)}
-                      onItemClick={closeMenu}
-                      modalComponent={
-                        <NBUpdateForm notebookId={id} nbtitle={title} />
-                      }
-                    />
-                    <div className="outer-navbar-popup-divider"></div>
-                    <OpenModalButton
-                      buttonText="Delete notebook"
-                      // onClick={() => handleNotebookAction(id)}
-                      onItemClick={closeMenu}
-                      modalComponent={<NBDeleteForm notebookId={id} />}
-                    />
+              <div key={id} className="all-notebook-container">
+                <div key={id} className="all-notebook-list">
+                  <div className="notebook-attribute-1">
+                    <button>
+                      <i className="fas fa-caret-right"></i>
+                    </button>
+                    <i className="fas fa-book-open"></i> &nbsp;{title}&nbsp; (
+                    {note ? note.length : 0})
                   </div>
+                  <div className="notebook-attribute">{user}</div>
+                  <div className="notebook-attribute">
+                    {created_at.slice(0, 16)}{" "}
+                  </div>
+                  <div className="notebook-action-wrapper">
+                    <button onClick={(e) => toggleMenu(e, id)}>
+                      <i
+                        className="fas fa-list-ul"
+                        style={{ fontSize: "20px" }}
+                      ></i>
+                    </button>
+                    <div
+                      className={`action-dropdown ${
+                        selectedNotebookId === id ? "" : "hidden"
+                      }`}
+                      ref={ulRef}
+                    >
+                      <OpenModalButton
+                        buttonText="Rename notebook"
+                        onItemClick={closeMenu}
+                        modalComponent={
+                          <NBUpdateForm notebookId={id} nbtitle={title} />
+                        }
+                      />
+                      <div className="outer-navbar-popup-divider"></div>
+                      <OpenModalButton
+                        buttonText="Delete notebook"
+                        onItemClick={closeMenu}
+                        modalComponent={<NBDeleteForm notebookId={id} />}
+                      />
+                    </div>
+                  </div>
+                </div>
+                <div>
+                  {note &&
+                    note.map((noteItem) => (
+                      <div key={noteItem.id}>
+                        {/* <Link
+                          to={`/main/notes/${noteItem.id}`}
+                          style={{ textDecoration: "none", color: "black" }}
+                        > */}
+                        <div className="all-note-list">
+                          <Link
+                            to={`/main/notes/${noteItem.id}`}
+                            style={{ textDecoration: "none", color: "black" }}
+                          >
+                            <div className="notebook-attribute-1">
+                              <div style={{ marginLeft: "20px" }}>
+                                {noteItem.title}
+                              </div>
+                            </div>
+                          </Link>
+                          <div className="notebook-attribute">{user}</div>
+                          <div className="notebook-attribute">
+                            {created_at.slice(0, 16)}
+                          </div>
+                          <div className="notebook-action-wrapper">
+                            <OpenModalButton
+                              buttonText={<i class="material-icons" >delete_forever</i>}
+                              onItemClick={closeMenu}
+                              modalComponent={<NoteDeleteForm noteId={noteItem.id} pattern={false}/>}
+                            />
+                          </div>
+                        </div>
+                        {/* </Link> */}
+                      </div>
+                    ))}
                 </div>
               </div>
             ))}

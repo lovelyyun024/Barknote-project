@@ -1,0 +1,19 @@
+.inner-navbar-wrapper {
+  padding-top: 30px;
+  /* padding-bottom: 30px; */
+  padding-bottom: 10px;
+  width: 30%;
+  background-color: white;
+  height: 100%;
+  min-height: 900px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+
+}
+.inner-navbar-top{
+  padding-left:5px;
+  padding-right:5px;
+}
+.inner-navbar-bottom {
+  overflow-y: scroll;
+  height: 90%;
+}

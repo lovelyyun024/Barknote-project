@@ -41,6 +41,7 @@
   margin-top: 10px;
   display: flex;
   justify-content: space-between;
+  align-items: center;
 }
 .notebook-attribute-1 {
   width: 300px;
@@ -81,6 +82,7 @@
   font-size: 16px;
   border: none;
   padding: 10px;
+  cursor: pointer;
 }
 
 .outer-navbar-popup-divider {
@@ -92,5 +94,14 @@
   background-color: #fff5ee;
   font-size: 16px;
   margin-right: 5px;
+    cursor: pointer;
 }
 
+.all-note-list{
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.all-notebook-container{
+  margin-bottom: 20px;
+}
