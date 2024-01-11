@@ -43,7 +43,7 @@ export default function EditNotePage() {
     setContent(noteList[0].content ? noteList[0].content : "");
     setPinned(noteList[0].pinned ? noteList[0].pinned : "");
     setImg_url(noteList[0].img_url ? noteList[0].img_url : "");
-  }, [noteList]);
+  }, [noteList[0]]);
 
   const closeMenu = () => {
     setShowMenu(false);
@@ -94,7 +94,7 @@ export default function EditNotePage() {
           buttonText="Delele"
           onItemClick={closeMenu}
           type="button"
-          modalComponent={<NoteDeleteForm />}
+          modalComponent={<NoteDeleteForm noteId={noteId} pattern={true} />}
         />
       </div>
       <form onSubmit={handleNoteUpdate} className="note-editor-form">
@@ -127,8 +127,8 @@ export default function EditNotePage() {
               <input
                 className="note-input"
                 type="checkbox"
-                value={pinned}
-                onChange={(e) => setPinned(e.target.value)}
+                checked={pinned}
+                onChange={(e) => setPinned(e.target.checked)}
                 style={{ width: "20px" }}
               />
             </label>

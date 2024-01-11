@@ -1,20 +1,22 @@
 import { thunkDeleteNote } from "../../redux/notes";
 import { useModal } from "../../context/Modal";
-import { useParams } from "react-router-dom";
 import { useDispatch } from "react-redux";
 import { useNavigate } from "react-router-dom";
 
-export default function NoteDeleteForm() {
+export default function NoteDeleteForm({noteId, pattern}) {
+  const id = noteId
+  const switchPat = pattern
+  // console.log(id)
   const dispatch = useDispatch();
   const { closeModal } = useModal();
-  const { noteId } = useParams();
   const navigate = useNavigate();
   const handleSubmitDelete = (e) => {
     e.preventDefault();
-    dispatch(thunkDeleteNote(noteId));
+    dispatch(thunkDeleteNote(id));
 
     closeModal();
-    navigate("/main/board");
+    if (switchPat) navigate("/main/board");
+
   };
 
   const handleSubmitKeep = (e) => {

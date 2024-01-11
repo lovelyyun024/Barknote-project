@@ -39,7 +39,11 @@ export default function NotePage() {
     // console.log(noteData)
     // if (!noteData.errors) {
       alert("Note created successfully");
-      navigate(`/main/board`)
+      navigate(`/main/notes`)
+      setNotebook_id("")
+      setTitle("");
+      setContent("")
+      setPinned("")
     // } 
     // else {
     //   setErrors(noteData.errors);
@@ -77,9 +81,9 @@ export default function NotePage() {
                 <input
                   className="note-input"
                   type="checkbox"
-                  value={pinned}
-                  onChange={(e) => setPinned(e.target.value)}
-                  style={{ width: "20px", marginLeft:"10px" }}
+                  checked={pinned}
+                  onChange={(e) => setPinned(e.target.checked)}
+                  style={{ width: "20px", marginLeft: "10px" }}
                 />
               </label>
               {errors.pinned && <p>{errors.pinned}</p>}

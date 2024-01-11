@@ -120,7 +120,7 @@ export default function OuterNavbar() {
             to="/main/notes"
             style={{ textDecoration: "none", color: "black" }}
           >
-            <div>
+            <div >
               <i className="fas fa-plus" style={{ marginRight: "5px" }}></i> New
             </div>
             {/* <i className="fas fa-angle-down"></i> */}
