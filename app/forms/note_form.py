@@ -13,4 +13,5 @@ class NoteForm(FlaskForm):
     content = TextAreaField('content')
     img_url = StringField('img_url')
     pinned = BooleanField('pinned')
+    notebook_id = StringField('title', validators=[DataRequired()])
     # tags = SelectField('tag', choices=get_choices())

@@ -1,27 +1,32 @@
 import { useSelector, useDispatch } from "react-redux";
 import { Link, useNavigate } from "react-router-dom";
 import { useEffect } from "react";
-import {thunkFetchNotebooks } from "../../redux/notebooks"
+import OpenModalButton from "../OpenModalButton/OpenModalButton";
+import { thunkFetchNotes } from "../../redux/notes";
 import "./BoardPage.css";
-
 
 export default function BoardPage() {
   const sessionUser = useSelector((state) => state.session.user);
   const currentDate = new Date();
-  const options = { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' };
+  const options = {
+    weekday: "long",
+    year: "numeric",
+    month: "long",
+    day: "numeric",
+  };
   const formattedDate = currentDate.toLocaleDateString("en-US", options);
   const dispatch = useDispatch();
 
-  const notebooksData = useSelector((state) => state.notebook);
-  console.log("-----", notebooksData);
-  const notebookList = Object.values(notebooksData);
-  console.log("+++++", notebookList);
-  
-    useEffect(() => {
-      dispatch(thunkFetchNotebooks());
-    }, [dispatch]);
+  const notesData = useSelector((state) => state.note.notes);
+  // console.log("-----", notesData);
+  const noteList = Object.values(notesData);
+  console.log("+++++", noteList);
 
-    if (!notebookList) return null;
+  useEffect(() => {
+    dispatch(thunkFetchNotes());
+  }, [dispatch]);
+
+  if (!noteList) return null;
 
   return (
     <>
@@ -41,11 +46,41 @@ export default function BoardPage() {
             <div className="note-board-header">
               <Link style={{ textDecoration: "none", color: "black" }}>
                 NOTES &nbsp;
-                <i className="fas fa-angle-right" style={{ color: "orange" }}></i>
+                <i
+                  className="fas fa-angle-right"
+                  style={{ color: "orange" }}
+                ></i>
               </Link>
-              <div className="note-board-list">
 
-              </div>
+              <Link
+                style={{ textDecoration: "none", color: "black" }}
+                className="add-note-button"
+                to="/main/notes"
+              >
+                <i class="material-icons" style={{ color: "orange" }}>
+                  note_add
+                </i>
+                &nbsp;Create new note
+              </Link>
+            </div>
+            <div className="note-board-main">
+              {[...noteList]
+                .reverse()
+                .map(({ title, content, created_at, id, img_url }) => (
+                  <Link
+                    to={`/main/notes/${id}`}
+                    key={id}
+                    className="note-section"
+                    style={{ textDecoration: "none", color: "black" }}
+                  >
+                    <div className="note-section-title">{title}</div>
+                    <div className="note-section-content">{content}</div>
+                    <div className="note-section-date">
+                      {created_at.slice(5, 11)}
+                    </div>
+                    <img className="note-section-img" src={img_url} />
+                  </Link>
+                ))}
             </div>
           </div>
           <div className="task-board-wrapper">

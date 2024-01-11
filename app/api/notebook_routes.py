@@ -40,28 +40,6 @@ def create_notebook():
         return notebook.to_dict(user=True)
     return {'errors': form.errors}, 401
 
-#   Create a new note
-@notebook_routes.route('/<int:id>', methods=['POST'])
-@login_required
-def create_note(id):
-    form = NoteForm()
-    form['csrf_token'].data = request.cookies['csrf_token']
-    
-    if form.validate_on_submit():
-        data = form.data
-        note = Note(
-            notebook_id = id,
-            user_id = current_user.id,
-            title = data['title'],
-            content = data['content'],
-            img_url = data['img_url'],
-            pinned = data['pinned'],
-            # tags = data['tags'],
-        )
-        db.session.add(note)
-        db.session.commit()
-        return note.to_dict()
-    return {'errors': form.errors}, 401
 
 #   Update a new notebook
 @notebook_routes.route('/<int:id>', methods=['PUT'])

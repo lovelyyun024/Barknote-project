@@ -1,5 +1,3 @@
-// notebooksSlice.js
-
 const SET_NOTEBOOKS = "notebooks/setNotebooks";
 const ADD_NOTEBOOK = "notebooks/addNotebook";
 const UPDATE_NOTEBOOK = "notebooks/updateNotebook";
@@ -15,12 +13,12 @@ const addNotebook = (notebook) => ({
   payload: notebook,
 });
 
-const updateNotebookAction = (notebook) => ({
+const updateNotebook = (notebook) => ({
   type: UPDATE_NOTEBOOK,
   payload: notebook,
 });
 
-const deleteNotebookAction = (notebookId) => ({
+const deleteNotebook = (notebookId) => ({
   type: DELETE_NOTEBOOK,
   payload: notebookId,
 });
@@ -56,7 +54,7 @@ export const thunkUpdateNotebook =
 
     if (response.ok) {
       const data = await response.json();
-      dispatch(updateNotebookAction(data));
+      dispatch(updateNotebook(data));
     }
   };
 
@@ -66,7 +64,7 @@ export const thunkDeleteNotebook = (notebookId) => async (dispatch) => {
   });
 
   if (response.ok) {
-    dispatch(deleteNotebookAction(notebookId));
+    dispatch(deleteNotebook(notebookId));
   }
 };
 

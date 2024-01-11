@@ -1,0 +1,79 @@
+.note-editor-container {
+  width: 80%;
+  margin: auto;
+  padding: 20px;
+  background-color: #fff;
+  border-radius: 8px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  height: 100%;
+  min-height: 900px;
+  font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
+    Oxygen, Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", sans-serif;
+}
+
+.note-label {
+  display: block;
+  margin-bottom: 5px;
+  font-weight: bold;
+}
+
+.note-input {
+  width: 100%;
+  padding: 8px;
+  margin-bottom: 10px;
+  box-sizing: border-box;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+}
+
+.note-title-input {
+  font-size: 18px;
+  font-weight: bold;
+}
+
+.note-content-input {
+  height: 100%;
+  min-height: 700px;
+}
+
+.note-button {
+  background-color: orange;
+  color: #fff;
+  padding: 5px 5px;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  margin-bottom: 10px;
+  align-items: center;
+  justify-content: center;
+ 
+}
+
+.note-button:hover {
+  background-color: rgba(255, 166, 0, 0.774);
+}
+
+.option-wrapper-big {
+  justify-content: space-between;
+  align-items: center;
+  display: flex;
+}
+
+.option-wrapper-small {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+
+}
+
+.botton-display-left{
+  display: flex;
+  justify-content: end
+}
+
+.botton-display-left> button{
+ background-color: white;
+ border: none;
+ font-size: 16px;
+ cursor: pointer;
+}

@@ -5,13 +5,14 @@ import { useModal } from "../../context/Modal";
 import { thunkUpdateNotebook } from "../../redux/notebooks";
 import "./UpdateNotebookModal.css";
 
-export default function NoteCreationForm() {
+export default function NBUpdateForm({notebookId, nbtitle}) {
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const { closeModal } = useModal();
   const sessionUser = useSelector((state) => state.session.user);
   const [title, setTitle] = useState("");
   const [errors, setErrors] = useState({});
+//   console.log(nbtitle)
   //   const [theme, setTheme] = useState("light");
 
   //   useEffect(() => {
@@ -30,8 +31,8 @@ export default function NoteCreationForm() {
       title,
     };
 
-    const notebookData = await dispatch(thunkUpdateNotebook(notebook));
-    if (!notebookData.errors) {
+    const notebookData = await dispatch(thunkUpdateNotebook(notebookId, notebook));
+    if (!notebookData?.errors) {
       return closeModal();
     } else {
       setErrors(notebookData.errors);
@@ -55,18 +56,18 @@ export default function NoteCreationForm() {
           <input
             type="text"
             value={title}
-            onChange={(e) =>
-              setTitle(e.target.value.toLowerCase().replace(/\s+/g, "-"))
-            }
-            // placeholder="Notebook name"
+            onChange={(e) => setTitle(e.target.value)}
+            placeholder={nbtitle}
             required
           />
         </label>
         {errors.title && <p>{errors.title}</p>}
-
-        <button type="submit" className="create-button">
-          Continue
-        </button>
+        <div>
+          <button onClick={closeModal}>Cancel</button>
+          <button type="submit" className="create-button">
+            Continue
+          </button>
+        </div>
       </form>
     </div>
   );

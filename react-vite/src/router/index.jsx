@@ -5,7 +5,8 @@ import Home from "../components/Home";
 import MainPage from "../components/MainPage"
 import BoardPage from '../components/BoardPage/BoardPage';
 import NotebookPage from "../components/NotebookPage/NotebookPage";
-
+import NotePage from "../components/NotePage/NotePage";
+import EditNoatePage from "../components/EditNotePage/EditNotePage"
 // export const router = createBrowserRouter([
 //   {
 //     element: <Layout />,
@@ -44,7 +45,9 @@ export const router = createBrowserRouter(
           element={<ServerPage />}
         ></Route> */}
         <Route path="board" element={<BoardPage />}></Route>
-        <Route path="notebook" element={<NotebookPage />}></Route>
+        <Route path="notebooks" element={<NotebookPage />}></Route>
+        <Route path="notes" element={<NotePage />}></Route>
+        <Route path="notes/:noteId" element={<EditNoatePage />}></Route>
       </Route>
     </Route>
   )

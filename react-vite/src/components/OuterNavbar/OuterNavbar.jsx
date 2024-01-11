@@ -111,7 +111,10 @@ export default function OuterNavbar() {
       </div>
       <div className="outer-navbar-bottom1">
         <button>
-          <Link to="/main/board" style={{textDecoration:"none", color:"black"}}>
+          <Link
+            to="/main/board"
+            style={{ textDecoration: "none", color: "black" }}
+          >
             <i
               className="fas fa-house-user"
               style={{ color: "gray", marginLeft: "-1px" }}
@@ -120,8 +123,13 @@ export default function OuterNavbar() {
           </Link>
         </button>
         <button>
-          <i className="fas fa-paste" style={{ color: "gray" }}></i>
-          &nbsp;Notes
+          <Link
+            to="/main/notes"
+            style={{ textDecoration: "none", color: "black" }}
+          >
+            <i className="fas fa-paste" style={{ color: "gray" }}></i>
+            &nbsp;Notes
+          </Link>
         </button>
         <button>
           <i className="fas fa-calendar-check" style={{ color: "gray" }}></i>
@@ -131,7 +139,7 @@ export default function OuterNavbar() {
       <div className="outer-navbar-bottom2">
         <button>
           <Link
-            to="/main/notebook"
+            to="/main/notebooks"
             style={{ textDecoration: "none", color: "black" }}
           >
             <i className="fas fa-book-open" style={{ color: "gray" }}></i>

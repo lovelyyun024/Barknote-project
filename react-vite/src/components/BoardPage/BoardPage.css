@@ -1,10 +1,21 @@
 .main-board-wrapper {
-  height: 200px;
+  height: 250px;
   width: 80%;
   background-image: url("https://as1.ftcdn.net/v2/jpg/05/38/80/26/1000_F_538802690_y9GzQSPmrx4sxZKaMMEBNPdT8DtmyeDM.jpg");
+  /* background-image: url("https://t4.ftcdn.net/jpg/02/83/47/35/240_F_283473519_nVM1O9N6zmp1NAsgUEt2gjkxezwmzeCd.jpg"); */
   background-size: cover;
 }
+.note-board-header{
+   justify-content: space-between;
+  display: flex;
+}
 
+.add-note-button{
+    align-items: center;
+     justify-content: space-between;
+  display: flex;
+  text-align: center;
+}
 .main-board-header {
   color: #ffff;
   font-size: 20px;
@@ -30,16 +41,15 @@
   border-radius: 5px;
   cursor: pointer;
   background-color: white;
-  opacity:0.8;
-
+  opacity: 0.8;
 }
 .note-board-widget {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
   gap: 25px;
-  grid-auto-rows: minmax(100px, auto);
+  grid-auto-rows: 400px;
   width: 100%;
-  height: 750px;
+  /* height: 750px; */
   margin-top: 40px;
 }
 .note-board-wrapper {
@@ -49,6 +59,7 @@
   margin-left: 25px;
   border-radius: 8px;
   padding: 20px;
+  height: 90%;
 }
 .task-board-wrapper {
   grid-column: 3/ 4;
@@ -57,13 +68,14 @@
   margin-right: 25px;
   border-radius: 8px;
   padding: 20px;
+  height: 90%;
 }
 .scratch-pad-wrapper {
-  background-color:  #fff4bc;
+  background-color: #fff4bc;
   grid-row: 2;
   margin-left: 25px;
   border-radius: 8px;
-    padding: 20px;
+  padding: 20px;
 }
 
 .pinned-note-wrapper {
@@ -79,4 +91,58 @@
   margin-right: 25px;
   border-radius: 8px;
   padding: 20px;
+}
+
+.note-board-main {
+  display: flex;
+  overflow-x: hidden;
+  height: 90%;
+  margin-top: 15px;
+}
+
+.note-board-main:hover {
+  overflow-x: auto;
+}
+
+.note-section {
+  margin: 10px;
+  border: 1px solid #ccc;
+  display: flex;
+  flex-direction: column;
+  border-radius: 8px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  padding: 5px;
+  height: 80%;
+}
+
+.note-section-title,
+.note-section-content,
+.note-section-date {
+  margin-bottom: 8px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.note-section-title {
+  font-size: 18px;
+  font-weight: bold;
+  flex-grow: 1;
+  height: 20%;
+}
+
+.note-section-content {
+  flex-grow: 1;
+  height: 80%;
+}
+
+.note-section-date {
+  color: #777;
+  font-size: 12px;
+}
+
+.note-section-img {
+  max-width: 100%;
+  height: auto;
+  border-radius: 4px;
+  margin-top: 10px;
 }

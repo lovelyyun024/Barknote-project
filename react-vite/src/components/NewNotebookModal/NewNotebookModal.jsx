@@ -5,7 +5,7 @@ import { useModal } from "../../context/Modal";
 import { thunkCreateNotebook } from "../../redux/notebooks";
 import "./NewNotebookModal.css";
 
-export default function NoteCreationForm() {
+export default function NBCreationForm() {
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const { closeModal } = useModal();
@@ -31,7 +31,7 @@ export default function NoteCreationForm() {
     };
 
     const notebookData = await dispatch(thunkCreateNotebook(notebook));
-    if (!notebookData.errors) {
+    if (!notebookData?.errors) {
       return closeModal();
     } else {
       setErrors(notebookData.errors);
@@ -60,7 +60,7 @@ export default function NoteCreationForm() {
             type="text"
             value={title}
             onChange={(e) =>
-              setTitle(e.target.value.toLowerCase().replace(/\s+/g, "-"))
+              setTitle(e.target.value)
             }
             placeholder="Notebook name"
             required

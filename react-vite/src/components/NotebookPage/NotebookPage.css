@@ -1,61 +1,96 @@
-.all-notebook-wrapper{
-    padding:25px;
-    width: 80%;
+.all-notebook-wrapper {
+  padding: 25px;
+  width: 80%;
 }
 
-.all-notebook-header{
-    font-size: 20px;
+.all-notebook-header {
+  font-size: 20px;
 }
 
-.all-notebook-title{
-    margin-top: 40px;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
+.all-notebook-title {
+  margin-top: 40px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
 }
-.all-notebook-side{
-    display: flex;
-    align-items: center;
+.all-notebook-side {
+  display: flex;
+  align-items: center;
 }
 .all-notebook-side > button {
-    display: flex;
-    align-items: center;
-    background-color: #fff5ee;
-    color: orange;
-    text-align: center;
-    border: none;
-    height: 30px;
-    font-size: 14px;
-    cursor: pointer;
+  display: flex;
+  align-items: center;
+  background-color: #fff5ee;
+  color: orange;
+  text-align: center;
+  border: none;
+  height: 30px;
+  font-size: 14px;
+  cursor: pointer;
 }
 .divider {
   position: relative;
   border-top: 2px solid black;
   margin-top: -5px;
-   /* margin-bottom: 20px; */
+  /* margin-bottom: 20px; */
   margin-bottom: 12px;
   height: 0px;
   /* z-index: -5; */
+}
+.all-notebook-list {
+  margin-top: 10px;
+  display: flex;
+  justify-content: space-between;
+}
+.notebook-attribute-1 {
+  width: 300px;
+}
+.notebook-attribute-1 > button {
+  border: none;
+  background-color: #fff5ee;
+  font-size: 16px;
+  cursor: pointer;
+}
 
-}
-.all-notebook-list{
-    margin-top: 10px;
-    display: flex;
-    justify-content: space-between;
-}
-.notebook-attribute-1{
-    width:300px;
-}
-.notebook-attribute-1 > button{
-    border: none;
-    background-color: #fff5ee;
-    font-size: 16px;
-    cursor: pointer;
+.all-notebook-list > button {
+  border: none;
+  background-color: #fff5ee;
+  font-size: 16px;
+  cursor: pointer;
 }
 
-.all-notebook-list > button{
-    border: none;
-    background-color: #fff5ee;
-    font-size: 16px;
-    cursor: pointer;
+.action-dropdown.hidden {
+  display: none;
 }
+
+.action-dropdown {
+  display: flex;
+  flex-direction: column;
+  list-style-type: none;
+  position: absolute;
+  right: 25px;
+  text-align: left;
+  gap: 0px;
+  width: 200px;
+  overflow: hidden;
+  border: 1px solid lightgray;
+}
+
+.action-dropdown > button {
+  background-color: #fff5ee;
+  font-size: 16px;
+  border: none;
+  padding: 10px;
+}
+
+.outer-navbar-popup-divider {
+  border-top: 1px solid lightgray;
+}
+
+.notebook-action-wrapper > button {
+  border: none;
+  background-color: #fff5ee;
+  font-size: 16px;
+  margin-right: 5px;
+}
+
