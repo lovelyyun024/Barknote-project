@@ -86,58 +86,57 @@ export default function EditNotePage() {
 
   return (
     <div className="note-editor-container">
-      <div className="botton-display-left">
-        <i className="material-icons" style={{ color: "orange" }}>
-          delete_forever
-        </i>
-        <OpenModalButton
-          buttonText="Delele"
-          onItemClick={closeMenu}
-          type="button"
-          modalComponent={<NoteDeleteForm noteId={noteId} pattern={true} />}
-        />
-      </div>
       <form onSubmit={handleNoteUpdate} className="note-editor-form">
         <div className="option-wrapper-big">
           <div className="botton-display-left">
-            <label className="note-label" style={{ width: "100px" }}>
-              Select Notebook:
-            </label>
-            <select
-              className="note-input"
-              value={notebook_id}
-              onChange={(e) => setNotebook_id(e.target.value)}
-              style={{ width: "150px" }}
-              required
-            >
-              <option value="">Select a Notebook</option>
-              {notebookList.map((notebook) => (
-                <option key={notebook.id} value={notebook.id}>
-                  {notebook.title}
-                </option>
-              ))}
-            </select>
-            {errors.notebook_id && <p>{errors.notebook_id}</p>}
-          </div>
-        </div>
-        <div className="option-wrapper-small">
-          <div className="botton-display-left">
-            <label className="note-label" style={{ width: "100px" }}>
+            <div className="select-option-wrapper">
+              <label className="note-label" style={{ width: "100px" }}>
+                Select Notebook:
+                <select
+                  className="select-input"
+                  value={notebook_id}
+                  onChange={(e) => setNotebook_id(e.target.value)}
+                  style={{ width: "160px", marginLeft: "10px" }}
+                  required
+                >
+                  <option value="">Select a Notebook</option>
+                  {notebookList.map((notebook) => (
+                    <option key={notebook.id} value={notebook.id}>
+                      {notebook.title}
+                    </option>
+                  ))}
+                </select>
+                {errors.notebook_id && <p>{errors.notebook_id}</p>}
+              </label>
+            </div>
+
+            <label className="note-label">
               Pinned:
               <input
-                className="note-input"
                 type="checkbox"
                 checked={pinned}
                 onChange={(e) => setPinned(e.target.checked)}
-                style={{ width: "20px" }}
+                style={{ width: "20px", marginLeft: "30px" }}
               />
             </label>
             {errors.pinned && <p>{errors.pinned}</p>}
           </div>
 
-          <button className="note-button" type="submit">
-            Update Note
-          </button>
+          <div className="option-wrapper-small">
+            <div className="botton-display-left">
+              <OpenModalButton
+                buttonText={
+                  <i className="material-icons" style={{fontSize:"30px"}}>delete_forever</i>
+                }
+                onItemClick={closeMenu}
+                type="button"
+                modalComponent={
+                  <NoteDeleteForm noteId={noteId} pattern={true} />
+                }
+              />
+            </div>
+            <button type="submit">Update</button>
+          </div>
         </div>
 
         <input
@@ -145,12 +144,14 @@ export default function EditNotePage() {
           type="text"
           value={title}
           onChange={(e) => setTitle(e.target.value)}
+          placeholder="Title"
         />
         {errors.title && <p>{errors.title}</p>}
         <textarea
           className="note-input note-content-input"
           value={content}
           onChange={(e) => setContent(e.target.value)}
+          placeholder="Start writing"
         />
         {errors.content && <p>{errors.content}</p>}
       </form>

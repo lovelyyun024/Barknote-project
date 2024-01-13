@@ -11,7 +11,6 @@ export default function NotePage() {
   const currentUser = useSelector((state) => state.session.user);
   const notebooksData = useSelector((state) => state.notebook.notebooks);
   const notebookList = Object.values(notebooksData);
-  // console.log("~~~~~", notebookList)
 
   const [notebook_id, setNotebook_id] = useState("");
   const [title, setTitle] = useState("");
@@ -55,41 +54,42 @@ export default function NotePage() {
       <form onSubmit={handleNoteCreation} className="note-editor-form">
         <div className="option-wrapper-big">
           <div className="botton-display-left">
-            <label className="note-label" style={{ width: "100px" }}>
-              Select Notebook:
-            </label>
-            <select
-              className="note-input"
-              value={notebook_id}
-              onChange={(e) => setNotebook_id(e.target.value)}
-              style={{ width: "150px" }}
-              required
-            >
-              <option value="">Select a Notebook</option>
-              {notebookList.map((notebook) => (
-                <option key={notebook.id} value={notebook.id}>
-                  {notebook.title}
-                </option>
-              ))}
-            </select>
-            {errors.notebook_id && <p>{errors.notebook_id}</p>}
-          </div>
-          <div className="option-wrapper-small">
-            <div className="botton-display-left">
+            <div className="select-option-wrapper">
               <label className="note-label" style={{ width: "100px" }}>
-                Pinned:
-                <input
-                  className="note-input"
-                  type="checkbox"
-                  checked={pinned}
-                  onChange={(e) => setPinned(e.target.checked)}
-                  style={{ width: "20px", marginLeft: "10px" }}
-                />
+                Select Notebook:
+                <select
+                  className="select-input"
+                  value={notebook_id}
+                  onChange={(e) => setNotebook_id(e.target.value)}
+                  style={{ width: "160px", marginLeft:"10px"}}
+                  required
+                >
+                  <option value="">Select a Notebook</option>
+                  {notebookList.map((notebook) => (
+                    <option key={notebook.id} value={notebook.id}>
+                      {notebook.title}
+                    </option>
+                  ))}
+                </select>
+                {errors.notebook_id && <p>{errors.notebook_id}</p>}
               </label>
-              {errors.pinned && <p>{errors.pinned}</p>}
             </div>
-            <button className="note-button" type="submit">
-              Create Note
+
+            <label className="note-label">
+              Pinned:
+              <input
+                type="checkbox"
+                checked={pinned}
+                onChange={(e) => setPinned(e.target.checked)}
+                style={{ width: "20px", marginLeft: "30px" }}
+              />
+            </label>
+            {errors.pinned && <p>{errors.pinned}</p>}
+          </div>
+
+          <div className="option-wrapper-small">
+            <button type="submit">
+              Create
             </button>
           </div>
         </div>

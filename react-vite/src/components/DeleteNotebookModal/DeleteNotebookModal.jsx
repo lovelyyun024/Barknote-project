@@ -11,28 +11,41 @@ export default function NBDeleteForm({ notebookId }) {
   const handleSubmitDelete = (e) => {
     e.preventDefault();
     dispatch(thunkDeleteNotebook(notebookId));
-
-    closeModal();
-  };
-
-  const handleSubmitKeep = (e) => {
-    e.preventDefault();
     closeModal();
   };
 
   return (
-    <div>
-      <form onSubmit={handleSubmitDelete}>
-        <h1> Delete notebook? </h1>
-        <p>
-          Any notes in the notebook will be moved to Trash. This cannot be
-          undone.
-        </p>
-        <button type="submit">Delete</button>
-      </form>
-
-      <form onSubmit={handleSubmitKeep}>
-        <button type="submit">Cancel</button>
+    <div className="create-notebook-wrapper">
+      <div className="create-notebook-header">
+        <div>Delete notebook? </div>
+        <button onClick={closeModal}>
+          <i className="fa fa-close"></i>
+        </button>
+      </div>
+      <div className="create-notebook-middle">
+        Warning: The notebook will be gone forever. This action cannot be undone.
+      </div>
+      <form onSubmit={handleSubmitDelete} className="notebook-creation-form">
+        <div className="create-button-wrapper">
+          <button
+            onClick={closeModal}
+            style={{
+              backgroundColor: "white",
+              color: "rgb(115, 115, 115)",
+              border: "1px solid rgb(115, 115, 115)",
+            }}
+          >
+            Cancel
+          </button>
+          <button
+            type="submit"
+            style={{
+              backgroundColor: "rgb(229, 78, 64)",
+            }}
+          >
+            Delete
+          </button>
+        </div>
       </form>
     </div>
   );
