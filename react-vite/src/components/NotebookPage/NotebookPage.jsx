@@ -20,8 +20,15 @@ export default function NotebookPage() {
   const ulRef = useRef();
 
   const [selectedNotebookId, setSelectedNotebookId] = useState(null);
+  
 
   const toggleMenu = (e, notebookId) => {
+    e.stopPropagation();
+    setShowMenu(!showMenu);
+    setSelectedNotebookId(notebookId);
+  };
+
+  const toggleMenu1 = (e, notebookId) => {
     e.stopPropagation();
     setShowMenu(!showMenu);
     setSelectedNotebookId(notebookId);
@@ -32,7 +39,6 @@ export default function NotebookPage() {
 
     const closeMenu = (e) => {
       if (!ulRef.current.contains(e.target)) {
-        // setShowMenu(false);
         setShowMenu(false);
         setSelectedNotebookId(null);
       }
@@ -43,7 +49,6 @@ export default function NotebookPage() {
     return () => document.removeEventListener("click", closeMenu);
   }, [showMenu]);
 
-  // const closeMenu = () => setShowMenu(false);
   const closeMenu = () => {
     setShowMenu(false);
     setSelectedNotebookId(null);
@@ -73,7 +78,7 @@ export default function NotebookPage() {
             />
           </div>
         </div>
-        <div className="divider" />
+        <div className="notebook-divider" />
         <div className="all-notebook-list-wrapper">
           <div className="all-notebook-list">
             <div className="notebook-attribute-1">TITLE</div>
@@ -95,7 +100,7 @@ export default function NotebookPage() {
                   </div>
                   <div className="notebook-attribute">{user}</div>
                   <div className="notebook-attribute">
-                    {created_at.slice(0, 16)}{" "}
+                    {created_at.slice(0, 16)}
                   </div>
                   <div className="notebook-action-wrapper">
                     <button onClick={(e) => toggleMenu(e, id)}>
@@ -130,10 +135,6 @@ export default function NotebookPage() {
                   {note &&
                     note.map((noteItem) => (
                       <div key={noteItem.id}>
-                        {/* <Link
-                          to={`/main/notes/${noteItem.id}`}
-                          style={{ textDecoration: "none", color: "black" }}
-                        > */}
                         <div className="all-note-list">
                           <Link
                             to={`/main/notes/${noteItem.id}`}
@@ -151,18 +152,96 @@ export default function NotebookPage() {
                           </div>
                           <div className="notebook-action-wrapper">
                             <OpenModalButton
-                              buttonText={<i class="material-icons" >delete_forever</i>}
+                              buttonText={<i className="material-icons" >delete_forever</i>}
                               onItemClick={closeMenu}
                               modalComponent={<NoteDeleteForm noteId={noteItem.id} pattern={false}/>}
                             />
                           </div>
                         </div>
-                        {/* </Link> */}
                       </div>
                     ))}
                 </div>
               </div>
             ))}
+            {/* {[...notebookList]
+  .reverse()
+  .map(({ title, id, user, created_at, note }) => (
+    <div key={id} className="all-notebook-container">
+      <div key={id} className="all-notebook-list">
+        <div className="notebook-attribute-1">
+          <button>
+            <i className="fas fa-caret-right"></i>
+          </button>
+          <i className="fas fa-book-open"></i> &nbsp;{title}&nbsp; (
+          {note ? note.length : 0})
+        </div>
+        <div className="notebook-attribute">{user}</div>
+        <div className="notebook-attribute">
+          {created_at.slice(0, 16)}{" "}
+        </div>
+        <div className="notebook-action-wrapper">
+          <button onClick={(e) => toggleMenu(e, id)}>
+            <i
+              className="fas fa-list-ul"
+              style={{ fontSize: "20px" }}
+            ></i>
+          </button>
+          <div
+            className={`action-dropdown ${
+              selectedNotebookId === id ? "" : "hidden"
+            }`}
+            ref={ulRef}
+          >
+            <OpenModalButton
+              buttonText="Rename notebook"
+              onItemClick={closeMenu}
+              modalComponent={
+                <NBUpdateForm notebookId={id} nbtitle={title} />
+              }
+            />
+            <div className="outer-navbar-popup-divider"></div>
+            <OpenModalButton
+              buttonText="Delete notebook"
+              onItemClick={closeMenu}
+              modalComponent={<NBDeleteForm notebookId={id} />}
+            />
+          </div>
+        </div>
+      </div>
+      <div>
+        {selectedNotebookId === id &&
+          note &&
+          note.map((noteItem) => (
+            <div key={noteItem.id}>
+              <div className="all-note-list">
+                <Link
+                  to={`/main/notes/${noteItem.id}`}
+                  style={{ textDecoration: "none", color: "black" }}
+                >
+                  <div className="notebook-attribute-1">
+                    <div style={{ marginLeft: "20px" }}>
+                      {noteItem.title}
+                    </div>
+                  </div>
+                </Link>
+                <div className="notebook-attribute">{user}</div>
+                <div className="notebook-attribute">
+                  {created_at.slice(0, 16)}
+                </div>
+                <div className="notebook-action-wrapper">
+                  <OpenModalButton
+                    buttonText={<i class="material-icons" >delete_forever</i>}
+                    onItemClick={closeMenu}
+                    modalComponent={<NoteDeleteForm noteId={noteItem.id} pattern={false}/>}
+                  />
+                </div>
+              </div>
+            </div>
+          ))}
+      </div>
+    </div>
+  ))} */}
+
         </div>
       </div>
     </>

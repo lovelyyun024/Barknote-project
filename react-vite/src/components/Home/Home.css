@@ -1,146 +1,136 @@
 body {
-  font-family: Lato, Slack-Fractions, appleLogo, sans-serif;
-  padding: 0;
-  margin: 0;
-  background-color: #fff5ee
+  background-color: #fff5ee;
+  margin:0px
 }
 
-button {
-  font-family: Lato, Slack-Fractions, appleLogo, sans-serif;
+body, button, textarea, select, input {
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen', 'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue', sans-serif, -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen', 'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue', sans-serif;
+}
+
+textarea {
+  font-size: 16px;
+}
+span {
+    color: #E01E5A;
+    text-align: center;
+    width: 100%;
+    margin-bottom: 15px;
+}
+
+.home-wrapper {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  height: 70vh;
+  background-color: white;
+  box-shadow: 0 0 50px rgba(0, 0, 0, 0.1);
+  padding-left: 25px;
+  padding-right: 25px;
+  color:rgb(51, 51, 51)
 }
 
 .home-header {
-  display: grid;
-  justify-content: center;
+  display: flex;
+  flex-direction: column;
   align-items: center;
-  height: 100%;
-  margin: auto;
-  grid-template-rows: 1fr;
+  justify-content: center;
+  margin-bottom: 30px;
 }
 
 .home-logo {
   width: 80px;
-  margin: auto;
-  margin-top: 40px;
+  height: 80px;
   margin-bottom: 0px;
 }
 
 .signin-header {
-  width: 400px;
-  /* margin: auto; */
   text-align: center;
-  margin-bottom: 30px;
 }
 
 .signin-header > h1 {
   font-size: 40px;
-  font-family: 'Crete Round', serif;
+  font-family: "Crete Round", serif;
   margin-bottom: 0px;
   margin-top: 0px;
 }
 
-.signin-header > p {
-  font-size: 16px;
-  font-weight: 300;
-  margin-bottom: 28px;
+.home-body {
+  border-radius: 8px;
+  width: 450px;
+  max-width: 100%;
+}
+.home-page-container {
+  background-color: #fff5ee;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 100vh;
 }
 
-.large-orange-button {
-  width: 350px;
-  height: 44px;
-  text-decoration: none;
-  margin: auto;
-  box-sizing: border-box;
-  color: white;
-  border-radius: 5px;
-  border: none;
-  cursor: pointer;
-  font-size: 17px;
-  font-weight: 300;
-  background-color: orange;
+.login-form {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.demo-user-wrapper {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 50px;
 }
 
 .large-input {
-  width: 350px;
-  height: 44px;
-  text-decoration: none;
-  margin: auto;
-  box-sizing: border-box;
-  border-radius: 5px;
+  margin-bottom: 15px;
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  font-size: 16px;
+  width: 70%;
+}
+
+.large-orange-button {
+  background-color: orange;
+  color: #fff;
+  padding: 11px;
   border: none;
-  font-size: 17px;
-  font-weight: 300;
-  border: 1px solid #BBBABB;
-  font-family: Lato, Slack-Fractions, appleLogo, sans-serif;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 16px;
+  width: 75%;
 }
 
 .large-orange-button:hover {
-  background-color: #ed9121
+  background-color: #FC8A17
+}
+
+.sign-up-wrapper {
+  text-align: center;
+  color: #666;
+}
+
+.signup-button {
+  color: orange;
+  text-decoration: none;
+  margin-left: 5px;
 }
 
 .home-or {
   position: relative;
   text-align: center;
-  margin: 20px;
-  width: 50px;
-  height: 50px;
-  padding: 0;
-  margin-left: auto;
-  margin-right: auto;
-  background-color: #fff5ee;
+  width: 30px;
+  height: 30px;
+  padding: 5px;
+  background-color:white;
   border-radius: 100px;
   z-index: 2;
   display: flex;
   justify-content: center;
   align-items: center;
-  margin-bottom: 34px;
-  color:gray;
+  color: rgb(171, 171, 171);
   font-weight: 300;
-}
-
-.divider {
-  position: relative;
-  border-top: 1px solid #ddd;
-  margin-top: -60px;
-  margin-bottom: 40px;
-  height: 0px;
-  z-index: -5;
-}
-
-.demo-user-wrapper {
-    margin-left: 22px;
-}
-
-span {
-  color: #e01e5a;
-  text-align: left;
-  width: 100%;
-}
-
-.login-form {
-  display: flex;
-  justify-content: center;
-  width: 400px;
-  flex-wrap: wrap;
-  margin: auto;
-  gap: 20px;
-}
-
-.signup-button {
- color:orange;
- text-decoration: none;
-}
-
-
-.sign-up-wrapper {
-  margin-top: 40px;
-  margin-left: 110px;
   font-size: 14px;
-  font-weight: 300;
-}
-
-.signup-button > p {
-  font-size: 16px;
-  font-weight: 300;
-  margin-left: 15px;
 }

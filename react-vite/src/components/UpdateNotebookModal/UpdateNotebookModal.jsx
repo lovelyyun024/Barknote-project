@@ -1,18 +1,15 @@
-import { useState } from "react";
-import { useDispatch} from "react-redux";
-// import { useNavigate } from "react-router-dom";
+import { useState, useEffect } from "react";
+import { useDispatch } from "react-redux";
 import { useModal } from "../../context/Modal";
 import { thunkUpdateNotebook } from "../../redux/notebooks";
 import "./UpdateNotebookModal.css";
 
-export default function NBUpdateForm({notebookId, nbtitle}) {
+export default function NBUpdateForm({ notebookId, nbtitle }) {
   const dispatch = useDispatch();
-  // const navigate = useNavigate();
   const { closeModal } = useModal();
-  // const sessionUser = useSelector((state) => state.session.user);
   const [title, setTitle] = useState("");
   const [errors, setErrors] = useState({});
-//   console.log(nbtitle)
+  //   console.log(nbtitle)
   //   const [theme, setTheme] = useState("light");
 
   //   useEffect(() => {
@@ -24,14 +21,18 @@ export default function NBUpdateForm({notebookId, nbtitle}) {
 
   //   document.documentElement.className = `theme-${theme}`;
 
+  useEffect(() => {
+    setTitle(nbtitle);
+  }, [nbtitle]);
+
   const handleNotebookCreation = async (e) => {
     e.preventDefault();
 
-    const notebook = {
-      title,
-    };
+    const notebook = {title};
 
-    const notebookData = await dispatch(thunkUpdateNotebook(notebookId, notebook));
+    const notebookData = await dispatch(
+      thunkUpdateNotebook(notebookId, notebook)
+    );
     if (!notebookData?.errors) {
       return closeModal();
     } else {
@@ -40,9 +41,9 @@ export default function NBUpdateForm({notebookId, nbtitle}) {
   };
 
   return (
-    <div className="update-notebook-wrapper">
-      <div className="update--notebook-header">
-        <h3>Rename notebook</h3>
+    <div className="create-notebook-wrapper">
+      <div className="create-notebook-header">
+        <div>Rename notebook</div>
         <button onClick={closeModal}>
           <i className="fa fa-close"></i>
         </button>
@@ -62,9 +63,18 @@ export default function NBUpdateForm({notebookId, nbtitle}) {
           />
         </label>
         {errors.title && <p>{errors.title}</p>}
-        <div>
-          <button onClick={closeModal}>Cancel</button>
-          <button type="submit" className="create-button">
+        <div className="create-button-wrapper">
+          <button
+            onClick={closeModal}
+            style={{
+              backgroundColor: "white",
+              color: "rgb(115, 115, 115)",
+              border: "1px solid rgb(115, 115, 115)",
+            }}
+          >
+            Cancel
+          </button>
+          <button type="submit">
             Continue
           </button>
         </div>

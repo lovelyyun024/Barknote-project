@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { useDispatch} from "react-redux";
+import { useDispatch } from "react-redux";
 // import { useNavigate } from "react-router-dom";
 import { useModal } from "../../context/Modal";
 import { thunkCreateNotebook } from "../../redux/notebooks";
@@ -11,22 +11,22 @@ export default function NBCreationForm() {
   // const sessionUser = useSelector((state) => state.session.user);
   const [title, setTitle] = useState("");
   const [errors, setErrors] = useState({});
-//   const [theme, setTheme] = useState("light");
+  //   const [theme, setTheme] = useState("light");
 
-//   useEffect(() => {
-//     const storedTheme = localStorage.getItem("theme");
-//     if (storedTheme) {
-//       setTheme(storedTheme);
-//     }
-//   }, []);
+  //   useEffect(() => {
+  //     const storedTheme = localStorage.getItem("theme");
+  //     if (storedTheme) {
+  //       setTheme(storedTheme);
+  //     }
+  //   }, []);
 
-//   document.documentElement.className = `theme-${theme}`;
+  //   document.documentElement.className = `theme-${theme}`;
 
   const handleNotebookCreation = async (e) => {
     e.preventDefault();
 
     const notebook = {
-      title
+      title,
     };
 
     const notebookData = await dispatch(thunkCreateNotebook(notebook));
@@ -40,15 +40,16 @@ export default function NBCreationForm() {
   return (
     <div className="create-notebook-wrapper">
       <div className="create-notebook-header">
-        <h3>Create new notebook</h3>
+        <div>Create new notebook</div>
         <button onClick={closeModal}>
           <i className="fa fa-close"></i>
         </button>
-        <p>
-          Notebooks are useful for grouping notes around a common topic. They
-          can be private or shared.
-        </p>
       </div>
+      <div className="create-notebook-middle">
+        Notebooks are useful for grouping notes around a common topic. They can
+        be private or shared.
+      </div>
+
       <form
         onSubmit={handleNotebookCreation}
         className="notebook-creation-form"
@@ -58,18 +59,17 @@ export default function NBCreationForm() {
           <input
             type="text"
             value={title}
-            onChange={(e) =>
-              setTitle(e.target.value)
-            }
+            onChange={(e) => setTitle(e.target.value)}
             placeholder="Notebook name"
             required
           />
         </label>
         {errors.title && <p>{errors.title}</p>}
-
-        <button type="submit" className="create-button">
-          Create
-        </button>
+        <div className="create-button-wrapper">
+          <button type="submit" className="create-button">
+            Create
+          </button>
+        </div>
       </form>
     </div>
   );

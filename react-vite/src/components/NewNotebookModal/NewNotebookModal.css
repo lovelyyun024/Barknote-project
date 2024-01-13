@@ -1,0 +1,72 @@
+.create-notebook-wrapper {
+  width: 400px;
+  padding: 20px;
+  background-color: white;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  border-radius: 4px;
+}
+
+.create-notebook-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 25px;
+  font-size: 20px;
+}
+
+.create-notebook-header button {
+  background: none;
+  border: none;
+  cursor: pointer;
+  font-size: 18px;
+  color: #666;
+}
+
+.create-notebook-middle {
+  margin-bottom: 20px;
+}
+
+.notebook-creation-form label {
+  display: block;
+  margin-bottom: 10px;
+  font-size: 14px;
+}
+
+.notebook-creation-form input {
+  width: 95%;
+  padding: 10px;
+  font-size: 14px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  margin-top: 5px;
+}
+
+.notebook-creation-form button {
+  background-color: orange;
+  color: #fff;
+  padding: 10px 15px;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 16px;
+}
+
+.notebook-creation-form button:hover {
+  background-color: #FC8A17;
+}
+
+.create-notebook-middle {
+  font-size: 14px;
+  color: #666;
+}
+
+.create-button-wrapper {
+  margin-top: 20px;
+  display: flex;
+  justify-content: flex-end;
+  gap: 10px;
+}
+
+.create-button-wrapper button {
+  font-weight: 300;
+}
