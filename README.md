@@ -1,8 +1,49 @@
-# Flask React Project
+# Evernote Clone Project
 
-This is the starter for the Flask React project.
+BarkNote is a project focused on creating a note-taking application inspired by Evernote. With a user-friendly interface, BarkNote allows easy organization of thoughts and tasks. From text notes to media content, it provides a versatile platform for users. The emphasis is on simplicity, productivity, and a clutter-free experience. As the project evolves, collaborative features and personalized experiences will be introduced. Join us in shaping BarkNote into a valuable and efficient tool for seamless note-taking.
 
-## Getting started
+# Live Link
+
+https://evernote-clone.onrender.com/
+
+## Tech Stack
+### Frameworks and Libraries
+![Python](https://img.shields.io/badge/python-3670A0?style=for-the-badge&logo=python&logoColor=ffdd54) ![Flask](https://img.shields.io/badge/flask-%23000.svg?style=for-the-badge&logo=flask&logoColor=white) ![JavaScript](https://img.shields.io/badge/javascript-%23323330.svg?style=for-the-badge&logo=javascript&logoColor=%23F7DF1E) ![React](https://img.shields.io/badge/react-%2320232a.svg?style=for-the-badge&logo=react&logoColor=%2361DAFB) ![Redux](https://img.shields.io/badge/redux-%23593d88.svg?style=for-the-badge&logo=redux&logoColor=white) ![CSS3](https://img.shields.io/badge/css3-%231572B6.svg?style=for-the-badge&logo=css3&logoColor=white) ![HTML5](https://img.shields.io/badge/html5-%23E34F26.svg?style=for-the-badge&logo=html5&logoColor=white)
+
+ ### Database:
+ ![Postgres](https://img.shields.io/badge/postgres-%23316192.svg?style=for-the-badge&logo=postgresql&logoColor=white)
+  
+ ### Hosting:
+ ![Render](https://img.shields.io/badge/Render-%46E3B7.svg?style=for-the-badge&logo=render&logoColor=white)
+
+# Landing Page
+<img src="https://github.com/lovelyyun024/evernote-clone/blob/main/react-vite/dist/barknote1.png"  width="600px"/>
+
+# Main Page
+<img src="https://github.com/lovelyyun024/evernote-clone/blob/main/react-vite/dist/barknote2.png"  width="600px"/>
+
+# NoteBook Page
+<img src="https://github.com/lovelyyun024/evernote-clone/blob/main/react-vite/dist/barknote3.png"  width="600px"/>
+
+# Note Page
+<img src="https://github.com/lovelyyun024/evernote-clone/blob/main/react-vite/dist/barknote4.png"  width="600px"/>
+
+# Feature List
+1. Notebooks
+2. Notes
+3. Tasks
+4. Tags
+
+# Future Implementation Goals
+
+1. Profile Photo (w/AWS image uploads)
+2. Styles toolbar
+3. Search Bar
+4. Trash Can
+5. Theme customization
+6. Pin address(Google Map API)
+
+# Getting started
 
 1. Clone this repository (only this branch).
 
