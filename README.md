@@ -28,6 +28,65 @@ https://evernote-clone.onrender.com/
 # Note Page
 <img src="https://github.com/lovelyyun024/evernote-clone/blob/main/react-vite/dist/barknote4.png"  width="600px"/>
 
+# Endpoints
+
+**Users**
+
+GET /api/users/
+* Returns the information for all users
+
+GET /api/users/:id
+* Returns the information for one user
+
+**Sessions**
+
+GET /api/auth/
+* Returns the information for the logged in user
+
+POST /api/auth/signup
+* Signs a new user up
+
+POST /api/auth/login
+* Logs in a user
+
+DELETE /api/auth/
+* Logs out a user
+
+**Notebooks**
+
+GET /api/notebooks
+* Returns a list of logged-in user's notebooks
+
+GET /api/notebooks/:notebookId
+* Returns a specific notebook with its associated notes data
+
+POST /api/notebooks
+* Create a new notebook
+
+Put /api/notebooks/:notebookId
+* Update a notebook
+
+DELETE /api/notebooks/:notebookId
+* Delete a notebook
+
+**Notes**
+
+GET /api/notes
+* Returns a list of logged-in user's notes
+
+GET /api/notes/:noteId
+* Returns a specific note
+
+POST /api/notes
+* Create a new note
+
+Put /api/notes/:noteId
+* Update a note
+
+DELETE /api/notes/:noteId
+* Delete a note
+
+
 # Feature List
 1. Notebooks
 2. Notes
@@ -168,5 +227,7 @@ URL for your site just below the name of the Web Service at the top of the page.
 setting will cause Render to re-deploy your application every time you push to
 main, always keeping it up to date.
 
+# Connect
+[LinkedIn](https://www.linkedin.com/in/estherzhangg/)
 [Render.com]: https://render.com/
 [Dashboard]: https://dashboard.render.com/
