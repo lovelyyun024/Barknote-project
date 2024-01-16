@@ -202,7 +202,7 @@ export default function BoardPage() {
             </Link>
           </div>
         </div>
-        <div className="creator-container">
+        {/* <div className="creator-container">
           <ul style={{ listStyle: "none" }}>
             <p className="creator-header">About Creator</p>
             <li className="repo-link-container">
@@ -245,7 +245,7 @@ export default function BoardPage() {
               </a>
             </li>
           </ul>
-        </div>
+        </div> */}
       </div>
     </>
   );

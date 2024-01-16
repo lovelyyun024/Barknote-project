@@ -138,8 +138,11 @@ export default function NotebookPage() {
                         }`}
                       />
                     </button>
-                    <i className="fas fa-book-open"></i> &nbsp;{title}&nbsp; (
-                    {note ? note.length : 0})
+                    <i className="fas fa-book-open"></i> &nbsp;
+                    {title.length <= 20
+                      ? title
+                      : title.slice(0, 20) + "..."}
+                    &nbsp; ({note ? note.length : 0})
                   </div>
                   <div className="notebook-attribute">{user}</div>
                   <div className="notebook-attribute-time">
@@ -179,15 +182,13 @@ export default function NotebookPage() {
                       <div key={noteItem.id}>
                         <div className="all-note-list">
                           <div className="note-title-link">
-                            <Link
-                              to={`/main/notes/${noteItem.id}`}
-                            >
+                            <Link to={`/main/notes/${noteItem.id}`}>
                               <div className="notebook-attribute-title">
                                 <i className="fas fa-file-alt"></i>
                                 &nbsp;&nbsp;
-                                {noteItem.title.length <= 40
+                                {noteItem.title.length <= 20
                                   ? noteItem.title
-                                  : noteItem.title.slice(0, 40) + "..."}
+                                  : noteItem.title.slice(0, 20) + "..."}
                               </div>
                             </Link>
                           </div>

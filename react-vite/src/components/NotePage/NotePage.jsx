@@ -52,6 +52,7 @@ export default function NotePage() {
       setTitle("");
       setContent("")
       setPinned("")
+      setErrors("")
     // } 
     // else {
     //   setErrors(noteData.errors);

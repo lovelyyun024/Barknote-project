@@ -16,6 +16,8 @@ span {
     width: 100%;
     margin-bottom: 15px;
     margin-left: 2px;
+    font-size: 14px;
+
 }
 
 .home-wrapper {
@@ -28,7 +30,8 @@ span {
   box-shadow: 0 0 50px rgba(0, 0, 0, 0.1);
   padding-left: 25px;
   padding-right: 25px;
-  color:rgb(51, 51, 51)
+  color:rgb(51, 51, 51);
+  min-height: 700px;
 }
 
 .home-header {

@@ -76,7 +76,7 @@ export default function OuterNavbar() {
                   objectFit: "cover",
                 }}
               ></img>
-              <div >
+              <div>
                 {sessionUser?.username}&nbsp;&nbsp;
                 <i
                   className="fas fa-angle-down"
@@ -110,7 +110,7 @@ export default function OuterNavbar() {
             />
             <div className="outer-navbar-divider" /> */}
             <button onClick={logout} style={{ paddingBottom: "8px" }}>
-             &nbsp;Sign out&nbsp;{sessionUser?.username}
+              &nbsp;Sign out&nbsp;{sessionUser?.username}
             </button>
           </div>
         </div>
@@ -142,7 +142,7 @@ export default function OuterNavbar() {
           >
             <i
               className="fas fa-house-user"
-              style={{ color: "gray", marginLeft: "-1px" }}
+              style={{ color: "gray", marginLeft: "-1px", fontSize:"18px" }}
             ></i>
             &nbsp;&nbsp;Home
           </Link>
@@ -157,7 +157,7 @@ export default function OuterNavbar() {
           </Link>
         </button> */}
         <button onClick={devFeature} style={{ color: "#333333" }}>
-          <i className="fas fa-calendar-check" style={{ color: "gray" }}></i>
+          <i className="fas fa-calendar-check" style={{ color: "gray", fontSize:"18px" }}></i>
           &nbsp;&nbsp;Tasks
         </button>
       </div>
@@ -175,10 +175,54 @@ export default function OuterNavbar() {
         <button onClick={devFeature} style={{ color: "#333333" }}>
           <i
             className="fas fa-tag"
-            style={{ color: "gray", marginLeft: "1px" }}
+            style={{ color: "gray", marginLeft: "1px", fontSize:"18px"}}
           ></i>
           &nbsp;&nbsp;Tags
         </button>
+      </div>
+      <div className="creator-container">
+        <ul style={{ listStyle: "none", paddingLeft:"10px", paddingTop:"400px"}}>
+          <p className="creator-header">About Creator</p>
+          <li className="repo-link-container">
+            <a
+              className="creator-links"
+              target="_blank"
+              rel="noreferrer"
+              href="https://github.com/lovelyyun024/evernote-clone"
+            >
+              <i
+                className="fab fa-github-square"
+                style={{ marginRight: "5px" }}
+              />
+              Github Repo
+            </a>
+          </li>
+          <li className="repo-link-container">
+            <a
+              className="creator-links"
+              target="_blank"
+              rel="noreferrer"
+              href="https://github.com/lovelyyun024"
+            >
+              <i
+                className="fa-brands fa-github"
+                style={{ marginRight: "5px" }}
+              />
+              Creator's Github
+            </a>
+          </li>
+          <li className="repo-link-container">
+            <a
+              className="creator-links"
+              target="_blank"
+              rel="noreferrer"
+              href="https://www.linkedin.com/in/estherzhangg/"
+            >
+              <i className="fab fa-linkedin" style={{ marginRight: "5px" }} />
+              Creator's LinkedIn
+            </a>
+          </li>
+        </ul>
       </div>
     </div>
   );
