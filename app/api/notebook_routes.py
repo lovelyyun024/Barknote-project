@@ -55,7 +55,7 @@ def update_notebook(id):
         data = form.data
         notebook.title = data['title']
         db.session.commit()
-        return notebook.to_dict(user=True)
+        return notebook.to_dict(note=True, user=True)
     elif not form.validate_on_submit():
         return {'errors': form.errors}, 401
     return {'errors': {'message': 'Unauthorized'}}, 403

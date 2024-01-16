@@ -3,6 +3,7 @@ import { Link } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { Navigate, useNavigate } from "react-router-dom";
 import { thunkSignup } from "../../redux/session";
+import shiba from "../Home/shibainu.png";
 import "./SignupForm.css";
 
 function SignupFormPage() {
@@ -74,7 +75,7 @@ function SignupFormPage() {
           <div className="home-header">
             <img
               className="home-logo"
-              src="https://cdn-icons-png.flaticon.com/512/8708/8708467.png"
+              src={shiba}
             />
             <div className="signin-header">
               <h1>Barkbook</h1>

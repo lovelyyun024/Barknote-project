@@ -1,6 +1,8 @@
 .all-notebook-wrapper {
   padding: 25px;
-  width: 80%;
+  width: 85%;
+  font-size: 15px;
+  background-color: white;;
 }
 
 .all-notebook-header {
@@ -8,10 +10,11 @@
 }
 
 .all-notebook-title {
-  margin-top: 40px;
+  margin-top: 25px;
   display: flex;
   justify-content: space-between;
   align-items: center;
+  font-size: 15px;
 }
 .all-notebook-side {
   display: flex;
@@ -20,12 +23,12 @@
 .all-notebook-side > button {
   display: flex;
   align-items: center;
-  background-color: #fff5ee;
+  background-color: white;
   color: orange;
   text-align: center;
   border: none;
   height: 30px;
-  font-size: 14px;
+  font-size: 15px;
   cursor: pointer;
 }
 
@@ -38,26 +41,54 @@
   height: 0px;
   /* z-index: -5; */
 }
-.all-notebook-list {
-  margin-top: 10px;
+.all-notebook-title-wrapper {
   display: flex;
   justify-content: space-between;
   align-items: center;
+  margin-bottom: 10px;
 }
+
+.all-notebook-title-wrapper  > button {
+  border: none;
+  background-color: white;
+  font-size: 15px;
+  cursor: pointer;
+}
+
+.all-notebook-list {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  color:#313131
+}
+
 .notebook-attribute-1 {
   width: 300px;
 }
 .notebook-attribute-1 > button {
   border: none;
-  background-color: #fff5ee;
-  font-size: 16px;
+  background-color: white;
+  font-size: 15px;
   cursor: pointer;
+}
+
+.notebook-attribute-time{
+  width: 130px;
+}
+
+.notebook-attribute-title {
+  width: 275px;
+  margin-left: 25px;
+
+  flex-grow: 1;
+  height:17px;
+  overflow: hidden;
 }
 
 .all-notebook-list > button {
   border: none;
-  background-color: #fff5ee;
-  font-size: 16px;
+  background-color: white;
+  font-size: 15px;
   cursor: pointer;
 }
 
@@ -70,19 +101,17 @@
   flex-direction: column;
   list-style-type: none;
   position: absolute;
-  right: 25px;
-  text-align: left;
-  gap: 0px;
-  width: 200px;
+  right: 38px;
   overflow: hidden;
   border: 1px solid lightgray;
+  border-radius: 3px;
 }
 
 .action-dropdown > button {
-  background-color: #fff5ee;
-  font-size: 16px;
+  background-color: white;
+  font-size: 15px;
   border: none;
-  padding: 10px;
+  padding:6px 10px 6px 10px;
   cursor: pointer;
 }
 
@@ -92,8 +121,8 @@
 
 .notebook-action-wrapper > button {
   border: none;
-  background-color: #fff5ee;
-  font-size: 16px;
+  background-color: white;
+  font-size: 15px;
   margin-right: 5px;
     cursor: pointer;
 }
@@ -103,6 +132,17 @@
   justify-content: space-between;
   align-items: center;
 }
+
+
 .all-notebook-container{
-  margin-bottom: 20px;
+  margin-bottom: 8px;
+}
+
+.note-title-link > a{
+  text-decoration: none;
+  color:#313131
+}
+
+.note-title-link > a:hover{
+text-decoration: underline
 }

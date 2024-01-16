@@ -33,7 +33,7 @@ export default function EditNotePage() {
   const [content, setContent] = useState("");
   const [img_url, setImg_url] = useState("");
   const [pinned, setPinned] = useState("");
-  const [errors] = useState({});
+ const [errors, setErrors] = useState({});
 
   if (!noteList[0]) return null;
 
@@ -64,6 +64,17 @@ export default function EditNotePage() {
   // };
   const handleNoteUpdate = async (e) => {
     e.preventDefault();
+
+     if (content.length > 2000)
+       return setErrors({
+         content: "Content: limit 2000 characters.",
+       });
+
+     if (title.length > 100)
+       return setErrors({
+         title: "Title: limit 100 characters.",
+       });
+
     const note = {
       notebook_id,
       user_id: currentUser.id,
@@ -72,12 +83,16 @@ export default function EditNotePage() {
       pinned,
     };
 
-    if (title) note.title = title;
+    if (title) {
+      note.title = title} else{
+        note.title="Untitled"
+    }
     const noteData = await dispatch(thunkUpdateNote(noteId, note));
     // console.log(noteData)
     // if (!noteData.errors) {
     alert("Note updated successfully");
-    navigate(`/main/notes/${noteId}`);
+    setErrors("")
+    // navigate("/main/board");
     // }
     // else {
     //   setErrors(noteData.errors);
@@ -85,7 +100,7 @@ export default function EditNotePage() {
   };
 
   return (
-    <div className="note-editor-container">
+    <div className="note-update-container">
       <form onSubmit={handleNoteUpdate} className="note-editor-form">
         <div className="option-wrapper-big">
           <div className="botton-display-left">
@@ -106,7 +121,7 @@ export default function EditNotePage() {
                     </option>
                   ))}
                 </select>
-                {errors.notebook_id && <p>{errors.notebook_id}</p>}
+                {errors.notebook_id && <span>{errors.notebook_id}</span>}
               </label>
             </div>
 
@@ -119,14 +134,16 @@ export default function EditNotePage() {
                 style={{ width: "20px", marginLeft: "30px" }}
               />
             </label>
-            {errors.pinned && <p>{errors.pinned}</p>}
+            {errors.pinned && <span>{errors.pinned}</span>}
           </div>
 
           <div className="option-wrapper-small">
-            <div className="botton-display-left">
+            <div className="botton-display-right">
               <OpenModalButton
                 buttonText={
-                  <i className="material-icons" style={{fontSize:"30px"}}>delete_forever</i>
+                  <i className="material-icons" style={{ fontSize: "30px" }}>
+                    delete_forever
+                  </i>
                 }
                 onItemClick={closeMenu}
                 type="button"
@@ -135,7 +152,16 @@ export default function EditNotePage() {
                 }
               />
             </div>
-            <button type="submit">Update</button>
+            <div className="option-wrapper-create">
+              <button type="submit">Update</button>
+            </div>
+            <div
+              className="option-wrapper-limit"
+              style={{ fontSize: "12px", color: "#737373" }}
+            >
+              Limit 2000 characters. <span>{2000 - content.length} </span>
+              characters remaining
+            </div>
           </div>
         </div>
 
@@ -146,14 +172,14 @@ export default function EditNotePage() {
           onChange={(e) => setTitle(e.target.value)}
           placeholder="Title"
         />
-        {errors.title && <p>{errors.title}</p>}
+        {errors.title && <span>{errors.title}</span>}
+        {errors.content && <span>{errors.content}</span>}
         <textarea
           className="note-input note-content-input"
           value={content}
           onChange={(e) => setContent(e.target.value)}
           placeholder="Start writing"
         />
-        {errors.content && <p>{errors.content}</p>}
       </form>
     </div>
   );

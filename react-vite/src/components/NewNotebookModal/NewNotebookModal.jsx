@@ -25,6 +25,11 @@ export default function NBCreationForm() {
   const handleNotebookCreation = async (e) => {
     e.preventDefault();
 
+    if (title.length > 100)
+      return setErrors({
+        title: "Name: limit 100 characters.",
+      });
+
     const notebook = {
       title,
     };
@@ -64,7 +69,7 @@ export default function NBCreationForm() {
             required
           />
         </label>
-        {errors.title && <p>{errors.title}</p>}
+        {errors.title && <span>{errors.title}</span>}
         <div className="create-button-wrapper">
           <button type="submit" className="create-button">
             Create

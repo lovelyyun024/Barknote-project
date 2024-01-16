@@ -5,6 +5,7 @@ import { useEffect } from "react";
 import { thunkLogin } from "../../redux/session";
 import { useState } from "react";
 import { useModal } from "../../context/Modal";
+import shiba from "./shibainu.png";
 import "./Home.css";
 
 export default function HomePage() {
@@ -60,10 +61,7 @@ export default function HomePage() {
       <div className="home-page-container">
         <div className="home-wrapper">
           <div className="home-header">
-            <img
-              className="home-logo"
-              src="https://cdn-icons-png.flaticon.com/512/8708/8708467.png"
-            />
+            <img className="home-logo" src={shiba} />
             <div className="signin-header">
               <h1>Barkbook</h1>
               <p>Unleash Your Ideas, Fetch Your Thoughts</p>
@@ -103,7 +101,9 @@ export default function HomePage() {
               </button>
             </div>
             <div className="sign-up-wrapper">
-              <div style={{marginBottom:"10px", fontSize:"14px"}}>Don&apos;t have an account?</div>
+              <div style={{ marginBottom: "10px", fontSize: "14px" }}>
+                Don&apos;t have an account?
+              </div>
               <Link to="/signup" className="signup-button">
                 Create account
               </Link>

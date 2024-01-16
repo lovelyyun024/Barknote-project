@@ -1,6 +1,5 @@
-// notes.js
-
 const SET_NOTES = "notes/setNotes";
+const VIEW_NOTES = "notes/viewNotes";
 const ADD_NOTE = "notes/addNote";
 const UPDATE_NOTE = "notes/updateNote";
 const DELETE_NOTE = "notes/deleteNote";
@@ -8,6 +7,11 @@ const FETCH_ONE_NOTE = "notes/fetchOneNote"; // New action type
 
 const setNotes = (notes) => ({
   type: SET_NOTES,
+  payload: notes,
+});
+
+const viewNotes = (notes) => ({
+  type: VIEW_NOTES,
   payload: notes,
 });
 
@@ -36,6 +40,14 @@ export const thunkFetchNotes = () => async (dispatch) => {
   if (response.ok) {
     const data = await response.json();
     dispatch(setNotes(data.notes));
+  }
+};
+
+export const thunkFetchNBNotes = (notebookId) => async (dispatch) => {
+  const response = await fetch(`/api/notebooks/${notebookId}`);
+  if (response.ok) {
+    const data = await response.json();
+    dispatch(viewNotes(data.note));
   }
 };
 
@@ -90,6 +102,8 @@ const initialState = { notes: [] };
 export default function noteReducer(state = initialState, action) {
   switch (action.type) {
     case SET_NOTES:
+      return { ...state, notes: action.payload };
+    case VIEW_NOTES:
       return { ...state, notes: action.payload };
     case ADD_NOTE:
       return { ...state, notes: [...state.notes, action.payload] };
