@@ -17,7 +17,7 @@ export default function NotePage() {
   const [content, setContent] = useState("");
   const [img_url] = useState("");
   const [pinned, setPinned] = useState("");
-  const [errors] = useState({});
+  const [errors, setErrors] = useState({});
 
   useEffect(() => {
     dispatch(thunkFetchNotebooks());
@@ -25,6 +25,16 @@ export default function NotePage() {
 
   const handleNoteCreation = async (e) => {
     e.preventDefault();
+
+     if (content.length > 2000)
+       return setErrors({
+         content: "Content: limit 2000 characters.",
+       });
+
+    if (title.length > 100) return setErrors({
+      title: "Title: limit 100 characters.",
+    });
+    
     const note = {
       notebook_id,
       user_id: currentUser.id,
@@ -38,7 +48,6 @@ export default function NotePage() {
     // console.log(noteData)
     // if (!noteData.errors) {
       alert("Note created successfully");
-      navigate(`/main/notes`)
       setNotebook_id("")
       setTitle("");
       setContent("")
@@ -61,7 +70,7 @@ export default function NotePage() {
                   className="select-input"
                   value={notebook_id}
                   onChange={(e) => setNotebook_id(e.target.value)}
-                  style={{ width: "160px", marginLeft:"10px"}}
+                  style={{ width: "160px", marginLeft: "10px" }}
                   required
                 >
                   <option value="">Select a Notebook</option>
@@ -71,7 +80,7 @@ export default function NotePage() {
                     </option>
                   ))}
                 </select>
-                {errors.notebook_id && <p>{errors.notebook_id}</p>}
+                {errors.notebook_id && <span>{errors.notebook_id}</span>}
               </label>
             </div>
 
@@ -84,13 +93,17 @@ export default function NotePage() {
                 style={{ width: "20px", marginLeft: "30px" }}
               />
             </label>
-            {errors.pinned && <p>{errors.pinned}</p>}
+            {errors.pinned && <span>{errors.pinned}</span>}
           </div>
 
           <div className="option-wrapper-small">
-            <button type="submit">
-              Create
-            </button>
+            <div className="option-wrapper-create">
+              <button type="submit">Create</button>
+            </div>
+            <div className="option-wrapper-limit" style={{ fontSize: "12px",  color: "#737373"}}>
+              Limit 2000 characters. <span>{2000 - content.length} </span>
+              characters remaining
+            </div>
           </div>
         </div>
 
@@ -101,14 +114,14 @@ export default function NotePage() {
           onChange={(e) => setTitle(e.target.value)}
           placeholder="Title"
         />
-        {errors.title && <p>{errors.title}</p>}
+        {errors.title && <span>{errors.title}</span>}
+        {errors.content && <span>{errors.content}</span>}
         <textarea
           className="note-input note-content-input"
           value={content}
           onChange={(e) => setContent(e.target.value)}
           placeholder="Start writing"
         />
-        {errors.content && <p>{errors.content}</p>}
       </form>
     </div>
   );

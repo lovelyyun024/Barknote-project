@@ -5,6 +5,7 @@ import { useSelector } from "react-redux";
 import { useState, useEffect, useRef } from "react";
 // import * as sessionActions from "../../redux/session";
 import ProfileModal from "../ProfileModal/ProfileModal";
+import ThemeModal from "../ThemeModal/ThemeModal";
 import { thunkLogout } from "../../redux/session";
 // import PreferenceFormModal from "../PreferenceFormModal/PreferenceFormModal";
 // import ChannelCreationForm from "../ChannelCreationForm";
@@ -20,12 +21,12 @@ export default function OuterNavbar() {
   const ulClassName = "profile-dropdown" + (showMenu ? "" : " hidden");
   const ulRef = useRef();
 
-  useEffect(() => {
-    if (!sessionUser) {
-      navigate("/");
-      console.log("check1");
-    }
-  }, [sessionUser, navigate]);
+  // useEffect(() => {
+  //   if (!sessionUser) {
+  //     navigate("/");
+  //     console.log("check1");
+  //   }
+  // }, [sessionUser, navigate]);
 
   const toggleMenu = (e) => {
     e.stopPropagation(); // Keep from bubbling up to document and triggering closeMenu
@@ -51,10 +52,10 @@ export default function OuterNavbar() {
   const logout = (e) => {
     e.preventDefault();
     dispatch(thunkLogout());
-    navigate("/");
+  
   };
 
-   const devFeature = () => alert("Feature under development");
+  const devFeature = () => alert("Feature under development");
 
   return (
     <div className="outer-navbar-wrapper">
@@ -75,7 +76,13 @@ export default function OuterNavbar() {
                   objectFit: "cover",
                 }}
               ></img>
-              <div>{sessionUser?.username}</div>
+              <div >
+                {sessionUser?.username}&nbsp;&nbsp;
+                <i
+                  className="fas fa-angle-down"
+                  style={{ textAlign: "center", fontSize: "14px" }}
+                ></i>
+              </div>
             </button>
           </div>
           <div className={`profile-dropdown ${ulClassName}`} ref={ulRef}>
@@ -96,23 +103,23 @@ export default function OuterNavbar() {
               </div>
             </div>
             <div className="outer-navbar-divider" />
-            <OpenModalButton
-              buttonText="Profile Photo"
+            {/* <OpenModalButton
+              buttonText="&nbsp;&nbsp;&nbsp;Profile Photo"
               onItemClick={closeMenu}
               modalComponent={<ProfileModal />}
             />
-            <div className="outer-navbar-divider" />
-            <button onClick={logout}>
-              Sign out&nbsp;{sessionUser?.username}
+            <div className="outer-navbar-divider" /> */}
+            <button onClick={logout} style={{ paddingBottom: "8px" }}>
+             &nbsp;Sign out&nbsp;{sessionUser?.username}
             </button>
           </div>
         </div>
 
-        <OpenModalButton
+        {/* <OpenModalButton
           onItemClick={closeMenu}
-          modalComponent={<ProfileModal />}
+          modalComponent={<ThemeModal />}
           buttonText={<i className="fas fa-cog" style={{ color: "gray" }}></i>}
-        />
+        /> */}
       </div>
       <div className="outer-navbar-middle">
         <button>
@@ -120,7 +127,7 @@ export default function OuterNavbar() {
             to="/main/notes"
             style={{ textDecoration: "none", color: "black" }}
           >
-            <div >
+            <div style={{ color: "white" }}>
               <i className="fas fa-plus" style={{ marginRight: "5px" }}></i> New
             </div>
             {/* <i className="fas fa-angle-down"></i> */}
@@ -131,7 +138,7 @@ export default function OuterNavbar() {
         <button>
           <Link
             to="/main/board"
-            style={{ textDecoration: "none", color: "black" }}
+            style={{ textDecoration: "none", color: "#333333" }}
           >
             <i
               className="fas fa-house-user"
@@ -149,7 +156,7 @@ export default function OuterNavbar() {
             &nbsp;&nbsp;Notes
           </Link>
         </button> */}
-        <button onClick={devFeature}>
+        <button onClick={devFeature} style={{ color: "#333333" }}>
           <i className="fas fa-calendar-check" style={{ color: "gray" }}></i>
           &nbsp;&nbsp;Tasks
         </button>
@@ -158,14 +165,14 @@ export default function OuterNavbar() {
         <button>
           <Link
             to="/main/notebooks"
-            style={{ textDecoration: "none", color: "black" }}
+            style={{ textDecoration: "none", color: "#333333" }}
           >
             <i className="fas fa-book-open" style={{ color: "gray" }}></i>
             &nbsp;&nbsp;Notebooks
           </Link>
         </button>
 
-        <button onClick={devFeature}>
+        <button onClick={devFeature} style={{ color: "#333333" }}>
           <i
             className="fas fa-tag"
             style={{ color: "gray", marginLeft: "1px" }}

@@ -2,6 +2,7 @@ const SET_NOTEBOOKS = "notebooks/setNotebooks";
 const ADD_NOTEBOOK = "notebooks/addNotebook";
 const UPDATE_NOTEBOOK = "notebooks/updateNotebook";
 const DELETE_NOTEBOOK = "notebooks/deleteNotebook";
+const REMOVE_NOTE = "notebooks/removeNote"
 
 const setNotebooks = (notebooks) => ({
   type: SET_NOTEBOOKS,
@@ -21,6 +22,11 @@ const updateNotebook = (notebook) => ({
 const deleteNotebook = (notebookId) => ({
   type: DELETE_NOTEBOOK,
   payload: notebookId,
+});
+
+const removeNote = (noteId) => ({
+  type: REMOVE_NOTE,
+  payload: noteId,
 });
 
 export const thunkFetchNotebooks = () => async (dispatch) => {
@@ -68,6 +74,16 @@ export const thunkDeleteNotebook = (notebookId) => async (dispatch) => {
   }
 };
 
+export const thunkDeleteNBNote = (noteId) => async (dispatch) => {
+  const response = await fetch(`/api/notes/${noteId}`, {
+    method: "DELETE",
+  });
+
+  if (response.ok) {
+    dispatch(removeNote(noteId));
+  }
+};
+
 const initialState = { notebooks: [] };
 
 function notebooksReducer(state = initialState, action) {
@@ -90,8 +106,27 @@ function notebooksReducer(state = initialState, action) {
           (notebook) => notebook.id !== action.payload
         ),
       };
+    case REMOVE_NOTE:
+       return {
+         ...state,
+         notebooks: state.notebooks.map((notebook) => {
+           if (notebook.note.some((note) => note.id === action.payload)) {
+             const updatedNotes = notebook.note.filter(
+               (note) => note.id !== action.payload
+             );
+
+             return {
+               ...notebook,
+               note: updatedNotes,
+             };
+           }
+
+           return notebook;
+         }),
+       };
     default:
       return state;
+      
   }
 }
 

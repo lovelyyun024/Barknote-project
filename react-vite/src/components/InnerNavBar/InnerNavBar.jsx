@@ -29,11 +29,11 @@ export default function InnerNavbar() {
       <div className="inner-navbar-top">
         <i
           className="fas fa-paste"
-          style={{ color: "gray", fontSize: "20px", marginBottom: "5px" }}
+          style={{ color: "gray", marginBottom: "5px" }}
         ></i>
         &nbsp;Notes
-        <p style={{ marginBottom: "20px" }}>
-          {noteNum ? noteNum : 0} notes
+        <p style={{ marginBottom: "20px", fontSize: "14px", color:"#666666" }}>
+         {noteNum ? noteNum : 0} notes
         </p>
       </div>
       <div className="outer-navbar-divider" />
@@ -47,19 +47,17 @@ export default function InnerNavbar() {
                 key={id}
                 style={{ textDecoration: "none", color: "black" }}
               >
-                <div className="note-section-title">{title}</div>
-                <div className="note-section-content">{content}</div>
-                {img_url && (
+                <div className="note-bar-title">{title}</div>
+                <div className="note-bar-content">{content}</div>
+                {/* {img_url && (
                   <img
-                    className="note-section-img"
+                    className="note-bar-img"
                     src={img_url}
                     alt="Note Image"
                   />
-                )}
-                <div className="note-section-date">
-                  {created_at.slice(5, 11)}
-                </div>
-                <div className="outer-navbar-divider" />
+                )} */}
+                <div className="note-bar-date">{created_at.slice(5, 11)}</div>
+                {/* <div className="outer-navbar-divider" /> */}
               </Link>
             </div>
           ))}

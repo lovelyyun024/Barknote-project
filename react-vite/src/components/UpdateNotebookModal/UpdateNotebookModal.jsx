@@ -28,7 +28,12 @@ export default function NBUpdateForm({ notebookId, nbtitle }) {
   const handleNotebookCreation = async (e) => {
     e.preventDefault();
 
-    const notebook = {title};
+    if (title.length > 100)
+      return setErrors({
+        title: "Name: limit 100 characters.",
+      });
+
+    const notebook = { title };
 
     const notebookData = await dispatch(
       thunkUpdateNotebook(notebookId, notebook)
@@ -62,7 +67,7 @@ export default function NBUpdateForm({ notebookId, nbtitle }) {
             required
           />
         </label>
-        {errors.title && <p>{errors.title}</p>}
+        {errors.title && <span>{errors.title}</span>}
         <div className="create-button-wrapper">
           <button
             onClick={closeModal}
@@ -74,9 +79,7 @@ export default function NBUpdateForm({ notebookId, nbtitle }) {
           >
             Cancel
           </button>
-          <button type="submit">
-            Continue
-          </button>
+          <button type="submit">Continue</button>
         </div>
       </form>
     </div>
