@@ -227,7 +227,8 @@ URL for your site just below the name of the Web Service at the top of the page.
 setting will cause Render to re-deploy your application every time you push to
 main, always keeping it up to date.
 
-# Connect
-[LinkedIn](https://www.linkedin.com/in/estherzhangg/)
 [Render.com]: https://render.com/
 [Dashboard]: https://dashboard.render.com/
+
+# Connect
+[LinkedIn](https://www.linkedin.com/in/estherzhangg/)
