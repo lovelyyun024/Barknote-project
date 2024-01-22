@@ -63,9 +63,8 @@ function SignupFormPage() {
 
     if (serverResponse) {
       setErrors(serverResponse);
-    } else {
-      navigate("/main/board");
-    }
+    } else navigate("/main/board");
+    
   };
 
   return (
@@ -76,6 +75,7 @@ function SignupFormPage() {
             <img
               className="home-logo"
               src={shiba}
+              alt="Barkbook Logo"
             />
             <div className="signin-header">
               <h1>Barkbook</h1>

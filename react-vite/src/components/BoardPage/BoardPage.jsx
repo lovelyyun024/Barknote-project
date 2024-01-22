@@ -2,6 +2,9 @@ import { useSelector, useDispatch } from "react-redux";
 import { useState, useEffect } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { thunkFetchNotes } from "../../redux/notes";
+import { thunkFetchTags } from "../../redux/tags";
+import OpenModalButton from "../OpenModalButton/OpenModalButton";
+import TagCreationForm from "../NewTagModal/NewTagModal";
 import "./BoardPage.css";
 
 export default function BoardPage() {
@@ -19,6 +22,15 @@ export default function BoardPage() {
 
   const notesData = useSelector((state) => state.note.notes);
   const noteList = Object.values(notesData);
+  const pinned = [...noteList].filter((note) => note.pinned);
+  const tagsData = useSelector((state) => state.tag.tags);
+  const tagList = Object.values(tagsData);
+
+  const [setShowMenu] = useState(false);
+
+  const closeMenu = () => {
+    setShowMenu(false);
+  };
 
   useEffect(() => {
     if (!sessionUser) {
@@ -30,6 +42,7 @@ export default function BoardPage() {
 
   useEffect(() => {
     dispatch(thunkFetchNotes());
+    dispatch(thunkFetchTags());
   }, [dispatch]);
 
   const devFeature = () => alert("Feature under development");
@@ -109,7 +122,7 @@ export default function BoardPage() {
               >
                 <i
                   className="material-icons"
-                  style={{ color: "gray", paddingRight:"12px" }}
+                  style={{ color: "orange", paddingRight: "12px" }}
                 >
                   note_add
                 </i>
@@ -178,16 +191,48 @@ export default function BoardPage() {
           </div>
 
           <div className="pinned-note-wrapper">
-            <Link
+            <div
               style={{
                 textDecoration: "none",
                 color: "#333333",
                 fontSize: "14px",
+                marginBottom: "10px",
               }}
             >
-              PINNED NOTE &nbsp;
-              <i className="fas fa-angle-right" style={{ color: "orange" }}></i>
-            </Link>
+              PINNED NOTE ({pinned.length})
+            </div>
+            <div className="pinned-board-main">
+              {[...noteList]
+                .filter((note) => note.pinned)
+                .reverse()
+                .map(({ title, content, created_at, id, img_url }) => (
+                  <Link
+                    to={`/main/notes/${id}`}
+                    key={id}
+                    className="pinned-section"
+                    style={{ textDecoration: "none" }}
+                  >
+                    <div className="pinned-section-icon">
+                      <i
+                        className="fas fa-paperclip"
+                        style={{ fontSize: "20px", color: "orange" }}
+                      ></i>
+                    </div>
+                    <div className="pinned-section-title">{title}</div>
+                    <div className="pinned-section-content">{content}</div>
+                    {img_url && (
+                      <img
+                        className="pinned-section-img"
+                        src={img_url}
+                        alt="Note Image"
+                      />
+                    )}
+                    <div className="pinned-section-date">
+                      {created_at.slice(5, 11)}
+                    </div>
+                  </Link>
+                ))}
+            </div>
           </div>
           <div className="tag-board-wrapper">
             <Link
@@ -200,6 +245,35 @@ export default function BoardPage() {
               TAGS &nbsp;
               <i className="fas fa-angle-right" style={{ color: "orange" }}></i>
             </Link>
+            <div className="tag-board-main">
+              {[...tagList].reverse().map(({ name, id, notes }) => (
+                <Link
+                  to={`/main/tags/${id}`}
+                  key={id}
+                  className="tag-section"
+                  style={{ textDecoration: "none", color: "#737373" }}
+                >
+                  <div className="tag-section-name">
+                    {name}&nbsp;
+                    <span style={{ color: "#a6a6a6", fontSize: "12px" }}>
+                      ({notes ? notes.length : 0})
+                    </span>
+                  </div>
+                </Link>
+              ))}
+              <div className="tag-section-add">
+                <OpenModalButton
+                  buttonText={
+                    <div>
+                      <i class="fa fa-tag"></i>&nbsp;New tag&nbsp;
+                    </div>
+                  }
+                  onItemClick={closeMenu}
+                  type="button"
+                  modalComponent={<TagCreationForm />}
+                />
+              </div>
+            </div>
           </div>
         </div>
         <div className="creator-container">

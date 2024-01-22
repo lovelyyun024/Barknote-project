@@ -26,15 +26,16 @@ export default function NotePage() {
   const handleNoteCreation = async (e) => {
     e.preventDefault();
 
-     if (content.length > 2000)
-       return setErrors({
-         content: "Content: limit 2000 characters.",
-       });
+    if (content.length > 2000)
+      return setErrors({
+        content: "Content: limit 2000 characters.",
+      });
 
-    if (title.length > 100) return setErrors({
-      title: "Title: limit 100 characters.",
-    });
-    
+    if (title.length > 100)
+      return setErrors({
+        title: "Title: limit 100 characters.",
+      });
+
     const note = {
       notebook_id,
       user_id: currentUser.id,
@@ -43,19 +44,18 @@ export default function NotePage() {
       pinned,
     };
 
-    if (title) note.title = title 
+    if (title) note.title = title;
     const noteData = await dispatch(thunkCreateNote(note));
-    // console.log(noteData)
-    // if (!noteData.errors) {
+    if (noteData) {
+      setErrors(noteData.errors);
+    } else {
       alert("Note created successfully");
-      setNotebook_id("")
+      setNotebook_id("");
       setTitle("");
-      setContent("")
-      setPinned("")
-    // } 
-    // else {
-    //   setErrors(noteData.errors);
-    // }
+      setContent("");
+      setPinned("");
+      setErrors("");
+    }
   };
 
   return (
@@ -64,6 +64,7 @@ export default function NotePage() {
         <div className="option-wrapper-big">
           <div className="botton-display-left">
             <div className="select-option-wrapper">
+              
               <label className="note-label" style={{ width: "100px" }}>
                 Select Notebook:
                 <select
@@ -100,7 +101,10 @@ export default function NotePage() {
             <div className="option-wrapper-create">
               <button type="submit">Create</button>
             </div>
-            <div className="option-wrapper-limit" style={{ fontSize: "12px",  color: "#737373"}}>
+            <div
+              className="option-wrapper-limit"
+              style={{ fontSize: "12px", color: "#737373" }}
+            >
               Limit 2000 characters. <span>{2000 - content.length} </span>
               characters remaining
             </div>

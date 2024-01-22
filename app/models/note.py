@@ -26,7 +26,7 @@ class Note(db.Model):
         back_populates="notes"
     )
 
-    def to_dict(self):
+    def to_dict(self, tags=False):
         return_dict = {
             'id': self.id,
             'notebook_id': self.notebook_id,
@@ -37,5 +37,8 @@ class Note(db.Model):
             'pinned':self.pinned,
             'created_at':self.created_at
         }
+        
+        if tags:
+            return_dict['tags'] = [tag.to_dict() for tag in self.tags]
 
         return return_dict 

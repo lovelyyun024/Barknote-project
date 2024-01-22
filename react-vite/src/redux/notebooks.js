@@ -86,7 +86,7 @@ export const thunkDeleteNBNote = (noteId) => async (dispatch) => {
 
 const initialState = { notebooks: [] };
 
-function notebooksReducer(state = initialState, action) {
+function notebookReducer(state = initialState, action) {
   switch (action.type) {
     case SET_NOTEBOOKS:
       return { ...state, notebooks: action.payload };
@@ -130,4 +130,4 @@ function notebooksReducer(state = initialState, action) {
   }
 }
 
-export default notebooksReducer;
+export default notebookReducer;

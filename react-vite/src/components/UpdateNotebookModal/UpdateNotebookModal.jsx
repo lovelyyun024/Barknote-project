@@ -9,17 +9,6 @@ export default function NBUpdateForm({ notebookId, nbtitle }) {
   const { closeModal } = useModal();
   const [title, setTitle] = useState("");
   const [errors, setErrors] = useState({});
-  //   console.log(nbtitle)
-  //   const [theme, setTheme] = useState("light");
-
-  //   useEffect(() => {
-  //     const storedTheme = localStorage.getItem("theme");
-  //     if (storedTheme) {
-  //       setTheme(storedTheme);
-  //     }
-  //   }, []);
-
-  //   document.documentElement.className = `theme-${theme}`;
 
   useEffect(() => {
     setTitle(nbtitle);

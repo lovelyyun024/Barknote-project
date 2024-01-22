@@ -28,6 +28,8 @@ def get_notebook(id):
 def create_note():
     form = NoteForm()
     form['csrf_token'].data = request.cookies['csrf_token']
+    # pinnedCount= Note.query.filter_by(pinned=True, user_id=current_user.id).count()
+    # print("~~~~~~", pinnedCount)
     
     if form.validate_on_submit():
         data = form.data

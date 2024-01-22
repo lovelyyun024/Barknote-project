@@ -125,7 +125,7 @@ export default function NotebookPage() {
           </div>
           {[...notebookList]
             .reverse()
-            .map(({ title, id, user, created_at, note }) => (
+            .map(({ title, id, user, created_at, notes }) => (
               <div key={id} className="all-notebook-container">
                 <div key={id} className="all-notebook-list">
                   <div className="notebook-attribute-1">
@@ -139,7 +139,7 @@ export default function NotebookPage() {
                       />
                     </button>
                     <i className="fas fa-book-open"></i> &nbsp;{title}&nbsp; (
-                    {note ? note.length : 0})
+                    {notes ? notes.length : 0})
                   </div>
                   <div className="notebook-attribute">{user}</div>
                   <div className="notebook-attribute-time">
@@ -174,8 +174,8 @@ export default function NotebookPage() {
                 <div>
                   {selectedNotebookId === id &&
                     list &&
-                    note &&
-                    note.map((noteItem) => (
+                    notes &&
+                    notes.map((noteItem) => (
                       <div key={noteItem.id}>
                         <div className="all-note-list">
                           <div className="note-title-link">

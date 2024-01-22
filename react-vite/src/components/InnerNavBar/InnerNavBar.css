@@ -71,3 +71,19 @@
   margin-top: 10px;
   height: 40%;
 } */
+
+.inner-navbar-filter{
+  display: flex;
+  padding:10px;
+  justify-content: space-between;
+}
+
+.inner-navbar-tag{
+  margin-left: 10px;
+  background-color: orange;
+  border-radius: 40px;
+  padding:5px;
+  color:white;
+  width:30%
+  
+}

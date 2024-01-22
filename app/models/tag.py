@@ -18,9 +18,14 @@ class Tag(db.Model):
         back_populates="tags"
     )
 
-    def to_dict(self):
-        return {
+    def to_dict(self, notes=False):
+        return_dict = {
             'id': self.id,
             'user_id': self.user_id,
             'name': self.name,
         }
+
+        if notes:
+            return_dict['notes']=[note.to_dict() for note in self.notes]
+
+        return return_dict

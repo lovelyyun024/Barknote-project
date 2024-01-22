@@ -1,7 +1,7 @@
 from flask import Blueprint, request
 from flask_login import login_required, current_user
-from app.models import db, Notebook, Note, Tag
-from app.forms import NotebookForm, NoteForm
+from app.models import db, Notebook
+from app.forms import NotebookForm
 
 notebook_routes = Blueprint('notebooks', __name__)
 
@@ -10,7 +10,7 @@ notebook_routes = Blueprint('notebooks', __name__)
 @login_required
 def get_notebooks():
     notebooks = Notebook.query.filter_by(user_id=current_user.id)
-    return {'notebooks': [notebook.to_dict(note=True, user=True) for notebook in notebooks]}
+    return {'notebooks': [notebook.to_dict(notes=True, user=True) for notebook in notebooks]}
 
 #   Query for a notebook by id and return that notebook in a dictionary
 @notebook_routes.route('/<int:id>')
@@ -21,7 +21,7 @@ def get_notebook(id):
     if not notebook or notebook.user_id != current_user.id:
         return {'message':'Notebook not found'}, 404
 
-    return notebook.to_dict(note=True, user=True)
+    return notebook.to_dict(notes=True, user=True)
 
 #   Create a new notebook
 @notebook_routes.route('', methods=['POST'])
@@ -55,7 +55,7 @@ def update_notebook(id):
         data = form.data
         notebook.title = data['title']
         db.session.commit()
-        return notebook.to_dict(note=True, user=True)
+        return notebook.to_dict(notes=True, user=True)
     elif not form.validate_on_submit():
         return {'errors': form.errors}, 401
     return {'errors': {'message': 'Unauthorized'}}, 403
