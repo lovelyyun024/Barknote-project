@@ -1,6 +1,6 @@
-import { useModal } from '../../context/Modal';
+import { useModal } from "../../context/TagModal";
 
-function OpenModalButton({
+function OpenModalButton1({
   type,
   modalComponent, // component to render inside the modal
   buttonText, // text of the button that opens the modal
@@ -16,7 +16,11 @@ function OpenModalButton({
     if (typeof onButtonClick === "function") onButtonClick();
   };
 
-  return <button onClick={onClick} type={type}>{buttonText}</button>;
+  return (
+    <button onClick={onClick} type={type}>
+      {buttonText}
+    </button>
+  );
 }
 
-export default OpenModalButton;
+export default OpenModalButton1;

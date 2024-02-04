@@ -135,3 +135,31 @@ span {
   font-weight: 300;
   font-size: 14px;
 }
+
+
+
+.creator-container{
+  display: grid;
+  justify-content: center;
+  margin-top: 30px;
+}
+
+.repo-link-container > a{
+  text-decoration: none;
+}
+
+.link-font-1{
+  color:orange;
+  font-weight: 600;
+}
+.repo-link-container{
+  color:#333333;
+  display: flex;
+  justify-content: center;
+}
+.link-font-2{
+  margin-left: 20px;
+  color:#333333;
+    text-decoration: none;
+    font-weight: normal
+}

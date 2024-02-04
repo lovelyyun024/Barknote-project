@@ -44,8 +44,8 @@ export default function HomePage() {
   const demoUserLogin = async () => {
     const serverResponse = await dispatch(
       thunkLogin({
-        email: "test1@aa.io",
-        password: "123456",
+        email: "test5@aa.io",
+        password: "000000",
       })
     );
 
@@ -59,54 +59,84 @@ export default function HomePage() {
   return (
     <>
       <div className="home-page-container">
-        <div className="home-wrapper">
-          <div className="home-header">
-            <img className="home-logo" src={shiba} />
-            <div className="signin-header">
-              <h1>Barkbook</h1>
-              <p>Unleash Your Ideas, Fetch Your Thoughts</p>
+        <div className="home-page-wrapper">
+          <div className="home-wrapper">
+            <div className="home-header">
+              <img className="home-logo" src={shiba} />
+              <div className="signin-header">
+                <h1>Barkbook</h1>
+                <p>Unleash Your Ideas, Fetch Your Thoughts</p>
+              </div>
+            </div>
+            <div className="home-body">
+              <form onSubmit={handleSubmit} className="login-form">
+                <input
+                  type="text"
+                  value={email}
+                  onChange={(e) => setEmail(e.target.value)}
+                  placeholder="Email Address"
+                  required
+                  className="large-input"
+                />
+
+                {errors.email && <span>{errors.email}</span>}
+
+                <input
+                  type="password"
+                  value={password}
+                  onChange={(e) => setPassword(e.target.value)}
+                  placeholder="Password"
+                  required
+                  className="large-input"
+                />
+
+                {errors.password && <span>{errors.password}</span>}
+                <button className="large-orange-button" type="submit">
+                  Sign In
+                </button>
+              </form>
+              <div className="demo-user-wrapper">
+                <div className="home-or">or</div>
+                <button className="large-orange-button" onClick={demoUserLogin}>
+                  Sign In As Demo User
+                </button>
+              </div>
+              <div className="sign-up-wrapper">
+                <div style={{ marginBottom: "10px", fontSize: "14px" }}>
+                  Don&apos;t have an account?
+                </div>
+                <Link to="/signup" className="signup-button">
+                  Create account
+                </Link>
+              </div>
             </div>
           </div>
-          <div className="home-body">
-            <form onSubmit={handleSubmit} className="login-form">
-              <input
-                type="text"
-                value={email}
-                onChange={(e) => setEmail(e.target.value)}
-                placeholder="Email Address"
-                required
-                className="large-input"
-              />
-
-              {errors.email && <span>{errors.email}</span>}
-
-              <input
-                type="password"
-                value={password}
-                onChange={(e) => setPassword(e.target.value)}
-                placeholder="Password"
-                required
-                className="large-input"
-              />
-
-              {errors.password && <span>{errors.password}</span>}
-              <button className="large-orange-button" type="submit">
-                Sign In
-              </button>
-            </form>
-            <div className="demo-user-wrapper">
-              <div className="home-or">or</div>
-              <button className="large-orange-button" onClick={demoUserLogin}>
-                Sign In As Demo User
-              </button>
-            </div>
-            <div className="sign-up-wrapper">
-              <div style={{ marginBottom: "10px", fontSize: "14px" }}>
-                Don&apos;t have an account?
+          <div className="creator-container">
+            <div style={{ listStyle: "none" }}>
+              <div className="repo-link-container">
+                Created by&nbsp;
+                <a
+                  target="_blank"
+                  rel="noreferrer"
+                  href="https://www.linkedin.com/in/estherzhangg/"
+                  className="link-font-1"
+                >
+                  <i
+                    className="fab fa-linkedin"
+                    style={{ marginRight: "5px" }}
+                  />
+                  Esther Zhang
+                  <a
+                    className="link-font-2"
+                    target="_blank"
+                    rel="noreferrer"
+                    href="https://github.com/lovelyyun024/evernote-clone"
+                  >
+                    Project Code&nbsp;
+                    <i className="fa fa-github" style={{ color: "orange", fontWeight:"600" }} />
+                  </a>
+                </a>
               </div>
-              <Link to="/signup" className="signup-button">
-                Create account
-              </Link>
             </div>
           </div>
         </div>

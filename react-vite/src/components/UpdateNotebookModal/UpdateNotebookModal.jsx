@@ -7,12 +7,12 @@ import "./UpdateNotebookModal.css";
 export default function NBUpdateForm({ notebookId, nbtitle }) {
   const dispatch = useDispatch();
   const { closeModal } = useModal();
-  const [title, setTitle] = useState("");
+  const [title, setTitle] = useState(nbtitle);
   const [errors, setErrors] = useState({});
 
-  useEffect(() => {
-    setTitle(nbtitle);
-  }, [nbtitle]);
+  // useEffect(() => {
+  //   setTitle(nbtitle);
+  // }, [nbtitle]);
 
   const handleNotebookCreation = async (e) => {
     e.preventDefault();

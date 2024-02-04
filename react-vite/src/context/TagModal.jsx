@@ -1,10 +1,10 @@
-import { useRef, useState, useContext, createContext } from 'react';
-import ReactDOM from 'react-dom';
-import './Modal.css';
+import { useRef, useState, useContext, createContext } from "react";
+import ReactDOM from "react-dom";
+import "./TagModal.css";
 
 const ModalContext = createContext();
 
-export function ModalProvider({ children }) {
+export function ModalProvider1({ children }) {
   const modalRef = useRef();
   const [modalContent, setModalContent] = useState(null);
   // callback function that will be called when modal is closing
@@ -14,7 +14,7 @@ export function ModalProvider({ children }) {
     setModalContent(null); // clear the modal contents
     // If callback function is truthy, call the callback function and reset it
     // to null:
-    if (typeof onModalClose === 'function') {
+    if (typeof onModalClose === "function") {
       setOnModalClose(null);
       onModalClose();
     }
@@ -25,7 +25,7 @@ export function ModalProvider({ children }) {
     modalContent, // React component to render inside modal
     setModalContent, // function to set the React component to render inside modal
     setOnModalClose, // function to set the callback function called when modal is closing
-    closeModal // function to close the modal
+    closeModal, // function to close the modal
   };
 
   return (
@@ -38,7 +38,7 @@ export function ModalProvider({ children }) {
   );
 }
 
-export function Modal() {
+export function Modal1() {
   const { modalRef, modalContent, closeModal } = useContext(ModalContext);
   // If there is no div referenced by the modalRef or modalContent is not a
   // truthy value, render nothing:
@@ -46,9 +46,9 @@ export function Modal() {
 
   // Render the following component to the div referenced by the modalRef
   return ReactDOM.createPortal(
-    <div className="modal">
-      <div className="modal-background" onClick={closeModal} />
-      <div className="modal-content">{modalContent}</div>
+    <div className="side-modal">
+      <div className="side-modal-background" onClick={closeModal} />
+      <div className="side-modal-content">{modalContent}</div>
     </div>,
     modalRef.current
   );

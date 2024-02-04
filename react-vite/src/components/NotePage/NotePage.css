@@ -43,7 +43,14 @@
   border-radius: 4px;
   align-items: center;
 }
-
+.select-input-tags{
+  width: 300px;
+  padding: 8px;
+  box-sizing: border-box;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  align-items: center;
+}
 .note-title-input {
   font-size: 20px;
   font-weight: 600;
@@ -132,4 +139,35 @@ textarea:focus {
   margin-top: 5px;
   display: flex;
   align-items: center;
+}
+
+.p-editor-toolbar {
+  display: flex;
+  /* gap:10px */
+}
+
+.ql-formats{
+  height: 8px;
+  width: fit-content;
+ 
+}
+
+.ql-picker-label{
+  color: #000000
+}
+
+.ql-picker-options{
+  width: fit-content;
+  background-color: white;
+}
+.ql-picker-item{
+  color:black
+}
+
+.ql-font-serif{
+  color:black
+}
+
+.ql-editor{
+  font-size: 16px;
 }

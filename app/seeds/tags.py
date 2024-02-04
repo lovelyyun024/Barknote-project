@@ -1,8 +1,8 @@
 from app.models import db, Tag, environment, SCHEMA
 from sqlalchemy.sql import text
 
-tag1_user1 = Tag(user_id = 1, name="dog")
-tag2_user1 = Tag(user_id = 1, name="cat")
+tag1_user1 = Tag(user_id = 1, name="personal")
+tag2_user1 = Tag(user_id = 1, name="work")
 tag1_user2 = Tag(user_id = 2, name="travel")
 tag1_user3 = Tag(user_id = 3, name="daily routine")
 

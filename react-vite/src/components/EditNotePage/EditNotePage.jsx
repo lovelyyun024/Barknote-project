@@ -5,11 +5,11 @@ import { useParams } from "react-router-dom";
 import { thunkFetchNotebooks } from "../../redux/notebooks";
 import OpenModalButton from "../OpenModalButton/OpenModalButton";
 import { thunkFetchOneNote, thunkUpdateNote } from "../../redux/notes";
+import { Editor } from "primereact/editor";
 import NoteDeleteForm from "../DeleteNoteModal/DeleteNoteModal";
 
 export default function EditNotePage() {
   const dispatch = useDispatch();
-  const navigate = useNavigate();
   const { noteId } = useParams();
   const currentUser = useSelector((state) => state.session.user);
   const notebooksData = useSelector((state) => state.notebook.notebooks);
@@ -26,16 +26,21 @@ export default function EditNotePage() {
   const notesData = useSelector((state) => state.note.notes);
   const noteList = Object.values(notesData);
   const [setShowMenu] = useState(false);
-  // console.log("@@@", noteList[0].notebook_id)
 
   const [notebook_id, setNotebook_id] = useState("");
   const [title, setTitle] = useState("");
   const [content, setContent] = useState("");
   const [img_url, setImg_url] = useState("");
   const [pinned, setPinned] = useState("");
+  const [tags, setTags] = useState([]);
  const [errors, setErrors] = useState({});
 
+ const tagsData = useSelector((state) => state.tag.tags);
+ const tagList = Object.values(tagsData);
+
   if (!noteList[0]) return null;
+
+  // console.log("00000", noteList[0].tags);
 
   useEffect(() => {
     setNotebook_id(noteList[0].notebook_id ? noteList[0].notebook_id : "");
@@ -43,6 +48,7 @@ export default function EditNotePage() {
     setContent(noteList[0].content ? noteList[0].content : "");
     setPinned(noteList[0].pinned ? noteList[0].pinned : "");
     setImg_url(noteList[0].img_url ? noteList[0].img_url : "");
+    setTags("");
   }, [noteList[0]]);
 
   const closeMenu = () => {
@@ -65,10 +71,10 @@ export default function EditNotePage() {
   const handleNoteUpdate = async (e) => {
     e.preventDefault();
 
-     if (content.length > 2000)
-       return setErrors({
-         content: "Content: limit 2000 characters.",
-       });
+    //  if (content.length > 2000)
+    //    return setErrors({
+    //      content: "Content: limit 2000 characters.",
+    //    });
 
      if (title.length > 100)
        return setErrors({
@@ -81,22 +87,20 @@ export default function EditNotePage() {
       content,
       img_url,
       pinned,
+      tags: JSON.stringify(tags),
     };
 
     if (title) {
       note.title = title} else{
-        note.title="Untitled"
+      note.title="Untitled"
     }
     const noteData = await dispatch(thunkUpdateNote(noteId, note));
-    // console.log(noteData)
-    // if (!noteData.errors) {
-    alert("Note updated successfully");
-    setErrors("")
-    // navigate("/main/board");
-    // }
-    // else {
-    //   setErrors(noteData.errors);
-    // }
+     if (noteData) {
+       setErrors(noteData.errors);
+     } else {
+       alert("Note updated successfully");
+       setErrors("");
+     }
   };
 
   return (
@@ -135,6 +139,16 @@ export default function EditNotePage() {
               />
             </label>
             {errors.pinned && <span>{errors.pinned}</span>}
+
+            <label className="note-label">
+              <div style={{ marginRight: "50px" }}>Tags:</div>
+              {noteList[0].tags.length !== 0
+                ? noteList[0].tags.map((tag) => (
+                    <div key={tag.id}>|&nbsp;{tag.name}&nbsp;|&nbsp;</div>
+                  ))
+                : "none"}
+            </label>
+        
           </div>
 
           <div className="option-wrapper-small">
@@ -159,10 +173,32 @@ export default function EditNotePage() {
               className="option-wrapper-limit"
               style={{ fontSize: "12px", color: "#737373" }}
             >
-              Limit 2000 characters. <span>{2000 - content.length} </span>
-              characters remaining
+              {/* Limit 2000 characters. <span>{2000 - content.length} </span>
+              characters remaining */}
             </div>
           </div>
+        </div>
+
+        <div className="select-option-wrapper">
+          <label className="note-label" style={{ width: "300px" }}>
+            Select Tags:
+            <select
+              className="select-input-tags"
+              value={tags}
+              onChange={(e) =>
+                setTags(
+                  Array.from(e.target.selectedOptions, (option) => option.value)
+                )
+              }
+              multiple
+            >
+              {tagList.map((tag) => (
+                <option key={tag.id} value={tag.id}>
+                  {tag.name}
+                </option>
+              ))}
+            </select>
+          </label>
         </div>
 
         <input
@@ -174,11 +210,16 @@ export default function EditNotePage() {
         />
         {errors.title && <span>{errors.title}</span>}
         {errors.content && <span>{errors.content}</span>}
-        <textarea
+        {/* <textarea
           className="note-input note-content-input"
           value={content}
           onChange={(e) => setContent(e.target.value)}
-          placeholder="Start writing"
+        />
+        <div contenteditable="true">{content}</div> */}
+        <Editor
+          value={content}
+          onTextChange={(e) => setContent(e.htmlValue)}
+          style={{ height: "700px" }}
         />
       </form>
     </div>

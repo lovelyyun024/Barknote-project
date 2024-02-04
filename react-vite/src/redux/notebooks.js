@@ -110,14 +110,14 @@ function notebookReducer(state = initialState, action) {
        return {
          ...state,
          notebooks: state.notebooks.map((notebook) => {
-           if (notebook.note.some((note) => note.id === action.payload)) {
-             const updatedNotes = notebook.note.filter(
+           if (notebook.notes.some((note) => note.id === action.payload)) {
+             const updatedNotes = notebook.notes.filter(
                (note) => note.id !== action.payload
              );
 
              return {
                ...notebook,
-               note: updatedNotes,
+               notes: updatedNotes,
              };
            }
 

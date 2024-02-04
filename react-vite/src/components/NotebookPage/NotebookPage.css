@@ -7,6 +7,7 @@
 
 .all-notebook-header {
   font-size: 20px;
+   color:#333333
 }
 
 .all-notebook-title {
@@ -15,6 +16,7 @@
   justify-content: space-between;
   align-items: center;
   font-size: 15px;
+  color:#333333
 }
 .all-notebook-side {
   display: flex;
@@ -32,6 +34,11 @@
   cursor: pointer;
 }
 
+.all-notebook-side :hover{
+color:#FC8A17
+
+}
+
 .notebook-divider {
   position: relative;
   border-top: 2px solid black;
@@ -39,7 +46,6 @@
   /* margin-bottom: 20px; */
   margin-bottom: 12px;
   height: 0px;
-  /* z-index: -5; */
 }
 .all-notebook-title-wrapper {
   display: flex;
@@ -105,7 +111,10 @@
   overflow: hidden;
   border: 1px solid lightgray;
   border-radius: 3px;
+  background-color: white;
 }
+
+
 
 .action-dropdown > button {
   background-color: white;
@@ -113,6 +122,11 @@
   border: none;
   padding:6px 10px 6px 10px;
   cursor: pointer;
+   color:#333333
+}
+
+.action-dropdown > button:hover {
+background-color:#dbd9d9;
 }
 
 .outer-navbar-popup-divider {
@@ -122,9 +136,15 @@
 .notebook-action-wrapper > button {
   border: none;
   background-color: white;
-  font-size: 15px;
+  font-size: 20px;
   margin-right: 5px;
-    cursor: pointer;
+  cursor: pointer;
+  color:#333333;
+}
+
+.notebook-action-wrapper > button:hover {
+  background-color:#dbd9d9;
+  border-radius: 5px;
 }
 
 .all-note-list{
@@ -147,4 +167,22 @@
 
 .note-title-link > a:hover{
 text-decoration: underline
+}
+
+.notebook-create-new{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap:3px
+}
+.notebook-attribute-1,
+.notebook-attribute,
+.notebook-attribute-time,
+.notebook-attribute{
+  color: #333333
+}
+
+.dropdown-menu-option{
+  padding: 2px 5px 2px 5px;
+
 }

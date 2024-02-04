@@ -1,5 +1,5 @@
 const SET_TAGS = "tags/setTags"
-const FETCH_ONE_TAG = "notes/fetchOneTag";
+// const FETCH_ONE_TAG = "notes/fetchOneTag";
 const ADD_TAG = "tags/addTag";
 const UPDATE_TAG = "tags/updateTag";
 const DELETE_TAG = "tags/deleteTag"
@@ -24,10 +24,10 @@ const deleteTag = (tagId) => ({
   payload: tagId,
 });
 
-const fetchOneTag = (tag) => ({
-  type: FETCH_ONE_TAG,
-  payload: tag,
-});
+// const fetchOneTag = (tag) => ({
+//   type: FETCH_ONE_TAG,
+//   payload: tag,
+// });
 
 export const thunkFetchTags = () => async (dispatch) => {
   const response = await fetch("/api/tags");
@@ -37,14 +37,14 @@ export const thunkFetchTags = () => async (dispatch) => {
   }
 };
 
-export const thunkFetchOneTag = (tagId) => async (dispatch) => {
-  const response = await fetch(`/api/tags/${tagId}`);
-  if (response.ok) {
-    const data = await response.json();
-    dispatch(fetchOneTag(data));
-    return data;
-  }
-};
+// export const thunkFetchOneTag = (tagId) => async (dispatch) => {
+//   const response = await fetch(`/api/tags/${tagId}`);
+//   if (response.ok) {
+//     const data = await response.json();
+//     dispatch(fetchOneTag(data));
+//     return data;
+//   }
+// };
 
 export const thunkCreateTag = (tagData) => async (dispatch) => {
   const response = await fetch("/api/tags", {
@@ -99,8 +99,8 @@ function tagReducer(state = initialState, action) {
   switch (action.type) {
     case SET_TAGS:
       return { ...state, tags: action.payload };
-    case FETCH_ONE_TAG:
-      return { ...state, tags: action.payload };
+    // case FETCH_ONE_TAG:
+    //   return { ...state, tags: action.payload };
     case ADD_TAG:
       return { ...state, tags: [...state.tags, action.payload] };
     case UPDATE_TAG:

@@ -1,10 +1,8 @@
 import { useSelector, useDispatch } from "react-redux";
 import { useState, useEffect, useRef } from "react";
 import OpenModalButton from "../OpenModalButton/OpenModalButton";
-// import { Link, useNavigate } from "react-router-dom";
 import { Link } from "react-router-dom";
 import { thunkFetchNotebooks } from "../../redux/notebooks";
-// import { thunkFetchNotes } from "../../redux/notes";
 import NBCreationForm from "../NewNotebookModal/NewNotebookModal";
 import NBUpdateForm from "../UpdateNotebookModal/UpdateNotebookModal";
 import NBDeleteForm from "../DeleteNotebookModal/DeleteNotebookModal";
@@ -103,11 +101,12 @@ export default function NotebookPage() {
           </p>
 
           <div className="all-notebook-side">
-            <i className="material-icons" style={{ color: "orange" }}>
-              note_add
-            </i>
             <OpenModalButton
-              buttonText="New Notebook"
+              buttonText={
+                <div className="notebook-create-new">
+                  <i className="material-icons">note_add</i>New
+                </div>
+              }
               onItemClick={closeMenu}
               modalComponent={<NBCreationForm />}
             />
@@ -121,7 +120,7 @@ export default function NotebookPage() {
               &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;CREATED BY
             </div>
             <div className="notebook-attribute-time">CREATED </div>
-            <button className="notebook-attribute">ACTIONS</button>
+            <div className="notebook-attribute">ACTIONS</div>
           </div>
           {[...notebookList]
             .reverse()
@@ -146,9 +145,11 @@ export default function NotebookPage() {
                     {created_at.slice(4, 11)}
                   </div>
                   <div className="notebook-action-wrapper">
-                    <button onClick={(e) => toggleMenu2(e, id)}>
-                      <i className="material-icons">more_horiz</i>
-                    </button>
+                      <button onClick={(e) => toggleMenu2(e, id)}
+                        className="material-icons"
+                      >
+                        more_horiz
+                      </button>
                     <div
                       className={`action-dropdown ${
                         selectedNotebookId === id && action ? "" : "hidden"
@@ -156,7 +157,7 @@ export default function NotebookPage() {
                       ref={ulRef}
                     >
                       <OpenModalButton
-                        buttonText="Rename notebook"
+                        buttonText={<div className="dropdown-menu-option">Rename notebook</div>}
                         onItemClick={closeMenu2}
                         modalComponent={
                           <NBUpdateForm notebookId={id} nbtitle={title} />
@@ -164,7 +165,7 @@ export default function NotebookPage() {
                       />
                       <div className="outer-navbar-popup-divider"></div>
                       <OpenModalButton
-                        buttonText="Delete notebook"
+                        buttonText={<div className="dropdown-menu-option">Delete notebook</div>}
                         onItemClick={closeMenu2}
                         modalComponent={<NBDeleteForm notebookId={id} />}
                       />
@@ -179,9 +180,7 @@ export default function NotebookPage() {
                       <div key={noteItem.id}>
                         <div className="all-note-list">
                           <div className="note-title-link">
-                            <Link
-                              to={`/main/notes/${noteItem.id}`}
-                            >
+                            <Link to={`/main/notes/${noteItem.id}`}>
                               <div className="notebook-attribute-title">
                                 <i className="fas fa-file-alt"></i>
                                 &nbsp;&nbsp;
@@ -191,14 +190,14 @@ export default function NotebookPage() {
                               </div>
                             </Link>
                           </div>
-                          <div className="notebook-attribute">{user}</div>
-                          <div className="notebook-attribute-time">
+                          <div className="notebook-attribute" style={{marginLeft:"3px"}}>{user}</div>
+                          <div className="notebook-attribute-time" style={{marginLeft:"5px"}}>
                             {created_at.slice(4, 11)}
                           </div>
                           <div className="notebook-action-wrapper">
                             <OpenModalButton
                               buttonText={
-                                <i className="material-icons">delete_forever</i>
+                                <div><i className="material-icons" style={{color:"#333333"}}>delete_forever</i></div>
                               }
                               onItemClick={closeMenu1}
                               modalComponent={
