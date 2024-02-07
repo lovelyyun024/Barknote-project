@@ -86,7 +86,7 @@ export const thunkDeleteNBNote = (noteId) => async (dispatch) => {
 
 const initialState = { notebooks: [] };
 
-function notebooksReducer(state = initialState, action) {
+function notebookReducer(state = initialState, action) {
   switch (action.type) {
     case SET_NOTEBOOKS:
       return { ...state, notebooks: action.payload };
@@ -110,14 +110,14 @@ function notebooksReducer(state = initialState, action) {
        return {
          ...state,
          notebooks: state.notebooks.map((notebook) => {
-           if (notebook.note.some((note) => note.id === action.payload)) {
-             const updatedNotes = notebook.note.filter(
+           if (notebook.notes.some((note) => note.id === action.payload)) {
+             const updatedNotes = notebook.notes.filter(
                (note) => note.id !== action.payload
              );
 
              return {
                ...notebook,
-               note: updatedNotes,
+               notes: updatedNotes,
              };
            }
 
@@ -130,4 +130,4 @@ function notebooksReducer(state = initialState, action) {
   }
 }
 
-export default notebooksReducer;
+export default notebookReducer;

@@ -4,7 +4,7 @@
   width: 15%;
   min-width: 150px;
   background-color: lightgray;
-  height:100%
+  height: 1000px;
 }
 
 .profile-info-wrapper{
@@ -14,13 +14,14 @@
   gap:5px;
 }
 
+
 .profile-info-main > p{
    font-size: 12px;
    margin-top: 2px;
    margin-bottom: 2px;
 }
 .outer-navbar-middle{
-margin-top: 50px;
+margin-top: 30px;
 }
 .outer-navbar-middle > button {
   width: 95%;
@@ -40,13 +41,16 @@ margin-top: 50px;
 .outer-navbar-middle > button:hover {
   background-color: #FC8A17
 }
-.outer-navbar-bottom1,
-.outer-navbar-bottom2 {
-  margin-top: 20px;
+.outer-navbar-bottom1{
+  display: grid;
+  gap:5px;
+  margin-top: 5px;
+  /* margin-top: 20px; */
 }
 
-.outer-navbar-bottom1 > button,
-.outer-navbar-bottom2 > button {
+.outer-navbar-bottom1 > button
+/* .outer-navbar-bottom2 > button  */
+{
   width: 95%;
   display: flex;
   justify-content: start;
@@ -82,11 +86,12 @@ margin-top: 50px;
   padding-top: 10px; */
   position:relative;
   top: 58px;
+  left:5px;
   list-style-type: none;
   background-color: #fff;
   box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
   position: absolute;
-  z-index: 1;
+  /* z-index: 1; */
   transition: opacity 0.3s ease-in-out;
   border-radius: 3px;
 }
@@ -123,9 +128,7 @@ color: whitesmoke
 
 .outer-navbar-top {
   display: flex;
-  justify-content: space-between;
-  margin-right: 8px;
-  margin-bottom: 15px;
+  justify-content: start;
 }
 
 .outer-navbar-top > button {

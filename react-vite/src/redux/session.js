@@ -33,7 +33,6 @@ export const thunkLogin = (credentials) => async (dispatch) => {
 
   if (response.ok) {
     const data = await response.json();
-    console.log("++++++", data);
     dispatch(setUser(data));
   } else if (response.status < 500) {
     const errorMessages = await response.json();
@@ -64,6 +63,20 @@ export const thunkSignup = (user) => async (dispatch) => {
 export const thunkLogout = () => async (dispatch) => {
   await fetch("/api/auth/logout");
   dispatch(removeUser());
+};
+
+export const thunkUploadImage = (image) => async (dispatch) => {
+  const res = await fetch("/api/image_routes", {
+    method: "POST",
+    body: image,
+  });
+
+  const data = await res.json();
+  if (res.ok) {
+    return data;
+  }
+
+  return data;
 };
 
 const initialState = { user: null };

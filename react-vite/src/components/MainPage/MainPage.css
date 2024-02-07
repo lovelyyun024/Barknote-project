@@ -1,5 +1,10 @@
 .main-page-wrapper{
     display: flex;
     width:100%;
+<<<<<<< HEAD
     height: 800px;
+=======
+    height: 1000px;
+    max-width: 2560px;
+>>>>>>> dev
 }

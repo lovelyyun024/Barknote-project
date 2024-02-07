@@ -1,0 +1,27 @@
+.side-modal {
+  position: fixed;
+  top: 0;
+  right: 0;
+  left: 15%;
+  bottom: 0;
+  display: flex;
+  z-index: 40;
+}
+
+.side-modal-background {
+  position: fixed;
+  top: 0;
+  right: 0;
+  left: 15%;
+  bottom: 0;
+  background-color: rgba(0, 0, 0, 0.7);
+}
+
+.side-modal-content {
+  position: absolute;
+  background-color: white;
+  /* border-radius: 5px; */
+  overflow: hidden;
+  width:300px;
+  height:100%
+}

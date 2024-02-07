@@ -56,7 +56,7 @@ export const thunkFetchOneNote = (noteId) => async (dispatch) => {
 
   if (response.ok) {
     const data = await response.json();
-    dispatch(fetchOneNote(data.note)); // Assuming the API returns a single note
+    dispatch(fetchOneNote(data.note)); 
     return data;
   }
 };
@@ -71,6 +71,11 @@ export const thunkCreateNote = (noteData) => async (dispatch) => {
   if (response.ok) {
     const data = await response.json();
     dispatch(addNote(data));
+  } else if (response.status < 500) {
+    const errorMessages = await response.json();
+    return errorMessages;
+  } else {
+    return { server: "Something went wrong. Please try again" };
   }
 };
 
@@ -84,6 +89,11 @@ export const thunkUpdateNote = (noteId, noteData) => async (dispatch) => {
   if (response.ok) {
     const data = await response.json();
     dispatch(updateNote(data));
+  } else if (response.status < 500) {
+    const errorMessages = await response.json();
+    return errorMessages;
+  } else {
+    return { server: "Something went wrong. Please try again" };
   }
 };
 
@@ -120,7 +130,7 @@ export default function noteReducer(state = initialState, action) {
         notes: state.notes.filter((note) => note.id !== action.payload),
       };
     case FETCH_ONE_NOTE:
-      return { ...state, notes: [action.payload] }; // Assuming you replace the entire notes array with the fetched single note
+      return { ...state, note: action.payload }; 
     default:
       return state;
   }

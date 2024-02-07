@@ -67,6 +67,22 @@
   gap: 10px;
 }
 
-.create-button-wrapper button {
+.create-button-wrapper > button {
   font-weight: 300;
+}
+
+.update-button-wrapper {
+  display: flex;
+  justify-content: space-between;
+  margin: 20px 10px 0px 10px 
+}
+
+.delete-task-button > button{
+  background-color: white;
+  color:red;
+}
+
+.delete-task-button > button:hover{
+  text-decoration: underline;
+  background-color: white;
 }

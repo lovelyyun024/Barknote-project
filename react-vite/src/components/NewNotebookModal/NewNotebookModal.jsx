@@ -69,7 +69,7 @@ export default function NBCreationForm() {
             required
           />
         </label>
-        {errors.title && <span>{errors.title}</span>}
+        {errors.title && <span className="error-message">{errors.title}</span>}
         <div className="create-button-wrapper">
           <button type="submit" className="create-button">
             Create

@@ -51,13 +51,23 @@ export const router = createBrowserRouter(
           path="notes"
           element={
             <>
-              <InnerNavbar/>
+              <InnerNavbar />
+              <NotePage />
+            </>
+          }
+        ></Route>
+        <Route
+          path="tags/:tagId"
+          element={
+            <>
+              <InnerNavbar />
               <NotePage />
             </>
           }
         ></Route>
         <Route path="notes/:noteId" element={<EditNoatePage />}></Route>
       </Route>
+      <Route path="*" element={<Home />} />
     </Route>
   )
 );

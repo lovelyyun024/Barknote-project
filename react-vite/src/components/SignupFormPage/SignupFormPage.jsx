@@ -2,8 +2,7 @@ import { useState } from "react";
 import { Link } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { Navigate, useNavigate } from "react-router-dom";
-import { thunkSignup } from "../../redux/session";
-import shiba from "../Home/shibainu.png";
+import { thunkSignup, thunkUploadImage } from "../../redux/session";
 import "./SignupForm.css";
 
 function SignupFormPage() {
@@ -14,6 +13,7 @@ function SignupFormPage() {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
   const [confirmPassword, setConfirmPassword] = useState("");
+  const [image, setImage] = useState("");
   const [errors, setErrors] = useState({});
 
   if (sessionUser) return <Navigate to="/" replace={true} />;
@@ -53,19 +53,29 @@ function SignupFormPage() {
     setErrors(errorsTemp);
     if (Object.keys(errorsTemp).length) return;
 
-    const serverResponse = await dispatch(
-      thunkSignup({
-        email,
-        username,
-        password,
-      })
-    );
+    let returnImage;
+    if (image) {
+      const formData = new FormData();
+      formData.append("image", image);
+      // aws uploads can be a bit slow—displaying
+      // some sort of loading message is a good idea
+      returnImage = await dispatch(thunkUploadImage(formData));
+    }
+
+    const userData = {
+      email,
+      username,
+      password
+    };
+
+    if (returnImage){ 
+      userData.img_url = returnImage.url;}
+
+    const serverResponse = await dispatch(thunkSignup(userData));
 
     if (serverResponse) {
       setErrors(serverResponse);
-    } else {
-      navigate("/main/board");
-    }
+    } else navigate("/main/board");
   };
 
   return (
@@ -75,74 +85,89 @@ function SignupFormPage() {
           <div className="home-header">
             <img
               className="home-logo"
-              src={shiba}
+              src="https://barkbook-bucket.s3.us-west-2.amazonaws.com/shibainu.png"
+              alt="Barkbook Logo"
             />
             <div className="signin-header">
               <h1>Barkbook</h1>
               <p>Unleash Your Ideas, Fetch Your Thoughts</p>
             </div>
-            </div>
-            <div className="home-body">
-              {errors.server && <span>{errors.server}</span>}
-              <form onSubmit={handleSubmit} className="login-form">
-                <input
-                  type="text"
-                  value={email}
-                  onChange={(e) => setEmail(e.target.value)}
-                  placeholder="Email Address"
-                  required
-                  className="large-input"
-                />
+          </div>
+          <div className="home-body">
+            {errors.server && <span className="error-message">{errors.server}</span>}
+            <form
+              onSubmit={handleSubmit}
+              className="login-form"
+              encType="multipart/form-data"
+            >
+              <input
+                type="text"
+                value={email}
+                onChange={(e) => setEmail(e.target.value)}
+                placeholder="Email Address"
+                required
+                className="large-input"
+              />
 
-                {errors.email && <span>{errors.email}</span>}
-                <input
-                  type="text"
-                  value={username}
-                  onChange={(e) => setUsername(e.target.value)}
-                  placeholder="Username"
-                  required
-                  className="large-input"
-                />
-                {errors.username && <span>{errors.username}</span>}
+              {errors.email && <span className="error-message">{errors.email}</span>}
+              <input
+                type="text"
+                value={username}
+                onChange={(e) => setUsername(e.target.value)}
+                placeholder="Username"
+                required
+                className="large-input"
+              />
+              {errors.username && <span className="error-message">{errors.username}</span>}
 
-                <input
-                  type="password"
-                  value={password}
-                  onChange={(e) => setPassword(e.target.value)}
-                  placeholder="Password"
-                  required
-                  className="large-input"
-                />
+              <input
+                type="password"
+                value={password}
+                onChange={(e) => setPassword(e.target.value)}
+                placeholder="Password"
+                required
+                className="large-input"
+              />
 
-                {errors.password && <span>{errors.password}</span>}
+              {errors.password && <span className="error-message">{errors.password}</span>}
 
-                <input
-                  type="password"
-                  value={confirmPassword}
-                  onChange={(e) => setConfirmPassword(e.target.value)}
-                  placeholder="Confirm Password"
-                  required
-                  className="large-input"
-                />
+              <input
+                type="password"
+                value={confirmPassword}
+                onChange={(e) => setConfirmPassword(e.target.value)}
+                placeholder="Confirm Password"
+                required
+                className="large-input"
+              />
 
-                {errors.confirmPassword && <span>{errors.confirmPassword}</span>}
-                <button className="large-orange-button" type="submit">
-                  Sign Up
-                </button>
-              </form>
-              <div className="demo-user-wrapper"></div>
-              <div className="sign-up-wrapper">
-                <div style={{ marginBottom: "10px", fontSize: "14px" }}>
-                  Already have an account?
+              {errors.confirmPassword && <span className="error-message">{errors.confirmPassword}</span>}
+              <label className="file-upload">
+                Profile Photo (optional)
+                <div className="signup-file-upload-wrapper">
+                  <input
+                    type="file"
+                    accept="image/*"
+                    onChange={(e) => setImage(e.target.files[0])}
+                  />
                 </div>
-                <Link to="/" className="signup-button">
-                  Sign In
-                </Link>
+              </label>
+              {errors.image && <span className="error-message">{errors.image}</span>}
+              <button className="large-orange-button" type="submit">
+                Sign Up
+              </button>
+            </form>
+            <div className="demo-user-wrapper"></div>
+            <div className="sign-up-wrapper">
+              <div style={{ marginBottom: "10px", fontSize: "14px" }}>
+                Already have an account?
               </div>
+              <Link to="/" className="signup-button">
+                Sign In
+              </Link>
             </div>
           </div>
         </div>
-   
+      </div>
     </>
   );
 }

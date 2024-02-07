@@ -8,8 +8,8 @@ class Task(db.Model):
         __table_args__ = {'schema': SCHEMA}
     
     id = db.Column(db.Integer, primary_key=True)
-    assigner_id = db.Column(db.Integer, db.ForeignKey(add_prefix_for_prod("users.id")), nullable=False)
-    assignee_id = db.Column(db.Integer, db.ForeignKey(add_prefix_for_prod("users.id")), nullable=False)
+    assigner_id = db.Column(db.Integer, db.ForeignKey(add_prefix_for_prod("users.id")))
+    assignee_id = db.Column(db.Integer, db.ForeignKey(add_prefix_for_prod("users.id")))
     description = db.Column(db.String, nullable=False)
     due_date= db.Column(db.DateTime)
     completed = db.Column(db.Boolean, default=False)
@@ -22,9 +22,9 @@ class Task(db.Model):
         return {
             'id': self.id,
             'assigner_id': self.assigner_id,
-            'assignee_id': self.assignee_id,
+            # 'assignee_id': self.assignee_id,
             'description': self.description,
             'due_date': self.due_date,
             'completed': self.completed,
-            'created_at':self.created_at
+            # 'created_at':self.created_at
         }

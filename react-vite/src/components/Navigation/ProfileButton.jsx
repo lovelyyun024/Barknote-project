@@ -39,8 +39,6 @@ function ProfileButton() {
     e.preventDefault();
     dispatch(thunkLogout());
     closeMenu();
-    // redirect("/a");
-    console.log("goodbye")
   };
 
   return (

@@ -7,23 +7,12 @@ import "./UpdateNotebookModal.css";
 export default function NBUpdateForm({ notebookId, nbtitle }) {
   const dispatch = useDispatch();
   const { closeModal } = useModal();
-  const [title, setTitle] = useState("");
+  const [title, setTitle] = useState(nbtitle);
   const [errors, setErrors] = useState({});
-  //   console.log(nbtitle)
-  //   const [theme, setTheme] = useState("light");
 
-  //   useEffect(() => {
-  //     const storedTheme = localStorage.getItem("theme");
-  //     if (storedTheme) {
-  //       setTheme(storedTheme);
-  //     }
-  //   }, []);
-
-  //   document.documentElement.className = `theme-${theme}`;
-
-  useEffect(() => {
-    setTitle(nbtitle);
-  }, [nbtitle]);
+  // useEffect(() => {
+  //   setTitle(nbtitle);
+  // }, [nbtitle]);
 
   const handleNotebookCreation = async (e) => {
     e.preventDefault();
@@ -67,7 +56,7 @@ export default function NBUpdateForm({ notebookId, nbtitle }) {
             required
           />
         </label>
-        {errors.title && <span>{errors.title}</span>}
+        {errors.title && <span className="error-message">{errors.title}</span>}
         <div className="create-button-wrapper">
           <button
             onClick={closeModal}
