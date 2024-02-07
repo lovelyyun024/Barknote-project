@@ -11,7 +11,8 @@ export default function HomePage() {
   const sessionUser = useSelector((state) => state.session.user);
   const navigate = useNavigate();
   const dispatch = useDispatch();
-  const BASE_URL = process.env.NODE_ENV == "production" ? "https://evernote-clone.onrender.com" : "http://localhost:5173"
+  // const BASE_URL = process.env.NODE_ENV == "production" ? "https://evernote-clone.onrender.com" : "http://localhost:5173"
+  const BASE_URL = "https://evernote-clone.onrender.com"
 
   useEffect(() => {
     if (sessionUser) {
