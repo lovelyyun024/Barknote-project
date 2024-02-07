@@ -34,7 +34,7 @@ useEffect(() => {
   setDescription(taskData[0]?.description);
 
   setDue_date(duetime);
-}, [taskData[0]]);
+}, [taskData, duetime]);
 
   const convertDateFormat = (inputDate) => {
     const date = new Date(inputDate);
