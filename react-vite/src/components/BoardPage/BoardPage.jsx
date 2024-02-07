@@ -356,7 +356,7 @@ export default function BoardPage() {
               {[...noteList]
                 .filter((note) => note.pinned)
                 .reverse()
-                .map(({ title, content, created_at, id, img_url }) => (
+                .map(({ title, content, id}) => (
                   <Link
                     to={`/main/notes/${id}`}
                     key={id}
@@ -371,7 +371,7 @@ export default function BoardPage() {
                     </div>
                     <div className="pinned-section-title">{title}</div>
                     <div className="pinned-section-content">
-                      <div>{parse(replaceClass(content))}</div>
+                      {parse(replaceClass(content))}
                     </div>
                   </Link>
                 ))}

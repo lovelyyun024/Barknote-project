@@ -252,27 +252,26 @@
 .pinned-board-main {
   display: grid;
   overflow: hidden;
-  padding: 10px 0 0 10px;
+  padding: 10px;
   outline-style: none;
   text-rendering: optimizelegibility;
   text-size-adjust: 100%;
   height: 90%;
-  width: 98%;
+  width: auto
 }
 
 .pinned-board-main:hover {
   overflow-y: auto;
 }
 
-/* .pinned-section {
-  margin-right: 12px;
+.pinned-section {
+  /* margin-right: 20px; */
   border: 1px solid #ccc;
   border-radius: 8px;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-  height: 270px;
   margin-bottom: 14px;
-  overflow: hidden;
-} */
+  width: auto
+}
 
 .pinned-section-title,
 .pinned-section-content {
@@ -280,6 +279,7 @@
   text-overflow: ellipsis;
   padding-left: 16px;
   padding-right: 16px;
+  width: auto
 }
 
 .pinned-section-title {
@@ -293,21 +293,19 @@
 
 .pinned-section-content {
   flex-grow: 1;
-  margin-top: -10px;
-  margin-bottom: 16px;
   word-break: keep-all;
   color: #737373;
   line-height: 23px;
   font-size: 16px;
 }
 
-.pinned-section {
-  margin-right: 20px;
-  border: 1px solid #ccc;
-  border-radius: 8px;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-  margin-bottom: 14px;
-  width: 45%;
+.pinned-section-content > p {
+  width: 100%;
+}
+
+.pinned-section-content > p > img {
+  width: 100%;
+  object-fit: cover;
 }
 
 .tag-board-main {
@@ -319,6 +317,7 @@
   overflow-x: auto;
   overflow-y: auto;
   height: 90%;
+  justify-content: space-evenly;
 }
 .tag-board-container {
   display: flex;
