@@ -35,7 +35,7 @@ export default function TagUpdateForm({ tagId, tag, setTagModal }) {
         Tags let you add keywords to notes, making them easier to find and
         browse.
       </div>
-      {errors.server && <span>{errors.server}</span>}
+      {errors.server && <span className="error-message">{errors.server}</span>}
       <form
         onSubmit={handleNotebookCreation}
         className="notebook-creation-form"
@@ -50,12 +50,9 @@ export default function TagUpdateForm({ tagId, tag, setTagModal }) {
             required
           />
         </label>
-        {errors.name && <span>{errors.name}</span>}
+        {errors.name && <span className="error-message">{errors.name}</span>}
         <div className="create-button-wrapper">
-          <button
-            type="submit"
-            className="create-button"
-          >
+          <button type="submit" className="create-button">
             Done
           </button>
         </div>

@@ -84,6 +84,10 @@
   border-radius: 40px;
   padding:5px;
   color:white;
-  width:30%
+  /* width:30% */
+  width: fit-content;
+  display: flex;
+  gap:5px
+ 
   
 }

@@ -130,7 +130,7 @@ export default function noteReducer(state = initialState, action) {
         notes: state.notes.filter((note) => note.id !== action.payload),
       };
     case FETCH_ONE_NOTE:
-      return { ...state, notes: [action.payload] }; 
+      return { ...state, note: action.payload }; 
     default:
       return state;
   }

@@ -10,7 +10,8 @@ body, button, textarea, select, input {
 textarea {
   font-size: 16px;
 }
-span {
+
+.error-message {
     color: #E01E5A;
     text-align: center;
     width: 100%;
@@ -81,7 +82,7 @@ span {
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  margin-bottom: 50px;
+  margin-bottom: 30px;
 }
 
 .large-input {
@@ -124,7 +125,7 @@ span {
   text-align: center;
   width: 30px;
   height: 30px;
-  padding: 5px;
+  /* padding: 5px; */
   background-color:white;
   border-radius: 100px;
   z-index: 2;
@@ -162,4 +163,29 @@ span {
   color:#333333;
     text-decoration: none;
     font-weight: normal
+}
+
+.login-btn {
+    justify-content: center;
+    flex-direction: row;
+    display: flex;
+    background-color: rgb(255, 255, 255);
+    justify-content: center;
+    align-items: center;
+    width: 326px;
+    padding: 3px;
+border: 1px solid #ccc;
+    border-radius: 4px;
+    font-size: 16px;
+
+}
+.btn-text {
+    justify-content: center;
+    padding: 3px;
+    font-family: 'Poppins', sans-serif;
+    color: #6a6a6a
+}
+
+.oath-sign-in > a:hover{
+  background-color: rgb(248, 247, 247);
 }

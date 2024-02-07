@@ -56,7 +56,7 @@ export default function NBUpdateForm({ notebookId, nbtitle }) {
             required
           />
         </label>
-        {errors.title && <span>{errors.title}</span>}
+        {errors.title && <span className="error-message">{errors.title}</span>}
         <div className="create-button-wrapper">
           <button
             onClick={closeModal}

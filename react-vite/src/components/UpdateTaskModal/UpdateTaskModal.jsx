@@ -92,11 +92,8 @@ useEffect(() => {
         Tasks allow you to assign due date to actions, helping you organize and
         manage your to-do lists effectively.
       </div>
-      {errors.server && <span>{errors.server}</span>}
-      <form
-        onSubmit={handleTaskUpdate}
-        className="notebook-creation-form"
-      >
+      {errors.server && <span className="error-message">{errors.server}</span>}
+      <form onSubmit={handleTaskUpdate} className="notebook-creation-form">
         <label>
           Description
           <input
@@ -107,7 +104,7 @@ useEffect(() => {
             required
           />
         </label>
-        {errors.description && <span>{errors.description}</span>}
+        {errors.description && <span className="error-message">{errors.description}</span>}
         <label>
           Due date
           <input
@@ -122,7 +119,9 @@ useEffect(() => {
         </button> */}
 
         <div className="update-button-wrapper">
-          <div className="delete-task-button"><button onClick={handleTaskDelete}>Delete task</button></div>
+          <div className="delete-task-button">
+            <button onClick={handleTaskDelete}>Delete task</button>
+          </div>
           <button type="submit" className="create-button">
             Save
           </button>

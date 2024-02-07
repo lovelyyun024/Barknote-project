@@ -3,7 +3,7 @@ from sqlalchemy.sql import text
 from datetime import datetime
 
 def seed_tasks():
-    task1_user1 = Task(assigner_id = 1, description='call mom', due_date=datetime(2023, 1, 20, 15, 0, 0))
+    task1_user1 = Task(assigner_id = 1, description='call mom', due_date=datetime(2023, 2, 25, 15, 0, 0))
     task2_user1 = Task(assigner_id = 1, description='dog grooming', completed=True)
     task1_user2 = Task(assigner_id = 1, description='interview')
     task2_user2 = Task(assigner_id = 1, description='cat grooming')

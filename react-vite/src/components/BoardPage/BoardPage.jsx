@@ -8,6 +8,7 @@ import TagCreationForm from "../NewTagModal/NewTagModal";
 import TaskCreationForm from "../NewTaskModal/NewTaskModal";
 import TaskUpdateForm from "../UpdateTaskModal/UpdateTaskModal";
 import { thunkUpdateTask, thunkFetchOneTask, thunkFetchTasks } from "../../redux/tasks";
+import parse from "html-react-parser";
 import "./BoardPage.css";
 
 export default function BoardPage() {
@@ -30,10 +31,8 @@ export default function BoardPage() {
   const pinned = [...noteList].filter((note) => note.pinned);
   const tagsData = useSelector((state) => state.tag.tags);
   const tagList = Object.values(tagsData);
-  const url1 =
-    "https://as1.ftcdn.net/v2/jpg/05/38/80/26/1000_F_538802690_y9GzQSPmrx4sxZKaMMEBNPdT8DtmyeDM.jpg";
-  const url2 =
-    "https://as2.ftcdn.net/v2/jpg/04/16/78/37/1000_F_416783733_W0fsO3ulIWRJx7v4iZtSZbpOCld9m1P9.jpg";
+  const url1 = "https://barkbook-bucket.s3.us-west-2.amazonaws.com/bg1.jpeg";
+  const url2 = "https://barkbook-bucket.s3.us-west-2.amazonaws.com/bg2.jpeg";
   const [backgroundImage, setBackgroundImage] = useState(`url(${url1})`);
 
   const [setShowMenu] = useState(false);
@@ -85,7 +84,7 @@ export default function BoardPage() {
   const removeTags = function (str) {
     if (str === null || str === "") return false;
     else str = str.toString();
-    return str.replace(/(<([^>]+)>)/gi, "");
+    return str.replace(/(<([^>]+)>)/gi, " ");
   };
 
   useEffect(() => {
@@ -122,6 +121,15 @@ export default function BoardPage() {
     );
   };
 
+  function replaceClass(htmlString) {
+    // Use a regular expression to replace all occurrences of class with className
+    const updatedHtml = htmlString.replace(/class=/g, "className=");
+
+    return updatedHtml;
+  }
+
+
+
   return (
     <>
       <div
@@ -129,15 +137,9 @@ export default function BoardPage() {
         style={{ backgroundImage: backgroundImage }}
       >
         <div className="main-board-header">
-          <p
-            style={{
-              fontSize: "20px",
-              color: "#FFFFFF",
-              textShadow: "rgba(0, 0, 0, 0.4) 1px 1px 2px",
-            }}
-          >
+          <div className="main-board-greet">
             Hello, {sessionUser?.username}!
-          </p>
+          </div>
           <div className="main-board-header-side">
             <p
               style={{
@@ -175,7 +177,7 @@ export default function BoardPage() {
               </Link>
 
               <Link
-                style={{ padding:"1px 3px 0 3px"}}
+                style={{ padding: "1px 3px 0 3px" }}
                 className="tag-section-add"
                 to="/main/notes"
               >
@@ -195,26 +197,31 @@ export default function BoardPage() {
                     style={{ textDecoration: "none" }}
                   >
                     <div className="note-section-title">{title}</div>
-                    <div className="note-section-content">
+                    <div
+                      className={
+                        img_url
+                          ? "note-section-content"
+                          : "note-section-content2"
+                      }
+                    >
                       {removeTags(content)}
                     </div>
-                    {/* {img_url && (
+                    {img_url && (
                       <img
                         className="note-section-img"
                         src={img_url}
                         alt="Note Image"
                       />
-                    )} */}
-                    <div className="note-section-tags">
+                    )}
+                    {/* <div className="note-section-tags">
                       {tags?.map((tag) => (
-                        <span
+                        <div
                           className="note-tag-wrapper"
-                          style={{ marginLeft: "5px" }}
                         >
                           {tag.name}
-                        </span>
+                        </div>
                       ))}
-                    </div>
+                    </div> */}
                     <div className="note-section-date">
                       {created_at.slice(5, 11)}
                     </div>
@@ -313,7 +320,7 @@ export default function BoardPage() {
               style={{
                 textDecoration: "none",
                 color: "#333333",
-                margin: "0px 0px 0px 8px",
+                margin: "0px 0px 5px 8px",
                 fontSize: "14px",
                 padding: "4px 0px 4px 4px",
               }}
@@ -364,10 +371,7 @@ export default function BoardPage() {
                     </div>
                     <div className="pinned-section-title">{title}</div>
                     <div className="pinned-section-content">
-                      {removeTags(content)}
-                    </div>
-                    <div className="pinned-section-date">
-                      {created_at.slice(5, 11)}
+                      <div>{parse(replaceClass(content))}</div>
                     </div>
                   </Link>
                 ))}

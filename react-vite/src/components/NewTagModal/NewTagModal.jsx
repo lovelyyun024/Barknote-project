@@ -34,7 +34,7 @@ export default function TagCreationForm() {
         Tags let you add keywords to notes, making them easier to find and
         browse.
       </div>
-      {errors.server && <span>{errors.server}</span>}
+      {errors.server && <span className="error-message">{errors.server}</span>}
       <form
         onSubmit={handleNotebookCreation}
         className="notebook-creation-form"
@@ -49,7 +49,7 @@ export default function TagCreationForm() {
             required
           />
         </label>
-        {errors.name && <span>{errors.name}</span>}
+        {errors.name && <span className="error-message">{errors.name}</span>}
         <div className="create-button-wrapper">
           <button type="submit" className="create-button">
             Create

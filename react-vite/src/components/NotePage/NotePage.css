@@ -9,8 +9,8 @@
     Oxygen, Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", sans-serif;
 }
 
-.note-update-container{
-    width: 85%;
+.note-update-container {
+  width: 85%;
   padding: 20px;
   background-color: #fff;
   /* border-radius: 8px; */
@@ -23,7 +23,7 @@
   display: flex;
   font-weight: bold;
   align-items: center;
-  margin-bottom: 5px;
+  margin-bottom: 3px;
 }
 
 .note-input {
@@ -37,19 +37,59 @@
 
 .select-input {
   width: 100%;
-  padding: 8px;
+  padding: 5px;
   box-sizing: border-box;
   border: 1px solid #ccc;
   border-radius: 4px;
   align-items: center;
 }
-.select-input-tags{
-  width: 300px;
-  padding: 8px;
+
+.select-input-edit{
+  width: 70%;
+  padding: 5px;
   box-sizing: border-box;
   border: 1px solid #ccc;
   border-radius: 4px;
   align-items: center;
+  margin-left: 10px;
+}
+
+.select-input-tags {
+  padding: 5px;
+  box-sizing: border-box;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  align-items: center;
+  height: 45px;
+  width: 72%;
+}
+
+.select-input-tags-edit{
+  padding: 5px;
+  box-sizing: border-box;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  align-items: center;
+  height: 45px;
+  width: 70%;
+  margin-left: 48px;
+}
+
+.select-input-pin {
+  border: 1px solid #ccc;
+  width: 24%;
+}
+.tags-list{
+  margin-left: 50px;
+  font-weight: 400;
+  font-size: 14px;
+  display: flex;
+}
+
+.tags-list-detail{
+  background-color: #d0cccc8f;
+  border-radius: 10px;
+  padding: 0 8px 0 8px;
 }
 .note-title-input {
   font-size: 20px;
@@ -74,18 +114,21 @@ textarea:focus {
   justify-content: space-between;
   display: flex;
   margin-bottom: 10px;
+  align-items:end
 }
 
-.option-wrapper-small {
-  display: grid;
-  justify-content: space-between;
+.option-wrapper-create {
+  display: flex;
+  justify-content: center;
+  align-content: center;
 }
 
-.option-wrapper-limit {
+/* .option-wrapper-limit {
   align-self: center;
-}
+  justify-content: end;
+} */
 
-.option-wrapper-create > button {
+.option-wrapper-big > button {
   background-color: orange;
   color: #fff;
   padding: 8px 15px;
@@ -96,15 +139,37 @@ textarea:focus {
   font-weight: 300;
   float: right;
   margin-bottom: 2px;
+  align-items: center;
 }
+.option-wrapper-small{
+  display: grid;
+}
+.option-wrapper-small > button {
+  background-color: orange;
+  color: #fff;
+  padding: 8px 15px;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 16px;
+  font-weight: 300;
+  float: right;
+  margin-bottom: 2px;
+  align-items: center;
+}
+
+.botton-display-right > button{
+  padding:0 25px 5px 15px
+}
+
 
 .option-wrapper-small button:hover {
   background-color: #fc8a17;
 }
 
 .botton-display-left {
-  align-content: space-between;
   display: grid;
+  width: 300px;
 }
 
 .botton-display-right > button {
@@ -135,39 +200,14 @@ textarea:focus {
   font-weight: 500;
 }
 
-.select-option-wrapper {
-  margin-top: 5px;
-  display: flex;
-  align-items: center;
+.ql-toolbar {
+  border-top-left-radius: 4px;
+  border-top-right-radius: 4px; 
 }
-
-.p-editor-toolbar {
-  display: flex;
-  /* gap:10px */
-}
-
-.ql-formats{
-  height: 8px;
-  width: fit-content;
- 
-}
-
-.ql-picker-label{
-  color: #000000
-}
-
-.ql-picker-options{
-  width: fit-content;
-  background-color: white;
-}
-.ql-picker-item{
-  color:black
-}
-
-.ql-font-serif{
-  color:black
-}
-
-.ql-editor{
+.ql-editor {
   font-size: 16px;
+}
+
+.note-editor-content {
+  height: 770px;
 }

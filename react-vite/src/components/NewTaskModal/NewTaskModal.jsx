@@ -48,11 +48,8 @@ export default function TaskCreationForm() {
         Tasks allow you to assign due date to actions, helping you organize and
         manage your to-do lists effectively.
       </div>
-      {errors.server && <span>{errors.server}</span>}
-      <form
-        onSubmit={handleTaskCreation}
-        className="notebook-creation-form"
-      >
+      {errors.server && <span className="error-message">{errors.server}</span>}
+      <form onSubmit={handleTaskCreation} className="notebook-creation-form">
         <label>
           Description
           <input
@@ -63,7 +60,7 @@ export default function TaskCreationForm() {
             required
           />
         </label>
-        {errors.description && <span>{errors.description}</span>}
+        {errors.description && <span className="error-message">{errors.description}</span>}
         <label>
           Due date
           <input

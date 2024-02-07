@@ -63,7 +63,9 @@ export default function InnerNavbar() {
                     style={{ textDecoration: "none", color: "black" }}
                   >
                     <div className="note-bar-title">{title}</div>
-                    <div className="note-bar-content">{removeTags(content)}</div>
+                    <div className="note-bar-content">
+                      {removeTags(content)}
+                    </div>
                     {/* {img_url && (
                   <img
                     className="note-bar-img"
@@ -108,8 +110,8 @@ export default function InnerNavbar() {
             </Link>
           </div>
           <div className="inner-navbar-tag">
-            <i className="fas fa-tag" style={{ margin: "5px" }}></i>
-            {tagName}
+            <i className="fas fa-tag"></i>
+            <div>{tagName}</div>
           </div>
           <div className="outer-navbar-divider" />
           <div className="inner-navbar-bottom ">
@@ -124,7 +126,9 @@ export default function InnerNavbar() {
                       style={{ textDecoration: "none", color: "black" }}
                     >
                       <div className="note-bar-title">{title}</div>
-                      <div className="note-bar-content">{removeTags(content)}</div>
+                      <div className="note-bar-content">
+                        {removeTags(content)}
+                      </div>
                       {/* {img_url && (
                   <img
                     className="note-bar-img"

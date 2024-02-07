@@ -71,10 +71,12 @@ export default function TagSideBar() {
               style={{ textDecoration: "none", color: "#333333" }}
             >
               <div className="tag-section-name-2">
-                {name}&nbsp;
-                <span style={{ color: "gray", fontSize: "14px" }}>
-                  ({notes ? notes.length : 0})
-                </span>
+                <div className="tag-section-name-length">
+                  {name.length > 30? name.slice(0, 30)+"...":name }&nbsp;
+                  <span style={{ color: "gray", fontSize: "12px" }}>
+                    ({notes ? notes.length : 0})
+                  </span>
+                </div>
               </div>
             </Link>
             <i

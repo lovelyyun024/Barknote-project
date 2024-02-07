@@ -33,6 +33,14 @@
   display: flex;
   padding-left: 25px;
   padding-right: 25px;
+  margin-top: 15px;
+}
+
+.main-board-greet {
+  font: 20px;
+  color: #ffffff;
+  text-shadow: rgba(0, 0, 0, 0.4) 1px 1px 2px;
+  font-weight: 400;
 }
 
 .main-board-header-side {
@@ -55,7 +63,7 @@
   grid-template-columns: repeat(3, minmax(0, 1fr));
   gap: 25px;
   grid-auto-rows: 350px;
-  margin-top: 20px;
+  margin-top: 30px;
   margin-left: 25px;
   margin-right: 25px;
   min-width: 288px;
@@ -72,15 +80,15 @@
 }
 
 .note-section-tags {
-  margin-bottom: 5px;
   display: flex;
   justify-content: start;
-  height: 3%;
-  align-content: center;
+  height: 20px;
+  /* align-content: center;
   align-items: center;
-  padding-left: 10px;
-  padding-right: 10px;
+  flex-grow: 1; */
+  white-space: nowrap;
 }
+
 .note-tag-wrapper {
   color: #4d4d4d;
   background-color: #f2f2f2;
@@ -92,6 +100,7 @@
   border-radius: 30px;
   width: fit-content;
 }
+
 .task-board-wrapper {
   grid-column: 3/ 4;
   grid-row: 1;
@@ -178,18 +187,22 @@
 .note-section {
   margin-right: 12px;
   border: 1px solid #ccc;
-  display: flex;
+  display: grid;
   flex-direction: column;
   border-radius: 8px;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-  padding-top: 16px;
+  padding-top: 12px;
   height: 258px;
+  align-items: center;
+  align-content: space-between;
 }
 
 .note-section-title,
 .note-section-content,
 .note-section-date,
-.note-section-img {
+.note-section-img,
+.note-section-tags,
+.note-section-content2 {
   overflow: hidden;
   text-overflow: ellipsis;
   width: 138px;
@@ -201,15 +214,23 @@
 .note-section-title {
   font-weight: bold;
   flex-grow: 1;
-  height: 10%;
+  height: 18px;
   white-space: nowrap;
   color: #333333;
+  font-size: 16px;
 }
 
 .note-section-content {
   flex-grow: 1;
-  height: 70%;
-  margin-bottom: 16px;
+  height: 100px;
+  word-break: keep-all;
+  color: #737373;
+  line-height: 20px;
+}
+
+.note-section-content2 {
+  flex-grow: 1;
+  height: 200px;
   word-break: keep-all;
   color: #737373;
   line-height: 20px;
@@ -218,15 +239,13 @@
 .note-section-date {
   color: #777;
   font-size: 12px;
-  height: 10%;
+  height: 20px;
   color: #737373;
 }
 
 .note-section-img {
-  height: auto;
   border-radius: 4px;
-  margin-top: 10px;
-  height: 50%;
+  height: 100px;
   object-fit: cover;
 }
 
@@ -245,7 +264,7 @@
   overflow-y: auto;
 }
 
-.pinned-section {
+/* .pinned-section {
   margin-right: 12px;
   border: 1px solid #ccc;
   border-radius: 8px;
@@ -253,12 +272,10 @@
   height: 270px;
   margin-bottom: 14px;
   overflow: hidden;
-}
+} */
 
 .pinned-section-title,
-.pinned-section-content,
-.pinned-section-date,
-.pinned-section-img {
+.pinned-section-content {
   overflow: hidden;
   text-overflow: ellipsis;
   padding-left: 16px;
@@ -268,7 +285,6 @@
 .pinned-section-title {
   margin-top: -5px;
   flex-grow: 1;
-  height: 12%;
   white-space: nowrap;
   color: #333333;
   font-size: 22px;
@@ -277,8 +293,7 @@
 
 .pinned-section-content {
   flex-grow: 1;
-  height: 60%;
-  margin-top: 12px;
+  margin-top: -10px;
   margin-bottom: 16px;
   word-break: keep-all;
   color: #737373;
@@ -286,18 +301,13 @@
   font-size: 16px;
 }
 
-.pinned-section-date {
-  color: #777;
-  font-size: 12px;
-  height: 10%;
-  color: #737373;
-}
-
-.pinned-section-img {
-  height: auto;
-  border-radius: 4px;
-  margin-top: 10px;
-  height: 40%;
+.pinned-section {
+  margin-right: 20px;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  margin-bottom: 14px;
+  width: 45%;
 }
 
 .tag-board-main {
@@ -366,7 +376,7 @@ option {
   gap: 8px;
   padding: 4px 4px 4px 10px;
   overflow-y: hidden;
-  height: 80%;
+  height: 92%;
   width: 95%;
   justify-content: start;
 }
@@ -383,7 +393,7 @@ option {
 }
 
 .task-board-action > i,
-.task-board-action > button   {
+.task-board-action > button {
   border: none;
   background-color: white;
   text-align: start;
@@ -415,7 +425,7 @@ option {
 
 .delete {
   text-decoration: line-through;
-  text-decoration-color:  #a6a6a6;
+  text-decoration-color: #a6a6a6;
   color: #a6a6a6;
 }
 

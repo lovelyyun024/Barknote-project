@@ -78,4 +78,8 @@
 .tag-section-name-2 {
   padding: 5px;
   font-size: 14px;
+  /* text-overflow: ellipsis; */
+}
+.tag-section-name-length{
+  text-overflow: ellipsis;
 }

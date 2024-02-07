@@ -1,5 +1,5 @@
 import os
-from flask import Flask, render_template, request, session, redirect
+from flask import Flask, render_template, request, session, redirect, url_for
 from flask_cors import CORS
 from flask_migrate import Migrate
 from flask_wtf.csrf import CSRFProtect, generate_csrf
@@ -11,6 +11,7 @@ from .api.notebook_routes import notebook_routes
 from .api.note_routes import note_routes
 from .api.tag_routes import tag_routes
 from .api.task_routes import task_routes
+from .api.image_routes import image_routes
 from .seeds import seed_commands
 from .config import Config
 
@@ -36,6 +37,8 @@ app.register_blueprint(notebook_routes, url_prefix='/api/notebooks')
 app.register_blueprint(note_routes, url_prefix='/api/notes')
 app.register_blueprint(tag_routes, url_prefix='/api/tags')
 app.register_blueprint(task_routes, url_prefix='/api/tasks')
+app.register_blueprint(image_routes, url_prefix='/api/image_routes')
+
 db.init_app(app)
 Migrate(app, db)
 

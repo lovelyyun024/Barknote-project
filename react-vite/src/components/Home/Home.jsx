@@ -5,13 +5,13 @@ import { useEffect } from "react";
 import { thunkLogin } from "../../redux/session";
 import { useState } from "react";
 import { useModal } from "../../context/Modal";
-import shiba from "./shibainu.png";
 import "./Home.css";
 
 export default function HomePage() {
   const sessionUser = useSelector((state) => state.session.user);
   const navigate = useNavigate();
   const dispatch = useDispatch();
+  const BASE_URL = process.env.NODE_ENV == "production" ? "https://evernote-clone.onrender.com" : "http://localhost:5173"
 
   useEffect(() => {
     if (sessionUser) {
@@ -62,7 +62,10 @@ export default function HomePage() {
         <div className="home-page-wrapper">
           <div className="home-wrapper">
             <div className="home-header">
-              <img className="home-logo" src={shiba} />
+              <img
+                className="home-logo"
+                src="https://barkbook-bucket.s3.us-west-2.amazonaws.com/shibainu.png"
+              />
               <div className="signin-header">
                 <h1>Barkbook</h1>
                 <p>Unleash Your Ideas, Fetch Your Thoughts</p>
@@ -79,7 +82,7 @@ export default function HomePage() {
                   className="large-input"
                 />
 
-                {errors.email && <span>{errors.email}</span>}
+                {errors.email && <span className="error-message">{errors.email}</span>}
 
                 <input
                   type="password"
@@ -90,16 +93,33 @@ export default function HomePage() {
                   className="large-input"
                 />
 
-                {errors.password && <span>{errors.password}</span>}
+                {errors.password && <span className="error-message">{errors.password}</span>}
                 <button className="large-orange-button" type="submit">
-                  Sign In
+                  Sign in
                 </button>
               </form>
               <div className="demo-user-wrapper">
                 <div className="home-or">or</div>
                 <button className="large-orange-button" onClick={demoUserLogin}>
-                  Sign In As Demo User
+                  Sign in as Demo user
                 </button>
+                <div className="home-or">or</div>
+                {/* <a href={`${BASE_URL}/api/auth/oauth_login`}> */}
+                <div className="oath-sign-in">
+                  <a
+                    href={`${BASE_URL}/api/auth/oauth_login`}
+                    class="login-btn"
+                    style={{ textDecoration: "none" }}
+                  >
+                    <img
+                      id="google"
+                      src="https://barkbook-bucket.s3.us-west-2.amazonaws.com/google-logo-9808.png"
+                      alt="Google"
+                      style={{ width: "30px", height: "30px" }}
+                    />
+                    <div class="btn-text">&nbsp;Sign in with Google</div>
+                  </a>
+                </div>
               </div>
               <div className="sign-up-wrapper">
                 <div style={{ marginBottom: "10px", fontSize: "14px" }}>
@@ -133,7 +153,10 @@ export default function HomePage() {
                     href="https://github.com/lovelyyun024/evernote-clone"
                   >
                     Project Code&nbsp;
-                    <i className="fa fa-github" style={{ color: "orange", fontWeight:"600" }} />
+                    <i
+                      className="fa fa-github"
+                      style={{ color: "orange", fontWeight: "600" }}
+                    />
                   </a>
                 </a>
               </div>

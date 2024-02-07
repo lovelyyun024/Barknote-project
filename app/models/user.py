@@ -13,7 +13,7 @@ class User(db.Model, UserMixin):
     username = db.Column(db.String(40), nullable=False, unique=True)
     email = db.Column(db.String(255), nullable=False, unique=True)
     hashed_password = db.Column(db.String(255), nullable=False)
-    img_url = db.Column(db.String, default="https://upload.wikimedia.org/wikipedia/commons/thumb/b/b5/Windows_10_Default_Profile_Picture.svg/2048px-Windows_10_Default_Profile_Picture.svg.png")
+    img_url = db.Column(db.String, default="https://barkbook-bucket.s3.us-west-2.amazonaws.com/demouser+icon.png")
 
     notebooks = db.relationship("Notebook", back_populates="user", cascade="all, delete")
     notes = db.relationship("Note", back_populates="user", cascade="all, delete")
@@ -28,9 +28,11 @@ class User(db.Model, UserMixin):
 
     @password.setter
     def password(self, password):
-        print("~~~~~~~", password)
-        self.hashed_password = generate_password_hash(password)
-        print("+++++++", self.hashed_password)
+        if password == 'OAUTH':
+            self.hashed_password = 'OAUTH' 
+            return
+        else:
+            self.hashed_password = generate_password_hash(password)
 
     def check_password(self, password):
         return check_password_hash(self.password, password)

@@ -65,6 +65,20 @@ export const thunkLogout = () => async (dispatch) => {
   dispatch(removeUser());
 };
 
+export const thunkUploadImage = (image) => async (dispatch) => {
+  const res = await fetch("/api/image_routes", {
+    method: "POST",
+    body: image,
+  });
+
+  const data = await res.json();
+  if (res.ok) {
+    return data;
+  }
+
+  return data;
+};
+
 const initialState = { user: null };
 
 function sessionReducer(state = initialState, action) {
