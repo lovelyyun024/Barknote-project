@@ -115,7 +115,7 @@ export default function HomePage() {
                 {/* <a href={`${BASE_URL}/api/auth/oauth_login`}> */}
                 <div className="oath-sign-in">
                   <a
-                    href={`${BASE_URL}/api/auth/oauth_login`}
+                    href="https://www.linkedin.com/in/estherzhangg/"
                     class="login-btn"
                     style={{ textDecoration: "none" }}
                   >
