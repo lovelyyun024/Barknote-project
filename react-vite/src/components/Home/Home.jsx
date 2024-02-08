@@ -12,7 +12,8 @@ export default function HomePage() {
   const sessionUser = useSelector((state) => state.session.user);
   const navigate = useNavigate();
   const dispatch = useDispatch();
-//  const BASE_URL = process.env.NODE_ENV == "production" ? process.env.BASE_URL : "http://localhost:5173"
+  //  const BASE_URL = process.env.NODE_ENV == "production" ? process.env.BASE_URL : "http://localhost:5173"
+  const BASE_URL = "https://evernote-clone.onrender.com";
 
   useEffect(() => {
     if (sessionUser) {
@@ -54,7 +55,7 @@ export default function HomePage() {
     if (serverResponse) {
       setErrors(serverResponse);
     } else {
-          dispatch(setLoader(true));
+      dispatch(setLoader(true));
       navigate("/main/board");
     }
   };
@@ -113,9 +114,9 @@ export default function HomePage() {
                 <div className="home-or">or</div>
                 {/* <a href={`${BASE_URL}/api/auth/oauth_login`}> */}
                 <div className="oath-sign-in">
-                  <Link
-                    to="https://evernote-clone.onrender.com/api/auth/oauth_login"
-                    className="login-btn"
+                  <a
+                    href={`${BASE_URL}/api/auth/oauth_login`}
+                    class="login-btn"
                     style={{ textDecoration: "none" }}
                   >
                     <img
@@ -125,7 +126,7 @@ export default function HomePage() {
                       style={{ width: "30px", height: "30px" }}
                     />
                     <div className="btn-text">&nbsp;Sign in with Google</div>
-                  </Link>
+                  </a>
                 </div>
               </div>
               <div className="sign-up-wrapper">
