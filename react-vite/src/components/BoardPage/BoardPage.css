@@ -251,7 +251,7 @@
 
 .pinned-board-main {
   display: grid;
-  overflow: hidden;
+  overflow: auto;
   padding: 10px;
   outline-style: none;
   text-rendering: optimizelegibility;
@@ -260,9 +260,9 @@
   width: auto
 }
 
-.pinned-board-main:hover {
+/* .pinned-board-main:hover {
   overflow-y: auto;
-}
+} */
 
 .pinned-section {
   /* margin-right: 20px; */
@@ -294,14 +294,20 @@
 .pinned-section-content {
   flex-grow: 1;
   word-break: keep-all;
-  color: #737373;
   line-height: 23px;
   font-size: 16px;
+  color: #737373
 }
 
 .pinned-section-content > p {
   width: 100%;
 }
+
+.pinned-section-content > pre {
+  width:50px
+}
+
+
 
 .pinned-section-content > p > img {
   width: 100%;

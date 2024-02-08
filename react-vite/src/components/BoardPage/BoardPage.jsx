@@ -7,7 +7,7 @@ import OpenModalButton from "../OpenModalButton/OpenModalButton";
 import TagCreationForm from "../NewTagModal/NewTagModal";
 import TaskCreationForm from "../NewTaskModal/NewTaskModal";
 import TaskUpdateForm from "../UpdateTaskModal/UpdateTaskModal";
-import { thunkUpdateTask, thunkFetchOneTask, thunkFetchTasks } from "../../redux/tasks";
+import { thunkUpdateTask, thunkFetchTasks } from "../../redux/tasks";
 import parse from "html-react-parser";
 import "./BoardPage.css";
 
@@ -188,7 +188,7 @@ export default function BoardPage() {
             </div>
             <div className="note-board-main">
               {[...noteList]
-                .reverse()
+                // .reverse()
                 .map(({ title, content, created_at, id, tags, img_url }) => (
                   <Link
                     to={`/main/notes/${id}`}

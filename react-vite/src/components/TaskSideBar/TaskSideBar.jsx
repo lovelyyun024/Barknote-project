@@ -3,7 +3,7 @@ import { useState, useEffect, useRef } from "react";
 import OpenModalButton from "../OpenModalButton/OpenModalButton";
 import TaskCreationForm from "../NewTaskModal/NewTaskModal";
 import TaskUpdateForm from "../UpdateTaskModal/UpdateTaskModal";
-import { thunkUpdateTask, thunkFetchOneTask, thunkFetchTasks } from "../../redux/tasks";
+import { thunkUpdateTask, thunkFetchTasks } from "../../redux/tasks";
 
 export default function TaskSideBar() {
   const dispatch = useDispatch();

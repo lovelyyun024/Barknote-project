@@ -11,6 +11,7 @@ import noteReducer from "./notes";
 import tagReducer from "./tags";
 import onetagReducer from "./onetag";
 import taskReducer from "./tasks";
+import loadingActionReducer from "./loader"
 
 const rootReducer = combineReducers({
   session: sessionReducer,
@@ -19,6 +20,7 @@ const rootReducer = combineReducers({
   tag: tagReducer,
   onetag: onetagReducer,
   task: taskReducer,
+  loader:loadingActionReducer
 });
 
 let enhancer;

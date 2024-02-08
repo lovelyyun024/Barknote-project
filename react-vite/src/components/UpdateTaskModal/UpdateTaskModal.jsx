@@ -1,41 +1,37 @@
 import { useState, useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { useModal } from "../../context/Modal";
-import {thunkFetchOneTask, thunkUpdateTask, thunkDeleteTask} from "../../redux/tasks";
+import {
+  thunkFetchOneTask,
+  thunkUpdateTask,
+  thunkDeleteTask,
+} from "../../redux/tasks";
 
 export default function TaskUpdateForm({ id }) {
   const dispatch = useDispatch();
   const { closeModal } = useModal();
-  const [description, setDescription] = useState("");
-  const [due_date, setDue_date] = useState("");
   const [errors, setErrors] = useState({});
-  const tasksData = useSelector((state) => state.task.task);
-  const taskData = Object.values(tasksData);
-  const convertDateFormat2 = (inputDate) => {
-     const date = new Date(inputDate);
-     const year = date.getFullYear();
-     const month = (date.getMonth() + 1).toString().padStart(2, "0");
-     const day = date.getDate().toString().padStart(2, "0");
-     const hours = date.getHours().toString().padStart(2, "0");
-     const minutes = date.getMinutes().toString().padStart(2, "0");
+  const tasksData = useSelector((state) => state.task.tasks);
+  const list = tasksData.filter((task) => task.id == id)
+  const taskData = Object.values(list);
 
-     const formattedDate = `${year}-${month}-${day}T${hours}:${minutes}`;
-     return formattedDate;
-   };
-   
-  const duetime = taskData[0]?.due_date ? convertDateFormat2(taskData[0]?.due_date.slice(0, -4)) : ""
-
-
-useEffect(() => {
+  useEffect(() => {
     dispatch(thunkFetchOneTask(id));
   }, [dispatch, id]);
-1
-useEffect(() => {
-  setDescription(taskData[0]?.description);
 
-  setDue_date(duetime);
-}, [taskData, duetime]);
-
+  
+  const convertDateFormat2 = (inputDate) => {
+    const date = new Date(inputDate);
+    const year = date.getFullYear();
+    const month = (date.getMonth() + 1).toString().padStart(2, "0");
+    const day = date.getDate().toString().padStart(2, "0");
+    const hours = date.getHours().toString().padStart(2, "0");
+    const minutes = date.getMinutes().toString().padStart(2, "0");
+    
+    const formattedDate = `${year}-${month}-${day}T${hours}:${minutes}`;
+    return formattedDate;
+  };
+  
   const convertDateFormat = (inputDate) => {
     const date = new Date(inputDate);
     const year = date.getFullYear();
@@ -44,11 +40,17 @@ useEffect(() => {
     const hours = date.getHours().toString().padStart(2, "0");
     const minutes = date.getMinutes().toString().padStart(2, "0");
     const seconds = date.getSeconds().toString().padStart(2, "0");
-
+    
     const formattedDate = `${year}-${month}-${day} ${hours}:${minutes}:${seconds}`;
     return formattedDate;
   };
+  
+  const duetime = taskData[0].due_date
+    ? convertDateFormat2(taskData[0].due_date.slice(0, -4))
+    : "";
 
+  const [description, setDescription] = useState(taskData[0].description);
+  const [due_date, setDue_date] = useState(duetime);
   const handleTaskUpdate = async (e) => {
     e.preventDefault();
 
@@ -57,28 +59,17 @@ useEffect(() => {
     };
     if (due_date) task.due_date = convertDateFormat(due_date);
 
-    console.log("time---", task)
-
     const taskData = await dispatch(thunkUpdateTask(id, task));
     if (taskData) {
       setErrors(taskData.errors);
     } else closeModal();
   };
 
-  const handleTaskDelete = async(e) =>{
+  const handleTaskDelete = async (e) => {
     e.preventDefault();
     dispatch(thunkDeleteTask(id));
     closeModal();
-  }
-
-  // const [status, setStatus] = useState("incomplete");
-
-  // const toggleStatus = () => {
-  //     setStatus((prevStatus) =>
-  //       prevStatus === "completed" ? "incomplete" : "completed"
-  //     );
-  // };
-
+  };
 
   return (
     <div className="create-notebook-wrapper">
@@ -104,7 +95,9 @@ useEffect(() => {
             required
           />
         </label>
-        {errors.description && <span className="error-message">{errors.description}</span>}
+        {errors.description && (
+          <span className="error-message">{errors.description}</span>
+        )}
         <label>
           Due date
           <input

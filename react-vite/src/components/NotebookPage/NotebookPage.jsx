@@ -116,11 +116,9 @@ export default function NotebookPage() {
         <div className="all-notebook-list-wrapper">
           <div className="all-notebook-title-wrapper">
             <div className="notebook-attribute-1">TITLE</div>
-            <div className="notebook-attribute">
-              &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;CREATED BY
-            </div>
+            <div className="notebook-attribute-name">CREATED BY</div>
             <div className="notebook-attribute-time">CREATED </div>
-            <div className="notebook-attribute">ACTIONS</div>
+            <div className="notebook-action-wrapper">ACTIONS</div>
           </div>
           {[...notebookList]
             .reverse()
@@ -140,16 +138,17 @@ export default function NotebookPage() {
                     <i className="fas fa-book-open"></i> &nbsp;{title}&nbsp; (
                     {notes ? notes.length : 0})
                   </div>
-                  <div className="notebook-attribute">{user}</div>
+                  <div className="notebook-attribute-name">&nbsp;{user}</div>
                   <div className="notebook-attribute-time">
-                    {created_at.slice(4, 11)}
+                    &nbsp;{created_at.slice(4, 11)}
                   </div>
                   <div className="notebook-action-wrapper">
-                      <button onClick={(e) => toggleMenu2(e, id)}
-                        className="material-icons"
-                      >
-                        more_horiz
-                      </button>
+                    <button
+                      onClick={(e) => toggleMenu2(e, id)}
+                      className="material-icons"
+                    >
+                      more_horiz
+                    </button>
                     <div
                       className={`action-dropdown ${
                         selectedNotebookId === id && action ? "" : "hidden"
@@ -157,7 +156,11 @@ export default function NotebookPage() {
                       ref={ulRef}
                     >
                       <OpenModalButton
-                        buttonText={<div className="dropdown-menu-option">Rename notebook</div>}
+                        buttonText={
+                          <div className="dropdown-menu-option">
+                            Rename notebook
+                          </div>
+                        }
                         onItemClick={closeMenu2}
                         modalComponent={
                           <NBUpdateForm notebookId={id} nbtitle={title} />
@@ -165,7 +168,11 @@ export default function NotebookPage() {
                       />
                       <div className="outer-navbar-popup-divider"></div>
                       <OpenModalButton
-                        buttonText={<div className="dropdown-menu-option">Delete notebook</div>}
+                        buttonText={
+                          <div className="dropdown-menu-option">
+                            Delete notebook
+                          </div>
+                        }
                         onItemClick={closeMenu2}
                         modalComponent={<NBDeleteForm notebookId={id} />}
                       />
@@ -181,23 +188,34 @@ export default function NotebookPage() {
                         <div className="all-note-list">
                           <div className="note-title-link">
                             <Link to={`/main/notes/${noteItem.id}`}>
-                              <div className="notebook-attribute-title">
-                                <i className="fas fa-file-alt"></i>
+                              <div className="notebook-attribute-1">
+                          
+                                <i className="fas fa-file-alt" style={{paddingLeft:"25px"}}></i>
                                 &nbsp;&nbsp;
-                                {noteItem.title.length <= 20
+                                {noteItem.title.length <= 30
                                   ? noteItem.title
-                                  : noteItem.title.slice(0, 20) + "..."}
+                                  : noteItem.title.slice(0, 30) + "..."}
                               </div>
                             </Link>
                           </div>
-                          <div className="notebook-attribute" style={{marginLeft:"3px"}}>{user}</div>
-                          <div className="notebook-attribute-time" style={{marginLeft:"5px"}}>
-                            {created_at.slice(4, 11)}
+                          <div className="notebook-attribute-name">
+                            &nbsp;{user}
+                          </div>
+                          <div className="notebook-attribute-time">
+                            &nbsp;{created_at.slice(4, 11)}
                           </div>
                           <div className="notebook-action-wrapper">
                             <OpenModalButton
                               buttonText={
-                                <div><i className="material-icons" style={{color:"#333333"}}>delete_forever</i></div>
+                                <i
+                                  className="material-icons"
+                                  style={{
+                                    color: "#333333",
+                                    marginRight: "-2px",
+                                  }}
+                                >
+                                  delete_forever
+                                </i>
                               }
                               onItemClick={closeMenu1}
                               modalComponent={

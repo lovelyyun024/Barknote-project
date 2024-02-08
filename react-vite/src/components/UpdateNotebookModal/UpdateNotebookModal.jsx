@@ -10,10 +10,6 @@ export default function NBUpdateForm({ notebookId, nbtitle }) {
   const [title, setTitle] = useState(nbtitle);
   const [errors, setErrors] = useState({});
 
-  // useEffect(() => {
-  //   setTitle(nbtitle);
-  // }, [nbtitle]);
-
   const handleNotebookCreation = async (e) => {
     e.preventDefault();
 

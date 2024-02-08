@@ -4,3 +4,19 @@
     height: 1000px;
     max-width: 2560px;
 }
+
+.loader-style{
+    color:orange
+}
+
+._loading_overlay_content{
+    /* color:orange */
+    height: 90px;
+    width:100px;
+}
+
+._loading_overlay_overlay,
+.css-lzr3bi-LoadingOverlayWrapperBase{
+    background-color: white;
+}
+

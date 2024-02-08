@@ -3,6 +3,8 @@ import { Link } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { Navigate, useNavigate } from "react-router-dom";
 import { thunkSignup, thunkUploadImage } from "../../redux/session";
+import { thunkCreateNotebook } from "../../redux/notebooks";
+import { setLoader } from "../../redux/loader";
 import "./SignupForm.css";
 
 function SignupFormPage() {
@@ -75,7 +77,13 @@ function SignupFormPage() {
 
     if (serverResponse) {
       setErrors(serverResponse);
-    } else navigate("/main/board");
+    } else {
+      const notebook = {
+         title:"My First Notebook"
+       };
+      dispatch(thunkCreateNotebook(notebook));
+      dispatch(setLoader(true));
+      navigate("/main/board");}
   };
 
   return (
