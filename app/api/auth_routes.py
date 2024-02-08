@@ -39,7 +39,7 @@ client_secrets = {
     "client_secret": CLIENT_SECRET,
     "redirect_uris": [
       "http://localhost:5173/api/auth/callback",
-      (os.getenv('BASE_URL')+"/api/auth/callback")
+      "https://evernote-clone.onrender.com/api/auth/callback"
     ]
   }
 }
@@ -53,12 +53,12 @@ with open(secrets.name, "w") as output:
 
 os.environ["OAUTHLIB_INSECURE_TRANSPORT"] = "1" # to allow Http traffic for local dev
 
-redirect_uri = "http://localhost:5173/api/auth/callback" if os.getenv('NODE_ENV') != "production" else (os.getenv('BASE_URL')+"/api/auth/callback")
+redirect_uri = "http://localhost:5173/api/auth/callback" if os.getenv('NODE_ENV') != "production" else "https://evernote-clone.onrender.com/api/auth/callback"
 
 flow = Flow.from_client_secrets_file(
     client_secrets_file=secrets.name,
     scopes=["https://www.googleapis.com/auth/userinfo.profile", "https://www.googleapis.com/auth/userinfo.email", "openid"],
-    redirect_uri = "http://localhost:5173/api/auth/callback" if os.getenv('NODE_ENV') != "production" else (os.getenv('BASE_URL')+"/api/auth/callback")
+    redirect_uri = "http://localhost:5173/api/auth/callback" if os.getenv('NODE_ENV') != "production" else "https://evernote-clone.onrender.com/api/auth/callback"
 )   
 
 secrets.close() # This method call deletes our temporary file from the /tmp folder! We no longer need it as our flow object has been configured!
