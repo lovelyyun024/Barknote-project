@@ -5,16 +5,14 @@ import { useEffect } from "react";
 import { thunkLogin } from "../../redux/session";
 import { useState } from "react";
 import { useModal } from "../../context/Modal";
+import { setLoader } from "../../redux/loader";
 import "./Home.css";
 
 export default function HomePage() {
   const sessionUser = useSelector((state) => state.session.user);
   const navigate = useNavigate();
   const dispatch = useDispatch();
-  const BASE_URL =
-    process.env.NODE_ENV == "production"
-      ? process.env.BASE_URL
-      : "http://localhost:5173";
+ const BASE_URL = process.env.NODE_ENV == "production" ? process.env.BASE_URL : "http://localhost:5173"
 
   useEffect(() => {
     if (sessionUser) {
@@ -40,14 +38,15 @@ export default function HomePage() {
     if (serverResponse) {
       setErrors(serverResponse);
     } else {
-      closeModal();
+      dispatch(setLoader(true));
+      navigate("/main/board");
     }
   };
 
   const demoUserLogin = async () => {
     const serverResponse = await dispatch(
       thunkLogin({
-        email: "test5@aa.io",
+        email: "test1@aa.io",
         password: "000000",
       })
     );
@@ -55,6 +54,7 @@ export default function HomePage() {
     if (serverResponse) {
       setErrors(serverResponse);
     } else {
+          dispatch(setLoader(true));
       navigate("/main/board");
     }
   };
@@ -113,9 +113,9 @@ export default function HomePage() {
                 <div className="home-or">or</div>
                 {/* <a href={`${BASE_URL}/api/auth/oauth_login`}> */}
                 <div className="oath-sign-in">
-                  <a
-                    href={`${BASE_URL}/api/auth/oauth_login`}
-                    class="login-btn"
+                  <Link
+                    to={`${BASE_URL}/api/auth/oauth_login`}
+                    className="login-btn"
                     style={{ textDecoration: "none" }}
                   >
                     <img
@@ -124,8 +124,8 @@ export default function HomePage() {
                       alt="Google"
                       style={{ width: "30px", height: "30px" }}
                     />
-                    <div class="btn-text">&nbsp;Sign in with Google</div>
-                  </a>
+                    <div className="btn-text">&nbsp;Sign in with Google</div>
+                  </Link>
                 </div>
               </div>
               <div className="sign-up-wrapper">
@@ -142,10 +142,10 @@ export default function HomePage() {
             <div style={{ listStyle: "none" }}>
               <div className="repo-link-container">
                 Created by&nbsp;
-                <a
+                <Link
                   target="_blank"
                   rel="noreferrer"
-                  href="https://www.linkedin.com/in/estherzhangg/"
+                  to="https://www.linkedin.com/in/estherzhangg/"
                   className="link-font-1"
                 >
                   <i
@@ -153,19 +153,19 @@ export default function HomePage() {
                     style={{ marginRight: "5px" }}
                   />
                   Esther Zhang
-                  <a
-                    className="link-font-2"
-                    target="_blank"
-                    rel="noreferrer"
-                    href="https://github.com/lovelyyun024/evernote-clone"
-                  >
-                    Project Code&nbsp;
-                    <i
-                      className="fa fa-github"
-                      style={{ color: "orange", fontWeight: "600" }}
-                    />
-                  </a>
-                </a>
+                </Link>
+                <Link
+                  className="link-font-2"
+                  target="_blank"
+                  rel="noreferrer"
+                  to="https://github.com/lovelyyun024/evernote-clone"
+                >
+                  Project Code&nbsp;
+                  <i
+                    className="fa fa-github"
+                    style={{ color: "orange", fontWeight: "600" }}
+                  />
+                </Link>
               </div>
             </div>
           </div>

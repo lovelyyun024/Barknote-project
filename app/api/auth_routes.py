@@ -26,7 +26,10 @@ auth_routes = Blueprint('auth', __name__)
 # Import our credentials from the .env file
 CLIENT_SECRET = os.getenv('GOOGLE_OAUTH_CLIENT_SECRET')
 CLIENT_ID = os.getenv('GOOGLE_OAUTH_CLIENT_ID')
-BASE_URL = os.getenv('BASE_URL') if os.getenv('NODE_ENV') == "production" else "http://localhost:5173"
+# BASE_URL = os.getenv('BASE_URL')
+# BASE_URL = "http://localhost:5173"
+# BASE_URL = os.getenv('BASE_URL') if os.getenv('NODE_ENV') == "production" else "http://localhost:5173"
+BASE_URL = "https://evernote-clone.onrender.com"
 
 
 
@@ -38,7 +41,7 @@ client_secrets = {
     "auth_provider_x509_cert_url": "https://www.googleapis.com/oauth2/v1/certs",
     "client_secret": CLIENT_SECRET,
     "redirect_uris": [
-      "http://localhost:5173/api/auth/callback",
+    #   "http://localhost:5173/api/auth/callback",
       "https://evernote-clone.onrender.com/api/auth/callback"
     ]
   }
@@ -53,12 +56,14 @@ with open(secrets.name, "w") as output:
 
 os.environ["OAUTHLIB_INSECURE_TRANSPORT"] = "1" # to allow Http traffic for local dev
 
-redirect_uri = "http://localhost:5173/api/auth/callback" if os.getenv('NODE_ENV') != "production" else "https://evernote-clone.onrender.com/api/auth/callback"
+# redirect_uri = "http://localhost:5173/api/auth/callback" if os.getenv('NODE_ENV') != "production" else "https://evernote-clone.onrender.com/api/auth/callback"
+redirect_uri = "https://evernote-clone.onrender.com/api/auth/callback"
 
 flow = Flow.from_client_secrets_file(
     client_secrets_file=secrets.name,
     scopes=["https://www.googleapis.com/auth/userinfo.profile", "https://www.googleapis.com/auth/userinfo.email", "openid"],
-    redirect_uri = "http://localhost:5173/api/auth/callback" if os.getenv('NODE_ENV') != "production" else "https://evernote-clone.onrender.com/api/auth/callback"
+    # redirect_uri = "http://localhost:5173/api/auth/callback" if os.getenv('NODE_ENV') != "production" else "https://evernote-clone.onrender.com/api/auth/callback"
+      redirect_uri = "https://evernote-clone.onrender.com/api/auth/callback"
 )   
 
 secrets.close() # This method call deletes our temporary file from the /tmp folder! We no longer need it as our flow object has been configured!
