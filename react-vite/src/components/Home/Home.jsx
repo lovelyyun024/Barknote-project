@@ -115,7 +115,7 @@ export default function HomePage() {
                 {/* <a href={`${BASE_URL}/api/auth/oauth_login`}> */}
                 <div className="oath-sign-in">
                   <Link
-                    to={`https://evernote-clone.onrender.com/api/auth/oauth_login`}
+                    to={"/api/auth/oauth_login"}
                     className="login-btn"
                     style={{ textDecoration: "none" }}
                   >

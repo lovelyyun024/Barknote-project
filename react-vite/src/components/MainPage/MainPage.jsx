@@ -14,7 +14,6 @@ function MainPage(props) {
   const dispatch = useDispatch();
 
   useEffect(() => {
-    dispatch(setLoader(true));
     setTimeout(() => {
       dispatch(setLoader(false));
     }, 500);
