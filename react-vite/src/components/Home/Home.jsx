@@ -12,7 +12,7 @@ export default function HomePage() {
   const sessionUser = useSelector((state) => state.session.user);
   const navigate = useNavigate();
   const dispatch = useDispatch();
- const BASE_URL = process.env.NODE_ENV == "production" ? process.env.BASE_URL : "http://localhost:5173"
+//  const BASE_URL = process.env.NODE_ENV == "production" ? process.env.BASE_URL : "http://localhost:5173"
 
   useEffect(() => {
     if (sessionUser) {
@@ -114,7 +114,7 @@ export default function HomePage() {
                 {/* <a href={`${BASE_URL}/api/auth/oauth_login`}> */}
                 <div className="oath-sign-in">
                   <Link
-                    to={`${BASE_URL}/api/auth/oauth_login`}
+                    to="https://evernote-clone.onrender.com/api/auth/oauth_login"
                     className="login-btn"
                     style={{ textDecoration: "none" }}
                   >
