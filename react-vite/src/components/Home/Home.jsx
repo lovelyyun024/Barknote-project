@@ -114,8 +114,8 @@ export default function HomePage() {
                 <div className="home-or">or</div>
                 {/* <a href={`${BASE_URL}/api/auth/oauth_login`}> */}
                 <div className="oath-sign-in">
-                  <a
-                    href="https://www.linkedin.com/in/estherzhangg/"
+                  <Link
+                    to="/api/auth/oauth_login"
                     class="login-btn"
                     style={{ textDecoration: "none" }}
                   >
@@ -126,7 +126,7 @@ export default function HomePage() {
                       style={{ width: "30px", height: "30px" }}
                     />
                     <div className="btn-text">&nbsp;Sign in with Google</div>
-                  </a>
+                  </Link>
                 </div>
               </div>
               <div className="sign-up-wrapper">
