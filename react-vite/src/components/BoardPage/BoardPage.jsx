@@ -39,19 +39,6 @@ export default function BoardPage() {
 
   const [completedTasks, setCompletedTasks] = useState([]);
 
-  //  const convertDateFormat = (inputDate) => {
-  //    const date = new Date(inputDate);
-  //    const year = date.getFullYear();
-  //    const month = (date.getMonth() + 1).toString().padStart(2, "0");
-  //    const day = date.getDate().toString().padStart(2, "0");
-  //    const hours = date.getHours().toString().padStart(2, "0");
-  //    const minutes = date.getMinutes().toString().padStart(2, "0");
-  //    const seconds = date.getSeconds().toString().padStart(2, "0");
-
-  //    const formattedDate = `${year}-${month}-${day} ${hours}:${minutes}:${seconds}`;
-  //    return formattedDate;
-  //  };
-
   const handleBgiClick = () => {
     if (backgroundImage == `url(${url1})`) {
       setBackgroundImage(`url(${url2})`);
@@ -71,7 +58,7 @@ export default function BoardPage() {
       completed: !completed,
 
     };
-    // console.log("===", task)
+
     setTimeout(async ()=> {
       await dispatch(thunkUpdateTask(id, task));
     }, 500);

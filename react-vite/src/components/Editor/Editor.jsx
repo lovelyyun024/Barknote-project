@@ -6,10 +6,6 @@
 // import Quill from "quill";
 
 
-// // Importing styles
-import "react-quill/dist/quill.snow.css";
-import styles from "./styles.module.css";
-
 // const Editor = () => {
 //   // Editor state
 //   const [value, setValue] = useState("");
