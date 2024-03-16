@@ -17,7 +17,6 @@ export default function InnerNavbar() {
   const tagName = tagKey?.name;
   const notesTagList = useSelector((state) => state.onetag.onetags);
   const notesTagData = notesTagList?.notes;
-  // console.log("sssssss",notesTagData)
   const noteTagNum = notesTagData?.length;
 
   useEffect(() => {

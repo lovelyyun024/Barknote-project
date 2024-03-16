@@ -13,8 +13,6 @@ export default function NoteDeleteForm({ noteId, pattern }) {
 
   const handleSubmitDelete = (e) => {
     e.preventDefault();
-    console.log(window.location.pathname);
-    console.log(window.location.pathname == "/main/notebooks");
     if (window.location.pathname == "/main/notebooks"){
       dispatch(thunkDeleteNBNote(id));
     } else  dispatch(thunkDeleteNote(id));

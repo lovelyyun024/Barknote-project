@@ -3,8 +3,6 @@ import { useModal } from "../../context/Modal";
 import { useDispatch } from "react-redux";
 
 export default function NBDeleteForm({ notebookId }) {
-  //   const id = spotId;
-  //   console.log("label",id)
   const dispatch = useDispatch();
   const { closeModal } = useModal();
 
